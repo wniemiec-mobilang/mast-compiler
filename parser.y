@@ -37,26 +37,34 @@
 	PONT nodo_ptr;
 }
 
-%type<nodo_ptr> screens screen title body subscreens subscreens_def subscreen components component;
+%type<nodo_ptr> screens screen title body subscreens subscreens_content subscreen components component;
 %%
 
 query: TK_QUERY_OPEN screens TK_QUERY_CLOSE { arvore = create_node($<nodo_ptr>2, to_node($<valor_lexico>1)); };
 
-screens: screen screens { $$ = create_node($<nodo_ptr>2, $<nodo_ptr>1); } | { $$ = NULL; };
-screen: TK_SCREEN_OPEN title body subscreens TK_SCREEN_CLOSE { $$ = create_3node($<nodo_ptr>2, $<nodo_ptr>3, $<nodo_ptr>4, to_node($<valor_lexico>1)); };
+screens: 
+	screen screens { $$ = create_node($<nodo_ptr>2, $<nodo_ptr>1); } 
+	| { $$ = NULL; };
+screen: TK_SCREEN_OPEN title body subscreens TK_SCREEN_CLOSE { 
+	$$ = create_3node($<nodo_ptr>2, $<nodo_ptr>3, $<nodo_ptr>4, to_node($<valor_lexico>1)); 
+};
 
 title: TK_TITLE_OPEN TK_STRING TK_TITLE_CLOSE { $$ = create_node(to_node($<valor_lexico>2), to_node($<valor_lexico>1)); };
 body: TK_BODY_OPEN components TK_BODY_CLOSE { $$ = create_node($<nodo_ptr>2, to_node($<valor_lexico>1)); };
 
 subscreens: 
-	TK_SUBSCREENS_OPEN subscreens_def TK_SUBSCREENS_CLOSE { $$ = create_2node($<nodo_ptr>2, $<nodo_ptr>3, to_node($<valor_lexico>1)); } 
+	TK_SUBSCREENS_OPEN subscreens_content TK_SUBSCREENS_CLOSE { $$ = create_node($<nodo_ptr>2, to_node($<valor_lexico>1)); } 
 	| { $$ = NULL; };
-subscreens_def: 
-	subscreen subscreens_def { $$ = create_2node($<nodo_ptr>1, $<nodo_ptr>2, $<nodo_ptr>1); } 
+subscreens_content: 
+	subscreen subscreens_content { $$ = create_node($<nodo_ptr>1, $<nodo_ptr>2); } 
 	| { $$ = NULL; };
-subscreen: TK_SUBSCREEN_OPEN title body TK_SUBSCREEN_CLOSE { $$ = create_2node($<nodo_ptr>2, $<nodo_ptr>3, to_node($<valor_lexico>1)); };;
 
-components: component components { $$ = create_node($<nodo_ptr>1, $<nodo_ptr>2); } | { $<nodo_ptr>$ = NULL; } ;
+	
+subscreen: TK_SUBSCREEN_OPEN title body TK_SUBSCREEN_CLOSE { 
+	$$ = create_2node($<nodo_ptr>2, $<nodo_ptr>3, to_node($<valor_lexico>1)); 
+};
+
+components: component components { $<nodo_ptr>$ = create_node($<nodo_ptr>2, $<nodo_ptr>1); } | { $<nodo_ptr>$ = NULL; } ;
 component: 	TK_VIEW_OPEN components TK_VIEW_CLOSE { $$ = create_node($<nodo_ptr>2, to_node($<valor_lexico>1)); }
 			| TK_TEXT_OPEN TK_STRING TK_TEXT_CLOSE { $$ = create_node(to_node($<valor_lexico>2), to_node($<valor_lexico>1)); };
 
@@ -79,6 +87,9 @@ PONT create_node(PONT node, PONT father)
 {
 	if (father == NULL)
 		return node;
+	
+	if (node == NULL)
+		return father;
 
 	PONT p = father->primFilho;
 	if (!p) {
