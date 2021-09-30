@@ -33,4 +33,4 @@ debug:
 	$(CC) $(OBJS) -o $(OUT) $(LFLAGS)
 
 test:
-	./$(OUT) < test.txt
+	./$(OUT) < test.xml
