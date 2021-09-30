@@ -13,8 +13,8 @@
 %}
 %error-verbose
 %token TK_STRING
-%token TK_VIEW_OPEN
-%token TK_VIEW_CLOSE
+%token TK_CONTENT_OPEN
+%token TK_CONTENT_CLOSE
 %token TK_TEXT_OPEN
 %token TK_TEXT_CLOSE
 %token TK_SCREEN_OPEN;
@@ -65,7 +65,7 @@ subscreen: TK_SUBSCREEN_OPEN title body TK_SUBSCREEN_CLOSE {
 };
 
 components: component components { $<nodo_ptr>$ = create_node($<nodo_ptr>2, $<nodo_ptr>1); } | { $<nodo_ptr>$ = NULL; } ;
-component: 	TK_VIEW_OPEN components TK_VIEW_CLOSE { $$ = create_node($<nodo_ptr>2, to_node($<valor_lexico>1)); }
+component: 	TK_CONTENT_OPEN components TK_CONTENT_CLOSE { $$ = create_node($<nodo_ptr>2, to_node($<valor_lexico>1)); }
 			| TK_TEXT_OPEN TK_STRING TK_TEXT_CLOSE { $$ = create_node(to_node($<valor_lexico>2), to_node($<valor_lexico>1)); };
 
 %%

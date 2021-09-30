@@ -6,9 +6,9 @@
 	void value_parser(int tipo_token, char* token);
 %}
 space [ \n\r]+
-view_open \<view\>
+content_open \<content\>
 text_open \<text\>
-view_close \<\/view\>
+content_close \<\/content\>
 text_close \<\/text\>
 string [^<>\n\r]+
 screen_open \<screen\>
@@ -35,8 +35,8 @@ title_close \<\/title\>
 {subscreens_close} 	{ value_parser(TK_SUBSCREENS_CLOSE, "</subscreens>"); return TK_SUBSCREENS_CLOSE; }
 {subscreen_open} 	{ value_parser(TK_SUBSCREEN_OPEN, "<subscreen>"); return TK_SUBSCREEN_OPEN; }
 {subscreen_close} 	{ value_parser(TK_SUBSCREEN_CLOSE, "</subscreen>"); return TK_SUBSCREEN_CLOSE; }
-{view_open} 		{ value_parser(TK_VIEW_OPEN, "<view>"); return TK_VIEW_OPEN; }
-{view_close} 		{ value_parser(TK_VIEW_CLOSE, "</view>"); return TK_VIEW_CLOSE; }
+{content_open} 		{ value_parser(TK_CONTENT_OPEN, "<content>"); return TK_CONTENT_OPEN; }
+{content_close} 		{ value_parser(TK_CONTENT_CLOSE, "</content>"); return TK_CONTENT_CLOSE; }
 {text_open} 		{ value_parser(TK_TEXT_OPEN, "<text>"); return TK_TEXT_OPEN; }
 {text_close} 		{ value_parser(TK_TEXT_CLOSE, "</text>"); return TK_TEXT_CLOSE; }
 {query_open} 		{ value_parser(TK_QUERY_OPEN, "<mobilang>"); return TK_QUERY_OPEN; }

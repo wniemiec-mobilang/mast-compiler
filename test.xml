@@ -2,28 +2,28 @@
     <screen>
         <title>Homepage</title>
         <body>
-            <view>
+            <content>
                 <text>hello</text>
                 <text>world</text>
-            </view>
+            </content>
         </body>
         <subscreens>
             <subscreen>
                 <title>Calendar</title>
                 <body>
-                    <view>
+                    <content>
                         <text>some month</text>
                         <text>some day</text>
-                    </view>
+                    </content>
                 </body>
             </subscreen>
             <subscreen>
                 <title>Q&A</title>
                 <body>
-                    <view>
+                    <content>
                         <text>question</text>
                         <text>answer</text>
-                    </view>
+                    </content>
                 </body>
             </subscreen>
         </subscreens>
@@ -31,9 +31,9 @@
     <screen>
         <title>Config</title>
         <body>
-            <view>
+            <content>
                 <text>config</text>
-            </view>
+            </content>
         </body>
     </screen>
 </mobilang>
