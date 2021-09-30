@@ -65,11 +65,14 @@
 #line 1 "parser.y" /* yacc.c:339  */
 
 	#include <stdio.h>
+	#include "conteudo_lexico.h"
 	int yylex(void);
 	void yyerror (char const *s);
 	extern int yylineno;
 
-#line 73 "parser.tab.c" /* yacc.c:339  */
+
+
+#line 76 "parser.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -114,7 +117,17 @@ extern int yydebug;
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
+
+union YYSTYPE
+{
+#line 18 "parser.y" /* yacc.c:355  */
+
+    conteudo_lexico valor_lexico;
+
+#line 128 "parser.tab.c" /* yacc.c:355  */
+};
+
+typedef union YYSTYPE YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif
@@ -128,7 +141,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 132 "parser.tab.c" /* yacc.c:358  */
+#line 145 "parser.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -426,7 +439,7 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    16,    16,    18,    18,    20,    21
+       0,    25,    25,    27,    27,    29,    30
 };
 #endif
 
@@ -1195,8 +1208,20 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-      
-#line 1200 "parser.tab.c" /* yacc.c:1646  */
+        case 5:
+#line 29 "parser.y" /* yacc.c:1646  */
+    { printf("%s\n", (yyvsp[-2].valor_lexico).label); }
+#line 1215 "parser.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 6:
+#line 30 "parser.y" /* yacc.c:1646  */
+    { printf("%s\n", (yyvsp[-1].valor_lexico).label); printf("%s\n", (yyvsp[-2].valor_lexico).label); }
+#line 1221 "parser.tab.c" /* yacc.c:1646  */
+    break;
+
+
+#line 1225 "parser.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1424,7 +1449,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 23 "parser.y" /* yacc.c:1906  */
+#line 32 "parser.y" /* yacc.c:1906  */
 
 void yyerror (char const *s)
 {

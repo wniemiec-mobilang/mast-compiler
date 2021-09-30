@@ -480,10 +480,12 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "scanner.l"
 #line 2 "scanner.l"
+	#include "conteudo_lexico.h"
 	#include "parser.tab.h"
-	int get_line_number();	
-#line 486 "lex.yy.c"
-#line 487 "lex.yy.c"
+	int get_line_number();
+	void value_parser(int tipo_token, char* token);
+#line 488 "lex.yy.c"
+#line 489 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -700,9 +702,9 @@ YY_DECL
 		}
 
 	{
-#line 12 "scanner.l"
+#line 14 "scanner.l"
 
-#line 706 "lex.yy.c"
+#line 708 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -772,40 +774,40 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 13 "scanner.l"
+#line 15 "scanner.l"
 { }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 14 "scanner.l"
-{ return TK_VIEW_OPEN; }
+#line 16 "scanner.l"
+{ value_parser(TK_VIEW_OPEN, "<view>"); return TK_VIEW_OPEN; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 15 "scanner.l"
-{ return TK_VIEW_CLOSE; }
+#line 17 "scanner.l"
+{ value_parser(TK_VIEW_CLOSE, "</view>"); return TK_VIEW_CLOSE; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 16 "scanner.l"
-{ return TK_TEXT_OPEN; }
+#line 18 "scanner.l"
+{ value_parser(TK_TEXT_OPEN, "<text>"); return TK_TEXT_OPEN; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 17 "scanner.l"
-{ return TK_TEXT_CLOSE; }
+#line 19 "scanner.l"
+{ value_parser(TK_TEXT_CLOSE, "</text>"); return TK_TEXT_CLOSE; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 18 "scanner.l"
-{ return TK_STRING; }
+#line 20 "scanner.l"
+{ value_parser(TK_STRING, strdup(yytext)); return TK_STRING; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 20 "scanner.l"
+#line 22 "scanner.l"
 ECHO;
 	YY_BREAK
-#line 809 "lex.yy.c"
+#line 811 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1822,9 +1824,17 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 20 "scanner.l"
+#line 22 "scanner.l"
 
 int get_line_number() {
 	return yylineno;
 }
+
+void value_parser(int tipo_token, char* label)
+{
+	yylval.valor_lexico.tipo_token = tipo_token;
+	yylval.valor_lexico.numero_linha = get_line_number();
+	yylval.valor_lexico.label = label;
+}
+
 
