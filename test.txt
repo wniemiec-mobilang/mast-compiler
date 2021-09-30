@@ -1,4 +1,39 @@
-<view>
-    <text>hello</text>
-    <text>world</text>
-</view>
+<mobilang>
+    <screen>
+        <title>Homepage</title>
+        <body>
+            <view>
+                <text>hello</text>
+                <text>world</text>
+            </view>
+        </body>
+        <subscreens>
+            <subscreen>
+                <title>Calendar</title>
+                <body>
+                    <view>
+                        <text>some month</text>
+                        <text>some day</text>
+                    </view>
+                </body>
+            </subscreen>
+            <subscreen>
+                <title>Q&A</title>
+                <body>
+                    <view>
+                        <text>question</text>
+                        <text>answer</text>
+                    </view>
+                </body>
+            </subscreen>
+        </subscreens>
+    </screen>
+    <screen>
+        <title>Config</title>
+        <body>
+            <view>
+                <text>config</text>
+            </view>
+        </body>
+    </screen>
+</mobilang>
