@@ -24,6 +24,16 @@ title_open \<title\>
 title_close \<\/title\>
 style_open \<style\>
 style_close \<\/style\>
+
+button_open \<button\>
+button_close \<\/button\>
+actions_open \<actions\>
+actions_close \<\/actions\>
+onpress_open \<onpress\>
+onpress_close \<\/onpress\>
+alert_open \<alert\>
+alert_close \<\/alert\>
+
 string [^<>\n\r]+
 
 %option yylineno
@@ -47,6 +57,16 @@ string [^<>\n\r]+
 {title_close}		{ value_parser(TK_TITLE_CLOSE, "</title>"); return TK_TITLE_CLOSE; }
 {style_open}		{ value_parser(TK_STYLE_OPEN, "<style>"); return TK_STYLE_OPEN; }
 {style_close}		{ value_parser(TK_STYLE_CLOSE, "</style>"); return TK_STYLE_CLOSE; }
+
+{button_open}		{ value_parser(TK_BUTTON_OPEN, "<button>"); return TK_BUTTON_OPEN; }
+{button_close}		{ value_parser(TK_BUTTON_CLOSE, "</button>"); return TK_BUTTON_CLOSE; }
+{actions_open}		{ value_parser(TK_ACTIONS_OPEN, "<actions>"); return TK_ACTIONS_OPEN; }
+{actions_close}		{ value_parser(TK_ACTIONS_CLOSE, "</actions>"); return TK_ACTIONS_CLOSE; }
+{onpress_open}		{ value_parser(TK_ONPRESS_OPEN, "<onpress>"); return TK_ONPRESS_OPEN; }
+{onpress_close} 	{ value_parser(TK_ONPRESS_CLOSE, "</onpress>"); return TK_ONPRESS_CLOSE; }
+{alert_open}		{ value_parser(TK_ALERT_OPEN, "<alert>"); return TK_ALERT_OPEN; }
+{alert_close}		{ value_parser(TK_ALERT_CLOSE, "</alert>"); return TK_ALERT_CLOSE; }
+
 {string} 			{ value_parser(TK_STRING, strdup(yytext)); return TK_STRING; }
 
 %%

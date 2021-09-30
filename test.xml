@@ -5,6 +5,16 @@
             <content>
                 <text>hello</text>
                 <text>world</text>
+                <button>
+                    <text>Click me</text>
+                    <actions>
+                        <onpress>
+                            <alert>
+                                You clicked me!
+                            </alert>
+                        </onpress>
+                    </actions>
+                </button>
             </content>
             <style>
                 text { background-color: 'red'; flex: 1; }

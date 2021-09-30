@@ -17,20 +17,29 @@
 %token TK_CONTENT_CLOSE
 %token TK_TEXT_OPEN
 %token TK_TEXT_CLOSE
-%token TK_SCREEN_OPEN;
-%token TK_SCREEN_CLOSE;
-%token TK_BODY_OPEN;
-%token TK_BODY_CLOSE;
-%token TK_SUBSCREENS_OPEN;
-%token TK_SUBSCREENS_CLOSE;
-%token TK_SUBSCREEN_OPEN;
-%token TK_SUBSCREEN_CLOSE;
-%token TK_QUERY_OPEN;
-%token TK_QUERY_CLOSE;
-%token TK_TITLE_OPEN;
-%token TK_TITLE_CLOSE;
-%token TK_STYLE_OPEN;
-%token TK_STYLE_CLOSE;
+%token TK_SCREEN_OPEN
+%token TK_SCREEN_CLOSE
+%token TK_BODY_OPEN
+%token TK_BODY_CLOSE
+%token TK_SUBSCREENS_OPEN
+%token TK_SUBSCREENS_CLOSE
+%token TK_SUBSCREEN_OPEN
+%token TK_SUBSCREEN_CLOSE
+%token TK_QUERY_OPEN
+%token TK_QUERY_CLOSE
+%token TK_TITLE_OPEN
+%token TK_TITLE_CLOSE
+%token TK_STYLE_OPEN
+%token TK_STYLE_CLOSE
+
+%token TK_BUTTON_OPEN
+%token TK_BUTTON_CLOSE
+%token TK_ACTIONS_OPEN
+%token TK_ACTIONS_CLOSE
+%token TK_ONPRESS_OPEN
+%token TK_ONPRESS_CLOSE
+%token TK_ALERT_OPEN
+%token TK_ALERT_CLOSE
 
 %start query
 
@@ -39,7 +48,8 @@
 	PONT nodo_ptr;
 }
 
-%type<nodo_ptr> screens screen title body subscreens subscreens_content subscreen content content_inner style style_content;
+%type<nodo_ptr> screens screen title body subscreens subscreens_content subscreen content content_inner style style_content
+text actions subactions actions_inner alert;
 %%
 
 query: TK_QUERY_OPEN screens TK_QUERY_CLOSE { arvore = create_node($<nodo_ptr>2, to_node($<valor_lexico>1)); };
@@ -71,7 +81,17 @@ content:
 	| { $<nodo_ptr>$ = NULL; } ;
 content_inner: 	
 	TK_CONTENT_OPEN content TK_CONTENT_CLOSE { $$ = create_node($<nodo_ptr>2, to_node($<valor_lexico>1)); }
-	| TK_TEXT_OPEN TK_STRING TK_TEXT_CLOSE { $$ = create_node(to_node($<valor_lexico>2), to_node($<valor_lexico>1)); };
+	| TK_TEXT_OPEN TK_STRING TK_TEXT_CLOSE { $$ = create_node(to_node($<valor_lexico>2), to_node($<valor_lexico>1)); }
+	| TK_BUTTON_OPEN text actions TK_BUTTON_CLOSE { $$ = create_2node($<nodo_ptr>2, $<nodo_ptr>3, to_node($<valor_lexico>1)); };
+
+text: TK_TEXT_OPEN TK_STRING TK_TEXT_CLOSE { $$ = create_node(to_node($<valor_lexico>2), to_node($<valor_lexico>1)); };
+
+actions: TK_ACTIONS_OPEN actions_inner TK_ACTIONS_CLOSE { $$ = create_node($<nodo_ptr>2, to_node($<valor_lexico>1)); };
+actions_inner: 
+	TK_ONPRESS_OPEN subactions TK_ONPRESS_CLOSE actions_inner { $$ = create_node($<nodo_ptr>2, to_node($<valor_lexico>1)); }
+	| { $$ = NULL; };
+subactions: alert {$$ = $<nodo_ptr>1;};
+alert: TK_ALERT_OPEN TK_STRING TK_ALERT_CLOSE { $$ = create_node(to_node($<valor_lexico>2), to_node($<valor_lexico>1)); };
 
 style: 
 	TK_STYLE_OPEN style_content TK_STYLE_CLOSE { $$ = create_node($<nodo_ptr>2, to_node($<valor_lexico>1)); }
