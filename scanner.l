@@ -1,5 +1,6 @@
 %{
 	#include "conteudo_lexico.h"
+	#include "arvore/arvore_n_aria.h"
 	#include "parser.tab.h"
 	int get_line_number();
 	void value_parser(int tipo_token, char* token);

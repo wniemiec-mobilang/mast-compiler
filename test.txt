@@ -1,3 +1,4 @@
 <view>
     <text>hello</text>
+    <text>world</text>
 </view>
