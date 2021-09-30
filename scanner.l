@@ -10,7 +10,6 @@ content_open \<content\>
 text_open \<text\>
 content_close \<\/content\>
 text_close \<\/text\>
-string [^<>\n\r]+
 screen_open \<screen\>
 screen_close \<\/screen\>
 body_open \<body\>
@@ -23,6 +22,9 @@ query_open \<mobilang\>
 query_close \<\/mobilang\>
 title_open \<title\>
 title_close \<\/title\>
+style_open \<style\>
+style_close \<\/style\>
+string [^<>\n\r]+
 
 %option yylineno
 %%
@@ -43,6 +45,8 @@ title_close \<\/title\>
 {query_close} 		{ value_parser(TK_QUERY_CLOSE, "</mobilang>"); return TK_QUERY_CLOSE; }
 {title_open}		{ value_parser(TK_TITLE_OPEN, "<title>"); return TK_TITLE_OPEN; }
 {title_close}		{ value_parser(TK_TITLE_CLOSE, "</title>"); return TK_TITLE_CLOSE; }
+{style_open}		{ value_parser(TK_STYLE_OPEN, "<style>"); return TK_STYLE_OPEN; }
+{style_close}		{ value_parser(TK_STYLE_CLOSE, "</style>"); return TK_STYLE_CLOSE; }
 {string} 			{ value_parser(TK_STRING, strdup(yytext)); return TK_STRING; }
 
 %%

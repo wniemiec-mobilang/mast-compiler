@@ -6,6 +6,10 @@
                 <text>hello</text>
                 <text>world</text>
             </content>
+            <style>
+                text { background-color: 'red'; flex: 1; }
+                div { background-color: 'green'; flex: 1; }
+            </style>
         </body>
         <subscreens>
             <subscreen>

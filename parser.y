@@ -29,6 +29,8 @@
 %token TK_QUERY_CLOSE;
 %token TK_TITLE_OPEN;
 %token TK_TITLE_CLOSE;
+%token TK_STYLE_OPEN;
+%token TK_STYLE_CLOSE;
 
 %start query
 
@@ -37,7 +39,7 @@
 	PONT nodo_ptr;
 }
 
-%type<nodo_ptr> screens screen title body subscreens subscreens_content subscreen components component;
+%type<nodo_ptr> screens screen title body subscreens subscreens_content subscreen content content_inner style style_content;
 %%
 
 query: TK_QUERY_OPEN screens TK_QUERY_CLOSE { arvore = create_node($<nodo_ptr>2, to_node($<valor_lexico>1)); };
@@ -50,7 +52,7 @@ screen: TK_SCREEN_OPEN title body subscreens TK_SCREEN_CLOSE {
 };
 
 title: TK_TITLE_OPEN TK_STRING TK_TITLE_CLOSE { $$ = create_node(to_node($<valor_lexico>2), to_node($<valor_lexico>1)); };
-body: TK_BODY_OPEN components TK_BODY_CLOSE { $$ = create_node($<nodo_ptr>2, to_node($<valor_lexico>1)); };
+body: TK_BODY_OPEN content style TK_BODY_CLOSE { $$ = create_2node($<nodo_ptr>2, $<nodo_ptr>3, to_node($<valor_lexico>1)); };
 
 subscreens: 
 	TK_SUBSCREENS_OPEN subscreens_content TK_SUBSCREENS_CLOSE { $$ = create_node($<nodo_ptr>2, to_node($<valor_lexico>1)); } 
@@ -64,10 +66,20 @@ subscreen: TK_SUBSCREEN_OPEN title body TK_SUBSCREEN_CLOSE {
 	$$ = create_2node($<nodo_ptr>2, $<nodo_ptr>3, to_node($<valor_lexico>1)); 
 };
 
-components: component components { $<nodo_ptr>$ = create_node($<nodo_ptr>2, $<nodo_ptr>1); } | { $<nodo_ptr>$ = NULL; } ;
-component: 	TK_CONTENT_OPEN components TK_CONTENT_CLOSE { $$ = create_node($<nodo_ptr>2, to_node($<valor_lexico>1)); }
-			| TK_TEXT_OPEN TK_STRING TK_TEXT_CLOSE { $$ = create_node(to_node($<valor_lexico>2), to_node($<valor_lexico>1)); };
+content: 
+	content_inner content { $<nodo_ptr>$ = create_node($<nodo_ptr>2, $<nodo_ptr>1); } 
+	| { $<nodo_ptr>$ = NULL; } ;
+content_inner: 	
+	TK_CONTENT_OPEN content TK_CONTENT_CLOSE { $$ = create_node($<nodo_ptr>2, to_node($<valor_lexico>1)); }
+	| TK_TEXT_OPEN TK_STRING TK_TEXT_CLOSE { $$ = create_node(to_node($<valor_lexico>2), to_node($<valor_lexico>1)); };
 
+style: 
+	TK_STYLE_OPEN style_content TK_STYLE_CLOSE { $$ = create_node($<nodo_ptr>2, to_node($<valor_lexico>1)); }
+	| { $$ = NULL; };
+
+style_content:
+	TK_STRING style_content { $$ = create_node($<nodo_ptr>2, to_node($<valor_lexico>1)); }
+	| { $$ = NULL; };
 %%
 void yyerror (char const *s)
 {
@@ -106,6 +118,12 @@ PONT create_node(PONT node, PONT father)
 
 PONT create_2node(PONT child1, PONT child2, PONT father)
 {
+	if (child2 == NULL)
+		return create_node(child1, father);
+
+	if (child1 == NULL)
+		return create_node(child2, father);
+
 	if (father == NULL)
 	{
 		child1->proxIrmao = child2;
