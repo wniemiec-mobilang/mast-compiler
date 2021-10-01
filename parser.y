@@ -40,6 +40,10 @@
 %token TK_ONPRESS_CLOSE
 %token TK_ALERT_OPEN
 %token TK_ALERT_CLOSE
+%token TK_ICON_OPEN
+%token TK_ICON_CLOSE
+%token TK_SCREENS_OPEN
+%token TK_SCREENS_CLOSE
 
 %start query
 
@@ -48,14 +52,19 @@
 	PONT nodo_ptr;
 }
 
-%type<nodo_ptr> screens screen title body subscreens subscreens_content subscreen content content_inner style style_content
-text actions subactions actions_inner alert;
+%type<nodo_ptr> screens screens_inner screen title body subscreens subscreens_content subscreen content component style style_content
+text actions subactions actions_inner alert icon;
 %%
 
-query: TK_QUERY_OPEN screens TK_QUERY_CLOSE { arvore = create_node($<nodo_ptr>2, to_node($<valor_lexico>1)); };
+query: TK_QUERY_OPEN screens icon TK_QUERY_CLOSE { arvore = create_2node($<nodo_ptr>2, $<nodo_ptr>3, to_node($<valor_lexico>1)); };
+icon: TK_ICON_OPEN TK_STRING TK_ICON_CLOSE { $$ = create_node(to_node($<valor_lexico>2), to_node($<valor_lexico>1)); };
 
 screens: 
-	screen screens { $$ = create_node($<nodo_ptr>2, $<nodo_ptr>1); } 
+	TK_SCREENS_OPEN screens_inner TK_SCREENS_CLOSE { $$ = create_node($<nodo_ptr>2, to_node($<valor_lexico>1)); } 
+	| { $$ = NULL; };
+
+screens_inner: 
+	screen screens_inner { $$ = create_node($<nodo_ptr>2, $<nodo_ptr>1); } 
 	| { $$ = NULL; };
 screen: TK_SCREEN_OPEN title body subscreens TK_SCREEN_CLOSE { 
 	$$ = create_3node($<nodo_ptr>2, $<nodo_ptr>3, $<nodo_ptr>4, to_node($<valor_lexico>1)); 
@@ -77,9 +86,9 @@ subscreen: TK_SUBSCREEN_OPEN title body TK_SUBSCREEN_CLOSE {
 };
 
 content: 
-	content_inner content { $<nodo_ptr>$ = create_node($<nodo_ptr>2, $<nodo_ptr>1); } 
+	component content { $<nodo_ptr>$ = create_node($<nodo_ptr>2, $<nodo_ptr>1); } 
 	| { $<nodo_ptr>$ = NULL; } ;
-content_inner: 	
+component: 	
 	TK_CONTENT_OPEN content TK_CONTENT_CLOSE { $$ = create_node($<nodo_ptr>2, to_node($<valor_lexico>1)); }
 	| TK_TEXT_OPEN TK_STRING TK_TEXT_CLOSE { $$ = create_node(to_node($<valor_lexico>2), to_node($<valor_lexico>1)); }
 	| TK_BUTTON_OPEN text actions TK_BUTTON_CLOSE { $$ = create_2node($<nodo_ptr>2, $<nodo_ptr>3, to_node($<valor_lexico>1)); };

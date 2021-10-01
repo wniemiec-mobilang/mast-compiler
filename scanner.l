@@ -33,6 +33,10 @@ onpress_open \<onpress\>
 onpress_close \<\/onpress\>
 alert_open \<alert\>
 alert_close \<\/alert\>
+icon_open \<icon\>
+icon_close \<\/icon\>
+screens_open \<screens\>
+screens_close \<\/screens\>
 
 string [^<>\n\r]+
 
@@ -66,6 +70,10 @@ string [^<>\n\r]+
 {onpress_close} 	{ value_parser(TK_ONPRESS_CLOSE, "</onpress>"); return TK_ONPRESS_CLOSE; }
 {alert_open}		{ value_parser(TK_ALERT_OPEN, "<alert>"); return TK_ALERT_OPEN; }
 {alert_close}		{ value_parser(TK_ALERT_CLOSE, "</alert>"); return TK_ALERT_CLOSE; }
+{icon_open}			{ value_parser(TK_ICON_OPEN, "<icon>"); return TK_ICON_OPEN; }
+{icon_close}		{ value_parser(TK_ICON_CLOSE, "</icon>"); return TK_ICON_CLOSE; }
+{screens_open}		{ value_parser(TK_SCREENS_OPEN, "<screens>"); return TK_SCREENS_OPEN; }
+{screens_close}		{ value_parser(TK_SCREENS_CLOSE, "</screens>"); return TK_SCREENS_CLOSE; }
 
 {string} 			{ value_parser(TK_STRING, strdup(yytext)); return TK_STRING; }
 
