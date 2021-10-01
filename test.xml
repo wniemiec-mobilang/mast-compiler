@@ -7,12 +7,10 @@
                     <text>hello</text>
                     <text>world</text>
                     <button>
-                        <text>Click me</text>
+                        <text>My Calendar</text>
                         <actions>
                             <onpress>
-                                <alert>
-                                    You clicked me!
-                                </alert>
+                                <goto>Calendar</goto>
                             </onpress>
                         </actions>
                     </button>

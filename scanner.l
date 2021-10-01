@@ -37,6 +37,8 @@ icon_open \<icon\>
 icon_close \<\/icon\>
 screens_open \<screens\>
 screens_close \<\/screens\>
+goto_open \<goto\>
+goto_close \<\/goto\>
 
 string [^<>\n\r]+
 
@@ -52,7 +54,7 @@ string [^<>\n\r]+
 {subscreen_open} 	{ value_parser(TK_SUBSCREEN_OPEN, "<subscreen>"); return TK_SUBSCREEN_OPEN; }
 {subscreen_close} 	{ value_parser(TK_SUBSCREEN_CLOSE, "</subscreen>"); return TK_SUBSCREEN_CLOSE; }
 {content_open} 		{ value_parser(TK_CONTENT_OPEN, "<content>"); return TK_CONTENT_OPEN; }
-{content_close} 		{ value_parser(TK_CONTENT_CLOSE, "</content>"); return TK_CONTENT_CLOSE; }
+{content_close} 	{ value_parser(TK_CONTENT_CLOSE, "</content>"); return TK_CONTENT_CLOSE; }
 {text_open} 		{ value_parser(TK_TEXT_OPEN, "<text>"); return TK_TEXT_OPEN; }
 {text_close} 		{ value_parser(TK_TEXT_CLOSE, "</text>"); return TK_TEXT_CLOSE; }
 {query_open} 		{ value_parser(TK_QUERY_OPEN, "<mobilang>"); return TK_QUERY_OPEN; }
@@ -74,6 +76,10 @@ string [^<>\n\r]+
 {icon_close}		{ value_parser(TK_ICON_CLOSE, "</icon>"); return TK_ICON_CLOSE; }
 {screens_open}		{ value_parser(TK_SCREENS_OPEN, "<screens>"); return TK_SCREENS_OPEN; }
 {screens_close}		{ value_parser(TK_SCREENS_CLOSE, "</screens>"); return TK_SCREENS_CLOSE; }
+{screens_open}		{ value_parser(TK_SCREENS_OPEN, "<screens>"); return TK_SCREENS_OPEN; }
+{screens_close}		{ value_parser(TK_SCREENS_CLOSE, "</screens>"); return TK_SCREENS_CLOSE; }
+{goto_open}			{ value_parser(TK_GOTO_OPEN, "<goto>"); return TK_GOTO_OPEN; }
+{goto_close}		{ value_parser(TK_GOTO_CLOSE, "</goto>"); return TK_GOTO_CLOSE; }
 
 {string} 			{ value_parser(TK_STRING, strdup(yytext)); return TK_STRING; }
 

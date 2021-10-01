@@ -44,6 +44,8 @@
 %token TK_ICON_CLOSE
 %token TK_SCREENS_OPEN
 %token TK_SCREENS_CLOSE
+%token TK_GOTO_OPEN
+%token TK_GOTO_CLOSE
 
 %start query
 
@@ -53,7 +55,7 @@
 }
 
 %type<nodo_ptr> screens screens_inner screen title body subscreens subscreens_content subscreen content component style style_content
-text actions subactions actions_inner alert icon;
+text actions subactions actions_inner alert icon goto;
 %%
 
 query: TK_QUERY_OPEN screens icon TK_QUERY_CLOSE { arvore = create_2node($<nodo_ptr>2, $<nodo_ptr>3, to_node($<valor_lexico>1)); };
@@ -99,8 +101,11 @@ actions: TK_ACTIONS_OPEN actions_inner TK_ACTIONS_CLOSE { $$ = create_node($<nod
 actions_inner: 
 	TK_ONPRESS_OPEN subactions TK_ONPRESS_CLOSE actions_inner { $$ = create_node($<nodo_ptr>2, to_node($<valor_lexico>1)); }
 	| { $$ = NULL; };
-subactions: alert {$$ = $<nodo_ptr>1;};
+subactions: 
+	alert {$$ = $<nodo_ptr>1;}
+	| goto {$$ = $<nodo_ptr>1;};
 alert: TK_ALERT_OPEN TK_STRING TK_ALERT_CLOSE { $$ = create_node(to_node($<valor_lexico>2), to_node($<valor_lexico>1)); };
+goto: TK_GOTO_OPEN TK_STRING TK_GOTO_CLOSE { $$ = create_node(to_node($<valor_lexico>2), to_node($<valor_lexico>1)); };
 
 style: 
 	TK_STYLE_OPEN style_content TK_STYLE_CLOSE { $$ = create_node($<nodo_ptr>2, to_node($<valor_lexico>1)); }
