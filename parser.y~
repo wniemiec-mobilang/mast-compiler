@@ -11,7 +11,7 @@
 	extern int yylineno;
 	PONT arvore;
 %}
-%define parse.error verbose
+%error-verbose
 %token TK_STRING
 %token TK_CONTENT_OPEN
 %token TK_CONTENT_CLOSE

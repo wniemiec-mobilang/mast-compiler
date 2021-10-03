@@ -76,8 +76,6 @@ string [^<>\n\r]+
 {icon_close}		{ value_parser(TK_ICON_CLOSE, "</icon>"); return TK_ICON_CLOSE; }
 {screens_open}		{ value_parser(TK_SCREENS_OPEN, "<screens>"); return TK_SCREENS_OPEN; }
 {screens_close}		{ value_parser(TK_SCREENS_CLOSE, "</screens>"); return TK_SCREENS_CLOSE; }
-{screens_open}		{ value_parser(TK_SCREENS_OPEN, "<screens>"); return TK_SCREENS_OPEN; }
-{screens_close}		{ value_parser(TK_SCREENS_CLOSE, "</screens>"); return TK_SCREENS_CLOSE; }
 {goto_open}			{ value_parser(TK_GOTO_OPEN, "<goto>"); return TK_GOTO_OPEN; }
 {goto_close}		{ value_parser(TK_GOTO_CLOSE, "</goto>"); return TK_GOTO_CLOSE; }
 
