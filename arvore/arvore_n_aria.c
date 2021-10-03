@@ -48,20 +48,45 @@ bool insere(PONT raiz, TIPOCHAVE novaChave,  TIPOCHAVE chavePai){
   return(true);
 }
 //-------------------------------------------------------
-void exibeArvore(PONT raiz){
-	if(raiz==NULL) return;
+void exibe_nodos(PONT raiz)
+{
+	if(raiz==NULL) 
+		return;
 
-    printf("%p [label= %s ];\n",raiz,(raiz->chave).label);
+    printf("%p [label=\"%s\"];\n",raiz,(raiz->chave).label);
 	PONT p=raiz->primFilho;
-	while (p){
-		exibeArvore(p);
+	
+	while (p)
+	{
+		exibe_nodos(p);
+		p=p->proxIrmao;
+	}
+}
+
+void exibe_aresta(PONT raiz, PONT filho)
+{
+	printf("%p, %p\n", raiz, filho);
+}
+
+void exibe_arestas(PONT raiz)
+{
+	if(raiz==NULL) 
+		return;
+
+    //printf("%p",raiz);
+	PONT p=raiz->primFilho;
+	
+	while (p)
+	{
+		exibe_aresta(raiz, p);
 		p=p->proxIrmao;
 	}
 }
 
 void exporta (void* arvore)
 {
-    exibeArvore((PONT) arvore);
+    exibe_arestas((PONT) arvore);
+    exibe_nodos((PONT) arvore);
 }
 
 void liberaArvore(PONT raiz)
