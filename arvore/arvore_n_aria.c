@@ -73,12 +73,12 @@ void exibe_arestas(PONT raiz)
 	if(raiz==NULL) 
 		return;
 
-    //printf("%p",raiz);
 	PONT p=raiz->primFilho;
 	
 	while (p)
 	{
 		exibe_aresta(raiz, p);
+		exibe_arestas(p);
 		p=p->proxIrmao;
 	}
 }
