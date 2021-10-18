@@ -1,5 +1,5 @@
-SRC 		= arvore_n_aria.c
-OUT			= arvore_n_aria.o
+SRC 		= n_tree.c
+OUT			= n_tree.o
 CC	 	 	= gcc
 
 all:                       

@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+
+extern int yyparse(void);
+extern int yylex_destroy(void);
+
+void* tree = NULL;
+void export_tree(void* tree);
+void free_tree (void* tree);
+
+int main (int argc, char **argv)
+{
+  int ret = yyparse();
+  
+  export_tree(tree);
+  free_tree(tree);
+  tree = NULL;
+  yylex_destroy();
+
+  return ret;
+}

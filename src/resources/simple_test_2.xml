@@ -1,0 +1,15 @@
+<mobilang>
+    <screens>
+        <screen>
+            <title>Homepage</title>
+            <body>
+                <content>
+                    <div>
+                        <text>hello</text>
+                        <text>world</text>
+                    </div>
+                </content>
+            </body>
+        </screen>
+    </screens>
+</mobilang>

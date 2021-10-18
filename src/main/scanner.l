@@ -1,10 +1,12 @@
 %{
-	#include "conteudo_lexico.h"
-	#include "arvore/arvore_n_aria.h"
+	#include "lexeme.h"
+	#include "util/n_tree/n_tree.h"
 	#include "parser.tab.h"
+	
 	int get_line_number();
-	void value_parser(int tipo_token, char* token);
+	void value_parser(int token_type, char* token);
 %}
+
 space [ \n\r]+
 content_open \<content\>
 text_open \<text\>
@@ -24,7 +26,8 @@ title_open \<title\>
 title_close \<\/title\>
 style_open \<style\>
 style_close \<\/style\>
-
+div_open \<div\>
+div_close \<\/div\>
 button_open \<button\>
 button_close \<\/button\>
 actions_open \<actions\>
@@ -39,12 +42,13 @@ screens_open \<screens\>
 screens_close \<\/screens\>
 goto_open \<goto\>
 goto_close \<\/goto\>
-
 string [^<>\n\r]+
 
 %option yylineno
+
 %%
-{space} { }
+
+{space} 			{ }
 {screen_open} 		{ value_parser(TK_SCREEN_OPEN, "<screen>"); return TK_SCREEN_OPEN; }
 {screen_close} 		{ value_parser(TK_SCREEN_CLOSE, "</screen>"); return TK_SCREEN_CLOSE; }
 {body_open} 		{ value_parser(TK_BODY_OPEN, "<body>"); return TK_BODY_OPEN; }
@@ -63,7 +67,8 @@ string [^<>\n\r]+
 {title_close}		{ value_parser(TK_TITLE_CLOSE, "</title>"); return TK_TITLE_CLOSE; }
 {style_open}		{ value_parser(TK_STYLE_OPEN, "<style>"); return TK_STYLE_OPEN; }
 {style_close}		{ value_parser(TK_STYLE_CLOSE, "</style>"); return TK_STYLE_CLOSE; }
-
+{div_open}			{ value_parser(TK_DIV_OPEN, "<div>"); return TK_DIV_OPEN; }
+{div_close}			{ value_parser(TK_DIV_CLOSE, "</div>"); return TK_DIV_CLOSE; }
 {button_open}		{ value_parser(TK_BUTTON_OPEN, "<button>"); return TK_BUTTON_OPEN; }
 {button_close}		{ value_parser(TK_BUTTON_CLOSE, "</button>"); return TK_BUTTON_CLOSE; }
 {actions_open}		{ value_parser(TK_ACTIONS_OPEN, "<actions>"); return TK_ACTIONS_OPEN; }
@@ -78,18 +83,18 @@ string [^<>\n\r]+
 {screens_close}		{ value_parser(TK_SCREENS_CLOSE, "</screens>"); return TK_SCREENS_CLOSE; }
 {goto_open}			{ value_parser(TK_GOTO_OPEN, "<goto>"); return TK_GOTO_OPEN; }
 {goto_close}		{ value_parser(TK_GOTO_CLOSE, "</goto>"); return TK_GOTO_CLOSE; }
-
 {string} 			{ value_parser(TK_STRING, strdup(yytext)); return TK_STRING; }
 
 %%
+
 int get_line_number() {
 	return yylineno;
 }
 
-void value_parser(int tipo_token, char* label)
+void value_parser(int token_type, char* label)
 {
-	yylval.valor_lexico.tipo_token = tipo_token;
-	yylval.valor_lexico.numero_linha = get_line_number();
+	yylval.valor_lexico.token_type = token_type;
+	yylval.valor_lexico.line_number = get_line_number();
 	yylval.valor_lexico.label = label;
 }
 
