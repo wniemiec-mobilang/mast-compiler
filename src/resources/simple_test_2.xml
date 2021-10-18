@@ -5,11 +5,29 @@
             <body>
                 <content>
                     <div>
-                        <text>hello</text>
-                        <text>world</text>
+                        <button>
+                            <text>GLOSSARIO</text>
+                            <actions>
+                                <onpress>
+                                    <goto>GlossarioPage</goto>
+                                </onpress>
+                            </actions>
+                        </button>
                     </div>
                 </content>
             </body>
+            <subscreens>
+                <subscreen>
+                    <title>GlossarioPage</title>
+                    <body>
+                        <content>
+                            <div>
+                                <text>Página de glossário</text>
+                            </div>
+                        </content>
+                    </body>
+                </subscreen>
+            </subscreens>
         </screen>
     </screens>
 </mobilang>
