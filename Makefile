@@ -36,7 +36,6 @@ debug:
 
 test:
 	./$(OUT) < $(RESOURCES)/simple_test.xml
-	./$(OUT) < $(RESOURCES)/simple_test_2.xml
 
 ast:
 	./$(OUT) < $(RESOURCES)/simple_test.xml > simple_test.ast

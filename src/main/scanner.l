@@ -14,8 +14,8 @@ screens_open \<screens\>
 screens_close \<\/screens\>
 screen_open \<screen\>
 screen_close \<\/screen\>
-structure_open
-structure_close
+structure_open \<structure\>
+structure_close \<\/structure\>
 style_open \<style\>
 style_close \<\/style\>
 behavior_open \<behavior\>
@@ -24,7 +24,7 @@ properties_open \<properties\>
 properties_close \<\/properties\>
 persistence_open \<persistence\>
 persistence_close \<\/persistence\>
-string [^<>\n\r]+
+text .+
 
 %option yylineno
 
@@ -47,7 +47,7 @@ string [^<>\n\r]+
 {properties_close}	{ value_parser(TK_PROPERTIES_CLOSE, "</properties>"); return TK_PROPERTIES_CLOSE; }
 {persistence_open}	{ value_parser(TK_PERSISTENCE_OPEN, "<persistence>"); return TK_PERSISTENCE_OPEN; }
 {persistence_close}	{ value_parser(TK_PERSISTENCE_CLOSE, "</persistence>"); return TK_PERSISTENCE_CLOSE; }
-{string} 			{ value_parser(TK_STRING, strdup(yytext)); return TK_STRING; }
+{text} 				{ value_parser(TK_TEXT, strdup(yytext)); return TK_TEXT; }
 
 %%
 

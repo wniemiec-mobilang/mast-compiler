@@ -30,7 +30,7 @@
 %token TK_PROPERTIES_CLOSE
 %token TK_PERSISTENCE_OPEN
 %token TK_PERSISTENCE_CLOSE
-%token TK_STRING
+%token TK_TEXT
 
 %start query
 
@@ -39,84 +39,66 @@
 	node* nodo_ptr;
 }
 
-%type<nodo_ptr> screens screens_inner screen title body subscreens subscreens_content subscreen content component 
-style style_content content_inner_no_div content_inner_div text actions subactions actions_inner alert icon goto;
+//%type<nodo_ptr> screens, screens_inner;
 
 %%
 
 query: 
-	TK_QUERY_OPEN screens icon TK_QUERY_CLOSE { tree = create_2node($2, $3, to_node($<valor_lexico>1)); }
-	| TK_QUERY_OPEN screens TK_QUERY_CLOSE { tree = create_node($2, to_node($<valor_lexico>1)); };
+	TK_QUERY_OPEN query_inner TK_QUERY_CLOSE
+	| ;
 
-icon: TK_ICON_OPEN TK_STRING TK_ICON_CLOSE { $$ = create_node(to_node($<valor_lexico>2), to_node($<valor_lexico>1)); };
+query_inner: 
+	screens properties persistence
+	| properties screens persistence
+	| properties persistence screens
+	| screens persistence properties
+	| persistence properties screens
+	| persistence screens properties
+;
 
 screens: 
-	TK_SCREENS_OPEN screens_inner TK_SCREENS_CLOSE { $$ = create_node($2, to_node($<valor_lexico>1)); } 
-	| { $$ = NULL; };
+	TK_SCREENS_OPEN screens_inner TK_SCREENS_CLOSE
+;
 
-screens_inner: 
-	screen screens_inner { $$ = create_node($2, $1); } 
-	| { $$ = NULL; };
+screens_inner:
+	screen screens_inner
+	| screen;
+;
 
-screen: TK_SCREEN_OPEN title body subscreens TK_SCREEN_CLOSE { $$ = create_3node($2, $3, $4, to_node($<valor_lexico>1)); };
+screen: 
+	TK_SCREEN_OPEN screen_inner TK_SCREEN_CLOSE
+;
 
-title: TK_TITLE_OPEN TK_STRING TK_TITLE_CLOSE { $$ = create_node(to_node($<valor_lexico>2), to_node($<valor_lexico>1)); };
+screen_inner: 
+	structure style behavior
+	| structure behavior style
+	| style structure behavior
+	| style behavior structure
+	| behavior structure style
+	| behavior style structure
+;
 
-body: TK_BODY_OPEN content style TK_BODY_CLOSE { $$ = create_2node($2, $3, to_node($<valor_lexico>1)); };
+structure: 
+	TK_STRUCTURE_OPEN content TK_STRUCTURE_CLOSE
+;
 
-subscreens: 
-	TK_SUBSCREENS_OPEN subscreens_content TK_SUBSCREENS_CLOSE { $$ = create_node($2, to_node($<valor_lexico>1)); } 
-	| { $$ = NULL; };
-
-subscreens_content: 
-	subscreen subscreens_content { $$ = create_node($1, $2); } 
-	| { $$ = NULL; };
-	
-subscreen: TK_SUBSCREEN_OPEN title body TK_SUBSCREEN_CLOSE { 
-	$$ = create_2node($2, $3, to_node($<valor_lexico>1)); 
-};
-
-content: 
-	TK_CONTENT_OPEN content_inner_no_div TK_CONTENT_CLOSE { $$ = create_node($2, to_node($<valor_lexico>1)); };
-
-content_inner_no_div:
-	component { $$ = $1; } 
-	| TK_DIV_OPEN component content_inner_div TK_DIV_CLOSE { $$ = create_2node($2, $3, to_node($<valor_lexico>1)); };
-
-content_inner_div:
-	component content_inner_div { $$ = create_node($2, $1); }
-	| TK_DIV_OPEN component content_inner_div TK_DIV_CLOSE { $$ = create_2node($2, $3, to_node($<valor_lexico>1)); } 
-	| { $$ = NULL; };
-
-component: 	
- 	TK_TEXT_OPEN TK_STRING TK_TEXT_CLOSE { $$ = create_node(to_node($<valor_lexico>2), to_node($<valor_lexico>1)); }
-	| TK_BUTTON_OPEN text actions TK_BUTTON_CLOSE { $$ = create_2node($2, $3, to_node($<valor_lexico>1)); }
-	| TK_DIV_OPEN TK_DIV_CLOSE { $$ = to_node($<valor_lexico>1); };
-
-
-text: TK_TEXT_OPEN TK_STRING TK_TEXT_CLOSE { $$ = create_node(to_node($<valor_lexico>2), to_node($<valor_lexico>1)); };
-
-actions: TK_ACTIONS_OPEN actions_inner TK_ACTIONS_CLOSE { $$ = create_node($2, to_node($<valor_lexico>1)); };
-
-actions_inner: 
-	TK_ONPRESS_OPEN subactions TK_ONPRESS_CLOSE actions_inner { $$ = create_node($2, to_node($<valor_lexico>1)); }
-	| { $$ = NULL; };
-
-subactions: 
-	alert {$$ = $1;}
-	| goto {$$ = $1;};
-
-alert: TK_ALERT_OPEN TK_STRING TK_ALERT_CLOSE { $$ = create_node(to_node($<valor_lexico>2), to_node($<valor_lexico>1)); };
-
-goto: TK_GOTO_OPEN TK_STRING TK_GOTO_CLOSE { $$ = create_node(to_node($<valor_lexico>2), to_node($<valor_lexico>1)); };
+content: TK_TEXT content | ;
 
 style: 
-	TK_STYLE_OPEN style_content TK_STYLE_CLOSE { $$ = create_node($2, to_node($<valor_lexico>1)); }
-	| { $$ = NULL; };
+	TK_STYLE_OPEN content TK_STYLE_CLOSE
+;
 
-style_content:
-	TK_STRING style_content { $$ = create_node($2, to_node($<valor_lexico>1)); }
-	| { $$ = NULL; };
+behavior:
+	TK_BEHAVIOR_OPEN content TK_BEHAVIOR_CLOSE
+;
+
+properties: 
+	TK_PROPERTIES_OPEN content TK_PROPERTIES_CLOSE
+;
+
+persistence: 
+	TK_PERSISTENCE_OPEN content TK_PERSISTENCE_CLOSE
+;
 
 %%
 
