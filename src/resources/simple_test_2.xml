@@ -9,7 +9,7 @@
                             <text>GLOSSARIO</text>
                             <actions>
                                 <onpress>
-                                    <goto>GlossarioPage</goto>
+                                    <goto>GlossarioScreen</goto>
                                 </onpress>
                             </actions>
                         </button>
@@ -18,11 +18,21 @@
             </body>
             <subscreens>
                 <subscreen>
-                    <title>GlossarioPage</title>
+                    <title>Glossario</title>
                     <body>
                         <content>
                             <div>
-                                <text>Página de glossário</text>
+                                <text>Página do glossário</text>
+                            </div>
+                        </content>
+                    </body>
+                </subscreen>
+                <subscreen>
+                    <title>Faq</title>
+                    <body>
+                        <content>
+                            <div>
+                                <text>Página da FAQ</text>
                             </div>
                         </content>
                     </body>
