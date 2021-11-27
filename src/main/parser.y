@@ -1,5 +1,6 @@
 %{
 	#include <stdio.h>
+	#include <string.h>
 	#include "lexeme.h"
 	#include "util/n_tree/n_tree.h"
 	
@@ -7,6 +8,7 @@
 	void yyerror (char const *s);
 	node* to_node(lexeme lexical);
 	lexeme generate_key_from_lexeme(lexeme lexeme);
+	node* merge_nodes_label(node* n1, node* n2);
 	
 	extern int yylineno;
 	extern node* tree;
@@ -35,69 +37,77 @@
 %start query
 
 %union {
-    lexeme valor_lexico;
-	node* nodo_ptr;
+    lexeme lex_value;
+	node* node;
 }
 
-//%type<nodo_ptr> screens, screens_inner;
+%type<node> screens;
+%type<node> screens_inner;
+%type<node> screen;
+%type<node> structure;
+%type<node> content;
+%type<node> style;
+%type<node> behavior;
+%type<node> properties;
+%type<node> persistence;
 
 %%
 
 query: 
-	TK_QUERY_OPEN query_inner TK_QUERY_CLOSE
-	| ;
-
-query_inner: 
-	screens properties persistence
-	| properties screens persistence
-	| properties persistence screens
-	| screens persistence properties
-	| persistence properties screens
-	| persistence screens properties
-;
+	TK_QUERY_OPEN screens persistence properties TK_QUERY_CLOSE { tree = create_3node($2, $3, $4, to_node($<lex_value>1)); }
+	| TK_QUERY_OPEN screens properties persistence TK_QUERY_CLOSE { tree = create_3node($2, $3, $4, to_node($<lex_value>1)); }
+	| TK_QUERY_OPEN properties screens persistence TK_QUERY_CLOSE { tree = create_3node($2, $3, $4, to_node($<lex_value>1)); }
+	| TK_QUERY_OPEN properties persistence screens TK_QUERY_CLOSE { tree = create_3node($2, $3, $4, to_node($<lex_value>1)); }
+	| TK_QUERY_OPEN persistence properties screens TK_QUERY_CLOSE { tree = create_3node($2, $3, $4, to_node($<lex_value>1)); }
+	| TK_QUERY_OPEN persistence screens properties TK_QUERY_CLOSE { tree = create_3node($2, $3, $4, to_node($<lex_value>1)); }
+	| { tree = NULL; };
 
 screens: 
-	TK_SCREENS_OPEN screens_inner TK_SCREENS_CLOSE
+	TK_SCREENS_OPEN screens_inner TK_SCREENS_CLOSE { $$ = create_node($2, to_node($<lex_value>1)); }
 ;
 
 screens_inner:
-	screen screens_inner
-	| screen;
+	screen screens_inner { $$ = create_node($2, $1); }
+	| screen { $$ = create_node($1, NULL); };
 ;
 
 screen: 
-	TK_SCREEN_OPEN screen_inner TK_SCREEN_CLOSE
-;
-
-screen_inner: 
-	structure style behavior
-	| structure behavior style
-	| style structure behavior
-	| style behavior structure
-	| behavior structure style
-	| behavior style structure
+	TK_SCREEN_OPEN structure style behavior TK_SCREEN_CLOSE { $$ = create_3node($2, $3, $4, to_node($<lex_value>1)); }
+	| TK_SCREEN_OPEN structure behavior style TK_SCREEN_CLOSE { $$ = create_3node($2, $3, $4, to_node($<lex_value>1)); }
+	| TK_SCREEN_OPEN style structure behavior TK_SCREEN_CLOSE { $$ = create_3node($2, $3, $4, to_node($<lex_value>1)); }
+	| TK_SCREEN_OPEN style behavior structure TK_SCREEN_CLOSE { $$ = create_3node($2, $3, $4, to_node($<lex_value>1)); }
+	| TK_SCREEN_OPEN behavior structure style TK_SCREEN_CLOSE { $$ = create_3node($2, $3, $4, to_node($<lex_value>1)); }
+	| TK_SCREEN_OPEN behavior style structure TK_SCREEN_CLOSE { $$ = create_3node($2, $3, $4, to_node($<lex_value>1)); }
 ;
 
 structure: 
-	TK_STRUCTURE_OPEN content TK_STRUCTURE_CLOSE
+	TK_STRUCTURE_OPEN content TK_STRUCTURE_CLOSE { $$ = create_node($2, to_node($<lex_value>1)); }
+	| { $$ = NULL; }
 ;
 
-content: TK_TEXT content | ;
+content: 
+	TK_TEXT content { $$ = merge_nodes_label(to_node($<lex_value>1), $2); }
+	| { $$ = NULL; }
+;
 
 style: 
-	TK_STYLE_OPEN content TK_STYLE_CLOSE
+	TK_STYLE_OPEN content TK_STYLE_CLOSE { $$ = create_node($2, to_node($<lex_value>1)); }
+	| { $$ = NULL; }
 ;
 
 behavior:
-	TK_BEHAVIOR_OPEN content TK_BEHAVIOR_CLOSE
+	TK_BEHAVIOR_OPEN content TK_BEHAVIOR_CLOSE { $$ = create_node($2, to_node($<lex_value>1)); }
+	| { $$ = NULL; }
 ;
 
 properties: 
-	TK_PROPERTIES_OPEN content TK_PROPERTIES_CLOSE
+	TK_PROPERTIES_OPEN content TK_PROPERTIES_CLOSE { $$ = create_node($2, to_node($<lex_value>1)); }
+	| { $$ = NULL; }
 ;
 
 persistence: 
-	TK_PERSISTENCE_OPEN content TK_PERSISTENCE_CLOSE
+	TK_PERSISTENCE_OPEN content TK_PERSISTENCE_CLOSE { $$ = create_node($2, to_node($<lex_value>1)); }
+	| { $$ = NULL; }
 ;
 
 %%
@@ -126,4 +136,14 @@ lexeme generate_key_from_lexeme(lexeme lex)
     key.line_number = lex.line_number;
 
 	return key;
+}
+
+node* merge_nodes_label(node* n1, node* n2)
+{
+	if (n2 == NULL)
+		return n1;
+	
+	(n1->key).label = strcat((n1->key).label, (n2->key).label);
+
+	return n1;
 }

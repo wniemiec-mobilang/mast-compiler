@@ -57,8 +57,8 @@ int get_line_number() {
 
 void value_parser(int token_type, char* label)
 {
-	yylval.valor_lexico.token_type = token_type;
-	yylval.valor_lexico.line_number = get_line_number();
-	yylval.valor_lexico.label = label;
+	yylval.lex_value.token_type = token_type;
+	yylval.lex_value.line_number = get_line_number();
+	yylval.lex_value.label = label;
 }
 
