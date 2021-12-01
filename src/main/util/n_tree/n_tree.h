@@ -10,6 +10,7 @@ typedef struct __node {
 	KEY key;
 	struct __node* child;
 	struct __node* brother;
+	char* properties;
 } node;
 
 void display_nodes(node* root);
@@ -21,3 +22,4 @@ void export_tree(void* tree);
 node* create_node(node* n, node* parent);
 node* create_2node(node* child1, node* child2, node* parent);
 node* create_3node(node* child1, node* child2, node* child3, node* parent);
+node* create_html_node(node* n, node* parent);

@@ -26,16 +26,16 @@ run:
 	./$(OUT)
 
 debug:
-	bison -v -d $(BISON_FILE)
-	flex $(FLEX_FILE)
-	$(CC) -c $(MAIN)/lex.yy.c
-	$(CC) -c $(MAIN)/parser.tab.c
-	$(CC) -c $(MAIN)/main.c
-	$(CC) -c $(MAIN)/n_tree.cpp
+	bison -v -d $(BISON_FILE) -o $(MAIN)/parser.tab.c
+	flex -o $(MAIN)/lex.yy.c $(FLEX_FILE) 
+	$(MAKE) -C $(MAIN)/util/n_tree
+	$(CC) -c $(MAIN)/lex.yy.c -o $(MAIN)/lex.yy.o
+	$(CC) -c $(MAIN)/parser.tab.c -o $(MAIN)/parser.tab.o
+	$(CC) -c $(MAIN)/main.c -o $(MAIN)/main.o
 	$(CC) $(OBJS) -o $(OUT) $(LFLAGS)
 
 test:
-	./$(OUT) < $(RESOURCES)/simple_test.xml
+	./$(OUT) < $(RESOURCES)/close2dinoapp.xml
 
 ast:
 	./$(OUT) < $(RESOURCES)/simple_test.xml > simple_test.ast

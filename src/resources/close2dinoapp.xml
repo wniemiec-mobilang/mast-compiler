@@ -1,0 +1,361 @@
+<mobilang>
+    <screens>
+        <screen id="home">
+            <structure>
+                <html>
+                    <body>
+                        <div id="status-bar">
+                            <button id="menu-btn">
+                                <img height="25" src="https://cdn0.iconfinder.com/data/icons/heroicons-ui/24/icon-menu-512.png" />
+                            </button>
+                        </div>
+                        <div id="items">
+                            <a href="mobilang:screen:glossary">Glossário</a>
+                        </div>
+                    </body>
+                </html>
+            </structure>
+            
+            <style>
+                * {
+                    margin: 0;
+                }
+    
+                body {
+                    background-color: #444;
+                }
+    
+                #status-bar {
+                    background-color: #ccc;
+                    height: 50px;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                }
+    
+                #status-bar button {
+                    border: 0;
+                    background-color: transparent;
+                    margin: 0 15px;
+                    cursor: pointer;
+                }
+    
+                #items a {
+                    background-color: #18bfa0;
+                    text-decoration: none;
+                    padding: 20px;
+                    display: block;
+                    text-align: center;
+                    font-weight: bold;
+                    font-size: 20px;
+                    font-family: Arial;
+                    color: purple;
+                }
+    
+                #items a:visited {
+                    color: purple;
+                }
+            </style>
+            
+            <behavior>
+                document.getElementById("menu-btn").onclick = () => window.location.href = "mobilang:screen:home";
+            </behavior>
+        </screen>
+
+        <screen id="glossary">
+            <structure>
+                <html>
+                    <body>
+                        <div id="status-bar">
+                            <button id="menu-btn">
+                                <img height="25" src="https://cdn0.iconfinder.com/data/icons/heroicons-ui/24/icon-menu-512.png" />
+                            </button>
+                            <button id="back-btn">
+                                <img height="25" src="http://cdn.onlinewebfonts.com/svg/img_259786.png" />
+                            </button>
+                        </div>
+                        <div id="search">
+                            <input type="text" placeholder="Buscar..." />
+                        </div>
+                        <div id="glossary">
+                            <h1>Glossário</h1>
+                            <div id="glossary-content"></div>
+                        </div>
+                    </body>
+                </html>
+            </structure>
+
+            <style>
+                * {
+                    margin: 0;
+                }
+    
+                body {
+                    background-color: #444;
+                }
+    
+                #status-bar {
+                    background-color: #ccc;
+                    height: 50px;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                }
+    
+                #status-bar button {
+                    border: 0;
+                    background-color: transparent;
+                    margin: 0 15px;
+                    cursor: pointer;
+                }
+    
+                #search {
+                    margin: 10px;
+    
+                }
+    
+                #search input {
+                    border: 1px solid #ccc;
+                    height: 50px;
+                    border-radius: 10px;
+                    font-size: 20px;
+                    padding-left: 20px;
+                    width: 100%;
+                }
+    
+                #glossary {
+                    font-family: Arial, Helvetica, sans-serif;
+                    color: white;
+                    font-size: 15px;
+                    margin: 10px;
+                }
+    
+                #glossary h1 {
+                    margin: 20 0;
+                }
+    
+                #glossary-content {
+                    background-color: #222;
+                }
+    
+                #glossary-content .item {
+                    border-bottom: 1px solid #000;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                }
+    
+                #glossary-content .item h2 {
+                    margin: 5;
+                    margin-left: 20px;
+                    padding: 10px 0;
+                    cursor: pointer;
+                }
+    
+                #glossary-content .item .item-content {
+                    display: none;
+                    padding: 20px;
+                }
+    
+                #glossary-content .item .item-content p {
+                    margin: 20 0;
+                }
+    
+                #glossary-content .item .item-content a {
+                    color: #48cdd1;
+                    text-decoration: none;
+                }
+    
+                .item-content-open {
+                    display: block !important;
+                }
+            </style>
+
+            <behavior>
+                document.getElementById("menu-btn").onclick = () => window.location.href = "mobilang:screen:home";
+                document.getElementById("back-btn").onclick = () => window.location.href = "mobilang:screen:home";
+            
+                function openDescription(item) {
+                    item.children[1].classList.toggle("item-content-open");
+                }
+
+                function makeGlossaryItemsClickable() {
+                    const items = document.querySelectorAll(".item");
+
+                    for (let i = 0; i < items.length; i++) {
+                        items[i].onclick = () => openDescription(items[i]);
+                    }
+                }
+
+                makeGlossaryItemsClickable();
+
+                // --------------------------------------
+                const glossaryContent = document.getElementById("glossary-content");
+
+                const data = [
+                    {
+                        id: 1, 
+                        name: 'Adenomegalia', 
+                        type: 'Condição', 
+                        description: 'Linfonodos ou gânglios aumentados, também conhecidos como ínguas.',
+                        content: 'Adenomegalia é o aumento dos linfonodos (ínguas). Pode estar presente em crianças e, na maior parte dos casos, é causada por infecções virais. Mais raramente podem ser causadas por doenças oncológicas tais como leucemias ou linfomas.'
+                    },
+                    {
+                        id: 2, 
+                        name: 'Alopécia', 
+                        type: 'Condição', 
+                        description: 'Queda de cabelos',
+                        content: 'A alopécia é a perda de cabelos do couro cabeludo ou de qualquer outra região do corpo. Em crianças em tratamento oncológico (quimioterapia ou radioterapia) a queda do cabelo pode acontecer. Nestes casos, uma vez terminado o tratamento o cabelo volta a crescer.'
+                    }
+                ]
+
+                function loadGlossaryWithName(name='') {
+                    glossaryContent.innerHTML = "";
+                    for (let item of data) {
+                        if (item.name.toLowerCase().startsWith(name.toLowerCase())) {
+                            glossaryContent.innerHTML += `
+                            <div class="item">
+                                <h2>${item.name}</h2>
+                                <div class="item-content">
+                                    <h3>${item.type}</h3>
+                                    <p>${item.description}</p>
+                                    <a href="mobilang:screen:glossary-desc.html?id=${item.id}">Leia mais</a>
+                                </div>
+                            </div>
+                            `;
+                        }
+                    }
+
+                    makeGlossaryItemsClickable();
+                }
+
+                loadGlossaryWithName();
+
+                // --------------------------------------
+                const searchInput = document.getElementById("search").children[0];
+                searchInput.addEventListener('keyup', (event) => {
+                    loadGlossaryWithName(searchInput.value);
+                })
+            </behavior>
+        </screen>
+
+        <screen id="glossary-desc">
+            <structure>
+                <html>
+                    <body>
+                        <div id="status-bar">
+                            <button id="menu-btn">
+                                <img height="25" src="https://cdn0.iconfinder.com/data/icons/heroicons-ui/24/icon-menu-512.png" />
+                            </button>
+                            <button id="back-btn">
+                                <img height="25" src="http://cdn.onlinewebfonts.com/svg/img_259786.png" />
+                            </button>
+                        </div>
+                        <div id="glossary"></div>
+                    </body>
+                </html>
+            </structure>
+
+            <style>
+                * {
+                    margin: 0;
+                }
+    
+                body {
+                    background-color: #222;
+                }
+    
+                #status-bar {
+                    background-color: #ccc;
+                    height: 50px;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                }
+    
+                #status-bar button {
+                    border: 0;
+                    background-color: transparent;
+                    margin: 0 15px;
+                    cursor: pointer;
+                }
+    
+                #glossary {
+                    font-family: Arial, Helvetica, sans-serif;
+                    color: white;
+                    font-size: 15px;
+                    margin: 10px;
+                }
+    
+                #glossary .header {
+                    margin: 20 0;
+                    padding-bottom: 10px;
+                    border-bottom: 1px solid black;
+                }
+    
+                #glossary .header h2 {
+                    font-size: 15px;
+                    color: gray;
+                }
+    
+                #glossary p {
+                    line-height: 20px;
+                    color: white;
+                    font-size: 15px;
+                }
+            </style>
+
+            <behavior>
+                document.getElementById("menu-btn").onclick = () => window.location.href = "mobilang:screen:home";
+                document.getElementById("back-btn").onclick = () => window.location.href = "mobilang:screen:glossary";
+
+                const glossary = document.getElementById("glossary");
+
+                const data = [
+                    {
+                        id: 1, 
+                        name: 'Adenomegalia', 
+                        type: 'Condição', 
+                        description: 'Linfonodos ou gânglios aumentados, também conhecidos como ínguas.',
+                        content: 'Adenomegalia é o aumento dos linfonodos (ínguas). Pode estar presente em crianças e, na maior parte dos casos, é causada por infecções virais. Mais raramente podem ser causadas por doenças oncológicas tais como leucemias ou linfomas.'
+                    },
+                    {
+                        id: 2, 
+                        name: 'Alopécia', 
+                        type: 'Condição', 
+                        description: 'Queda de cabelos',
+                        content: 'A alopécia é a perda de cabelos do couro cabeludo ou de qualquer outra região do corpo. Em crianças em tratamento oncológico (quimioterapia ou radioterapia) a queda do cabelo pode acontecer. Nestes casos, uma vez terminado o tratamento o cabelo volta a crescer.'
+                    }
+                ]
+
+                const id = window.location.href.split('?')[1].split('=')[1];
+                const glossaryItem = data.find(item => item.id == id);
+
+                glossary.innerHTML = "";
+                glossary.innerHTML += `
+                    <div id="glossary">
+                        <div class="header">
+                            <h1>${glossaryItem.name}</h1>
+                            <h2>${glossaryItem.type}</h2>
+                        </div>
+                        <p>
+                            ${glossaryItem.description}
+                        </p>
+                    </div>
+                `;
+            </behavior>
+        </screen>
+    </screens>
+
+    <properties>
+        {
+            "application_name": "Close2DinoApp"
+        }
+    </properties>
+    
+    <persistence>
+        {
+            "type": "memory"
+        }
+    </persistence>
+</mobilang>

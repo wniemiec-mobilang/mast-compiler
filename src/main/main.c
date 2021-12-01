@@ -12,7 +12,7 @@ int main (int argc, char **argv)
 {
   int ret = yyparse();
   
-  export_tree(tree);
+  //export_tree(tree);
   free_tree(tree);
   tree = NULL;
   yylex_destroy();

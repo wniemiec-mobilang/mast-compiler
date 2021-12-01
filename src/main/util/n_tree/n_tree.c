@@ -143,3 +143,10 @@ node* create_3node(node* child1, node* child2, node* child3, node* parent)
 	}
 	return parent;
 }
+
+node* create_html_node(node* n, node* parent)
+{
+	printf("%s\n\n", (n->key).label);
+
+	return create_node(n, parent);
+}
