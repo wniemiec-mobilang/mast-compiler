@@ -189,7 +189,6 @@
 
                 makeGlossaryItemsClickable();
 
-                // --------------------------------------
                 const glossaryContent = document.getElementById("glossary-content");
 
                 const data = [
@@ -207,7 +206,7 @@
                         description: 'Queda de cabelos',
                         content: 'A alopécia é a perda de cabelos do couro cabeludo ou de qualquer outra região do corpo. Em crianças em tratamento oncológico (quimioterapia ou radioterapia) a queda do cabelo pode acontecer. Nestes casos, uma vez terminado o tratamento o cabelo volta a crescer.'
                     }
-                ]
+                ];
 
                 function loadGlossaryWithName(name='') {
                     glossaryContent.innerHTML = "";
@@ -231,7 +230,6 @@
 
                 loadGlossaryWithName();
 
-                // --------------------------------------
                 const searchInput = document.getElementById("search").children[0];
                 searchInput.addEventListener('keyup', (event) => {
                     loadGlossaryWithName(searchInput.value);
@@ -326,7 +324,7 @@
                         description: 'Queda de cabelos',
                         content: 'A alopécia é a perda de cabelos do couro cabeludo ou de qualquer outra região do corpo. Em crianças em tratamento oncológico (quimioterapia ou radioterapia) a queda do cabelo pode acontecer. Nestes casos, uma vez terminado o tratamento o cabelo volta a crescer.'
                     }
-                ]
+                ];
 
                 const id = window.location.href.split('?')[1].split('=')[1];
                 const glossaryItem = data.find(item => item.id == id);

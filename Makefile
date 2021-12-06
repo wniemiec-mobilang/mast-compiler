@@ -1,5 +1,6 @@
 MAIN		= ./src/main
 RESOURCES	= ./src/resources
+PARSER		= $(MAIN)/parser
 FLEX_FILE 	= $(MAIN)/scanner.l
 BISON_FILE	= $(MAIN)/parser.y
 OBJS 		= $(MAIN)/lex.yy.o $(MAIN)/parser.tab.o $(MAIN)/main.o $(MAIN)/util/n_tree/n_tree.o
@@ -34,8 +35,12 @@ debug:
 	$(CC) -c $(MAIN)/main.c -o $(MAIN)/main.o
 	$(CC) $(OBJS) -o $(OUT) $(LFLAGS)
 
-test:
-	./$(OUT) < $(RESOURCES)/close2dinoapp.xml
+close2dinoapp:
+	./$(OUT) < $(RESOURCES)/close2dinoapp.xml > close2dinoapp.ast
+	sudo python3 $(MAIN)/dot/txt_to_diag.py close2dinoapp.ast close2dinoapp.dot
+	node $(PARSER)/html close2dinoapp.dot
+	node $(PARSER)/css close2dinoapp.dot
+	node $(PARSER)/javascript close2dinoapp.dot
 
 ast:
 	./$(OUT) < $(RESOURCES)/simple_test.xml > simple_test.ast

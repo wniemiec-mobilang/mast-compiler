@@ -84,7 +84,7 @@ screen:
 ;
 
 structure: 
-	TK_STRUCTURE_OPEN content TK_STRUCTURE_CLOSE { $$ = create_html_node($2, to_node($<lex_value>1)); }
+	TK_STRUCTURE_OPEN content TK_STRUCTURE_CLOSE { $$ = create_node($2, to_node($<lex_value>1)); }
 ;
 
 content: 
@@ -146,11 +146,6 @@ node* merge_nodes_label(node* n1, node* n2)
 	strcat(txt, (n1->key).label);
 	strcat(txt, (n2->key).label);
 	(n1->key).label = txt;
-	//printf("1: %s\n\n", (n1->key).label);
-	//strcpy((n1->key).label, txt);
-	//printf("1: %s\n", (n1->key).label);
-	//printf("2: %s\n", (n2->key).label);
-	//strcat((n1->key).label, (n2->key).label);
-	//printf("3: %s\n\n", (n1->key).label);
+	
 	return n1;
 }
