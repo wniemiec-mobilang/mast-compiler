@@ -3,14 +3,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include "../text/string_utils.h"
 
 void display_nodes(node* root)
 {
 	if(root == NULL) 
 		return;
 
-    printf("%p [label=\"%s\"];\n", root, (root->key).label);
+	char* node_label = (root->key).label;
+    printf("%p [label=\"%s\"];\n", root, node_label);
 	
 	node* p=root->child;
 	
@@ -142,4 +143,11 @@ node* create_3node(node* child1, node* child2, node* child3, node* parent)
 		p->brother->brother->brother = child3;
 	}
 	return parent;
+}
+
+node* create_json_node(node* n, node* parent)
+{
+	(n->key).label = replace_str((n->key).label, "\"", "\\\"");
+
+	return create_node(n, parent);
 }

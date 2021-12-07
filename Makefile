@@ -3,7 +3,7 @@ RESOURCES	= ./src/resources
 PARSER		= $(MAIN)/parser
 FLEX_FILE 	= $(MAIN)/scanner.l
 BISON_FILE	= $(MAIN)/parser.y
-OBJS 		= $(MAIN)/lex.yy.o $(MAIN)/parser.tab.o $(MAIN)/main.o $(MAIN)/util/n_tree/n_tree.o
+OBJS 		= $(MAIN)/lex.yy.o $(MAIN)/parser.tab.o $(MAIN)/main.o $(MAIN)/util/text/string_utils.o $(MAIN)/util/n_tree/n_tree.o
 TMP_SRC		= $(MAIN)/lex.yy.c $(MAIN)/parser.tab.c $(MAIN)/parser.tab.h
 OUT			= mast
 CC	 	 	= gcc 
@@ -13,6 +13,7 @@ LFLAGS		= -lfl
 all:
 	bison -d $(BISON_FILE) -o $(MAIN)/parser.tab.c
 	flex -o $(MAIN)/lex.yy.c $(FLEX_FILE) 
+	$(MAKE) -C $(MAIN)/util/text
 	$(MAKE) -C $(MAIN)/util/n_tree
 	$(CC) -c $(MAIN)/lex.yy.c -o $(MAIN)/lex.yy.o
 	$(CC) -c $(MAIN)/parser.tab.c -o $(MAIN)/parser.tab.o

@@ -8,3 +8,8 @@
 - [CSS Parser](https://github.com/reworkcss/css)
 - [HTML Parser](https://github.com/mykolaharmash/hyntax)
 - [Javascript Parser](https://github.com/acornjs/acorn)
+
+## Notes
+- Behavior tag
+  - Every statement must end with `;`
+   

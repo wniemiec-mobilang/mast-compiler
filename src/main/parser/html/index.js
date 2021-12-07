@@ -47,6 +47,8 @@ function parseLines(lines) {
     while (index < lines.length) {
         if (isNextLineStructure) {
             let htmlAst = parseHtml(lines[index]);
+            htmlAst = htmlAst.replaceAll("\"", "\\\"");
+
             lines[index] = lines[index].replaceAll(/\[.+\]/g, '[label="' + htmlAst + '"]');
         }
 

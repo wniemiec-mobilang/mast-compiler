@@ -50,6 +50,8 @@ function parseLines(lines) {
     while (index < lines.length) {
         if (isNextLineScript) {
             let javascriptAst = parseJavascript(lines[index]);
+            javascriptAst = javascriptAst.replaceAll("\"", "\\\"");
+
             lines[index] = lines[index].replaceAll(/\[.+\]/g, '[label="' + javascriptAst + '"]');
         }
 

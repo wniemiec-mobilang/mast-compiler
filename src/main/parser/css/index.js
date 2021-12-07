@@ -50,6 +50,8 @@ function parseLines(lines) {
     while (index < lines.length) {
         if (isNextLineStyle) {
             let cssAst = parseCss(lines[index]);
+            cssAst = cssAst.replaceAll("\"", "\\\"");
+
             lines[index] = lines[index].replaceAll(/\[.+\]/g, '[label="' + cssAst + '"]');
         }
 
