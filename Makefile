@@ -41,17 +41,10 @@ debug:
 	$(CC) -c $(MAIN)/main.c -o $(MAIN)/main.o
 	$(CC) $(OBJS) -o $(OUT) $(LFLAGS)
 
-close2dinoapp:
-	./$(OUT) < $(RESOURCES)/close2dinoapp.xml > close2dinoapp.ast
-	sudo python3 $(EXPORT)/dot/txt_to_diag.py close2dinoapp.ast close2dinoapp.dot
-	node $(EXPORT)/html close2dinoapp.dot
-	node $(EXPORT)/css close2dinoapp.dot
-	node $(EXPORT)/javascript close2dinoapp.dot
+compilation:
+	./$(OUT) < $(filename).xml > $(filename).ast
+	sudo python3 $(EXPORT)/dot/txt_to_diag.py $(filename).ast $(filename).dot
+	node $(EXPORT)/html $(filename).dot
+	node $(EXPORT)/css $(filename).dot
+	node $(EXPORT)/javascript $(filename).dot
 
-ast:
-	./$(OUT) < $(RESOURCES)/simple_test.xml > simple_test.ast
-	./$(OUT) < $(RESOURCES)/simple_test_2.xml > simple_test_2.ast
-
-dot:
-	sudo python3 $(EXPORT)/dot/txt_to_diag.py simple_test.ast simple_test.dot
-	sudo python3 $(EXPORT)/dot/txt_to_diag.py simple_test_2.ast simple_test_2.dot
