@@ -5,9 +5,13 @@
 <p align="center">
 	<a href="https://github.com/williamniemiec/mast-compiler/actions/workflows/ubuntu.yml"><img src="https://github.com/williamniemiec/mast-compiler/actions/workflows/ubuntu.yml/badge.svg" alt=""></a>
 	<a href="https://github.com/williamniemiec/mast-compiler/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-MIT-919191.svg" alt="License"></a>
+	
+<hr>
 
 ## ❇ Introduction
 Mobilang is an extended markup language created for representing any mobile application. This compiler converts it to an Abstract Syntax Tree (AST), which can be used by [ASC compiler](https://github.com/williamniemiec/asc-compiler/) for generate a mobile application using a framework.
+
+![](https://github.com/williamniemiec/mast-compiler/blob/master/docs/img/mobilang/mobilang-tree.jpg?raw=true)
 
 ## ❓ How to use
 
