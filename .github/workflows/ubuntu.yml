@@ -13,6 +13,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install dependencies
-      run: make -C ./ libfl-dev libbison-dev
+      run: sudo apt-get install libfl-dev libbison-dev
     - name: make
       run: make
