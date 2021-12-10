@@ -1,5 +1,5 @@
 *.o
-mobilang
+
 lex.yy.c
 *.tab.*
 *.ast
