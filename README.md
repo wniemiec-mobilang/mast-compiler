@@ -41,3 +41,8 @@ sudo make compilation filename=./src/resources/close2dinoapp
 - Behavior tag
   - Every statement must end with `;`
    
+## 🚩 Changelog
+Details about each version are documented in the [releases section](https://github.com/williamniemiec/mast-compiler/releases).
+
+## 🗺 Project structure
+![architecture](https://raw.githubusercontent.com/williamniemiec/mast-compiler/master/docs/img/schemas/architecture.png?raw=true)
