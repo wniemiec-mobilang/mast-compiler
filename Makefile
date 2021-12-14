@@ -42,9 +42,9 @@ debug:
 	$(CC) $(OBJS) -o $(OUT) $(LFLAGS)
 
 compilation:
-	./$(OUT) < $(filename).xml > $(filename).ast
-	sudo python3 $(EXPORT)/dot/txt_to_diag.py $(filename).ast $(filename).dot
-	node $(EXPORT)/html $(filename).dot
-	node $(EXPORT)/css $(filename).dot
-	node $(EXPORT)/javascript $(filename).dot
+	./$(OUT) < $(file).xml > $(file).ast
+	sudo python3 $(EXPORT)/dot/txt_to_diag.py $(file).ast $(file).dot
+	node $(EXPORT)/html $(file).dot
+	node $(EXPORT)/css $(file).dot
+	node $(EXPORT)/javascript $(file).dot
 

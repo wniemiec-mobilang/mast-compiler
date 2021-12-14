@@ -18,26 +18,21 @@ Mobilang is an extended markup language created for representing any mobile appl
 
 ```
 make
-sudo make compilation filename=<mobilang_filepath_without_extension>
+sudo make compilation file=<mobilang_filepath_without_extension>
 ```
 
 ### Example
 
 ```
-sudo make compilation filename=./src/resources/close2dinoapp
+sudo make compilation file=./src/resources/close2dinoapp
 ```
 
-## Requirements
+## ✔ Requirements
 - [NodeJS](https://nodejs.dev)
 - [Flex](https://www.geeksforgeeks.org/flex-fast-lexical-analyzer-generator/)
 - [Bison](https://www.gnu.org/software/bison/)
 
-## Libraries
-- [CSS Parser](https://github.com/reworkcss/css)
-- [HTML Parser](https://github.com/mykolaharmash/hyntax)
-- [Javascript Parser](https://github.com/acornjs/acorn)
-
-## Notes
+## ⚠ Warnings
 - Behavior tag
   - Every statement must end with `;`
    
@@ -46,3 +41,10 @@ Details about each version are documented in the [releases section](https://gith
 
 ## 🗺 Project structure
 ![architecture](https://raw.githubusercontent.com/williamniemiec/mast-compiler/master/docs/img/schemas/architecture.png?raw=true)
+
+## References
+
+### Libraries used in this project
+- [CSS Parser](https://github.com/reworkcss/css)
+- [HTML Parser](https://github.com/mykolaharmash/hyntax)
+- [Javascript Parser](https://github.com/acornjs/acorn)
