@@ -1,7 +1,7 @@
 ![](https://github.com/williamniemiec/mast-compiler/blob/master/docs/img/logo/logo.jpg?raw=true)
 
 <h1 align='center'>MAST compiler</h1>
-<p align='center'>Mobilang compiler.</p>
+<p align='center'>MobiLang compiler.</p>
 <p align="center">
 	<a href="https://github.com/williamniemiec/mast-compiler/actions/workflows/ubuntu.yml"><img src="https://github.com/williamniemiec/mast-compiler/actions/workflows/ubuntu.yml/badge.svg" alt=""></a>
 	<a href="https://github.com/williamniemiec/mast-compiler/releases"><img src="https://img.shields.io/github/v/release/williamniemiec/mast-compiler" alt="Release"></a>
