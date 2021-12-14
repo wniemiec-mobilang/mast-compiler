@@ -149,6 +149,19 @@ node* create_3node(node* child1, node* child2, node* child3, node* parent)
 	return parent;
 }
 
+node* create_n_node(list_node* nodes, node* parent)
+{
+	list_node* current_node = nodes;
+
+	while (current_node != NULL)
+	{
+		create_node(current_node->value, parent);
+		current_node = current_node->next;
+	}
+
+	return parent;
+}
+
 node* create_json_node(node* n, node* parent)
 {
 	(n->key).label = replace_str((n->key).label, "\"", "\\\"");
@@ -192,4 +205,35 @@ node* merge_nodes_label(node* n1, node* n2)
 	(n1->key).label = txt;
 	
 	return n1;
+}
+
+void append_list_nodes(node* n, list_node* nodes)
+{
+	if (n == NULL)
+		return;
+
+	if (nodes == NULL)
+		return;
+
+	list_node* position = nodes;
+
+	while (position->value != NULL)
+	{
+		if (position->next == NULL)
+			position->next = initialize_list_nodes();
+		
+		position = position->next;
+	}
+
+	position->value = n;
+}
+
+list_node* initialize_list_nodes()
+{
+	list_node* new_list = (list_node*) malloc(sizeof(list_node));
+
+	new_list->value = NULL;
+	new_list->next = NULL;
+
+	return new_list;
 }

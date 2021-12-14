@@ -46,25 +46,25 @@ text .+
 /*		Actions                                                              */
 /*---------------------------------------------------------------------------*/
 %%
-{space} 			{ }
-{mobilang_open} 	{ return parse_token(TK_MOBILANG_OPEN); }
-{mobilang_close} 	{ return parse_token(TK_MOBILANG_CLOSE); }
-{screens_open}		{ return parse_token(TK_SCREENS_OPEN); }
-{screens_close}		{ return parse_token(TK_SCREENS_CLOSE); }
-{screen_open} 		{ return parse_token(TK_SCREEN_OPEN); }
-{screen_close} 		{ return parse_token(TK_SCREEN_CLOSE); }
-{structure_open}	{ return parse_token(TK_STRUCTURE_OPEN); }
-{structure_close}	{ return parse_token(TK_STRUCTURE_CLOSE); }
-{style_open}		{ return parse_token(TK_STYLE_OPEN); }
-{style_close}		{ return parse_token(TK_STYLE_CLOSE); }
-{behavior_open}		{ return parse_token(TK_BEHAVIOR_OPEN); }
-{behavior_close}	{ return parse_token(TK_BEHAVIOR_CLOSE); }
-{properties_open}	{ return parse_token(TK_PROPERTIES_OPEN); }
-{properties_close}	{ return parse_token(TK_PROPERTIES_CLOSE); }
-{persistence_open}	{ return parse_token(TK_PERSISTENCE_OPEN); }
-{persistence_close}	{ return parse_token(TK_PERSISTENCE_CLOSE); }
-{tag_property} 		{ return parse_token(TK_TAG_PROPERTY); }
-{text} 				{ return parse_token(TK_TEXT); }
+{space} 				{ }
+{mobilang_open} 		{ return parse_token(TK_MOBILANG_OPEN); }
+{mobilang_close} 		{ return parse_token(TK_MOBILANG_CLOSE); }
+{screens_open}			{ return parse_token(TK_SCREENS_OPEN); }
+{screens_close}			{ return parse_token(TK_SCREENS_CLOSE); }
+{screen_open} 			{ return parse_token(TK_SCREEN_OPEN); }
+{screen_close} 			{ return parse_token(TK_SCREEN_CLOSE); }
+{structure_open}		{ return parse_token(TK_STRUCTURE_OPEN); }
+{structure_close}		{ return parse_token(TK_STRUCTURE_CLOSE); }
+{style_open}			{ return parse_token(TK_STYLE_OPEN); }
+{style_close}			{ return parse_token(TK_STYLE_CLOSE); }
+{behavior_open}			{ return parse_token(TK_BEHAVIOR_OPEN); }
+{behavior_close}		{ return parse_token(TK_BEHAVIOR_CLOSE); }
+{properties_open}		{ return parse_token(TK_PROPERTIES_OPEN); }
+{properties_close}		{ return parse_token(TK_PROPERTIES_CLOSE); }
+{persistence_open}		{ return parse_token(TK_PERSISTENCE_OPEN); }
+{persistence_close}		{ return parse_token(TK_PERSISTENCE_CLOSE); }
+{tag_property} 			{ return parse_token(TK_TAG_PROPERTY); }
+{text} 					{ return parse_token(TK_TEXT); }
 %%
 
 
