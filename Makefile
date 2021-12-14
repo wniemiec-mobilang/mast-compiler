@@ -1,4 +1,4 @@
-MAIN		= ./src/main
+MAIN		= ./src/main/c/wniemiec/mobilang
 RESOURCES	= ./src/resources
 DATA		= $(MAIN)/data
 EXPORT		= $(MAIN)/export
