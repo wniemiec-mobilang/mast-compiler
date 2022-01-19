@@ -4,13 +4,15 @@
 <p align='center'>MobiLang compiler.</p>
 <p align="center">
 	<a href="https://github.com/williamniemiec/mast-compiler/actions/workflows/ubuntu.yml"><img src="https://github.com/williamniemiec/mast-compiler/actions/workflows/ubuntu.yml/badge.svg" alt=""></a>
+	<a href="http://node.dev"><img src="https://img.shields.io/badge/NodeJS-8+-D0008F.svg" alt="Node compatibility"></a>
+	<a href="http://python.org"><img src="https://img.shields.io/badge/python-3+-D0008F.svg" alt="Python compatibility"></a>
 	<a href="https://github.com/williamniemiec/mast-compiler/releases"><img src="https://img.shields.io/github/v/release/williamniemiec/mast-compiler" alt="Release"></a>
 	<a href="https://github.com/williamniemiec/mast-compiler/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-MIT-919191.svg" alt="License"></a>
 	
 <hr>
 
 ## ❇ Introduction
-Mobilang is an extended markup language created for representing any mobile application. This compiler converts it to an Abstract Syntax Tree (AST), which can be used by [ASC compiler](https://github.com/williamniemiec/asc-compiler/) for generate a mobile application using a framework.
+MobiLang is an extended markup language created for representing any mobile application. This compiler converts it to an Abstract Syntax Tree (AST), which can be used by [ASC compiler](https://github.com/williamniemiec/asc-compiler/) for generate a mobile application using a framework.
 
 ![](https://github.com/williamniemiec/mast-compiler/blob/master/docs/img/mobilang/mobilang-tree.jpg?raw=true)
 
@@ -29,6 +31,7 @@ sudo make compilation file=./src/resources/close2dinoapp
 
 ## ✔ Requirements
 - [NodeJS](https://nodejs.dev)
+- [Python 3+](https://python.org)
 - [Flex](https://www.geeksforgeeks.org/flex-fast-lexical-analyzer-generator/)
 - [Bison](https://www.gnu.org/software/bison/)
 
