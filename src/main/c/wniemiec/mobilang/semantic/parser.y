@@ -8,7 +8,7 @@
 
 
 //-----------------------------------------------------------------------------
-//		Prototypes                                                           
+//        Prototypes                                                           
 //-----------------------------------------------------------------------------
 int yylex(void);
 void yyerror (char const *s);
@@ -20,7 +20,7 @@ node* merge_nodes_label(node* n1, node* n2);
 
 
 //-----------------------------------------------------------------------------
-//		Global variables                                                           
+//        Global variables                                                           
 //-----------------------------------------------------------------------------
 extern int yylineno;
 extern node* tree;
@@ -30,7 +30,7 @@ list_node* list_screens;
 
 
 //-----------------------------------------------------------------------------
-//		Tokens definition                                                    
+//        Tokens definition                                                    
 //-----------------------------------------------------------------------------
 %token TK_MOBILANG_OPEN
 %token TK_MOBILANG_CLOSE
@@ -53,13 +53,13 @@ list_node* list_screens;
 
 
 //-----------------------------------------------------------------------------
-//		Grammar type definition                                              
+//        Grammar type definition                                              
 //-----------------------------------------------------------------------------
 %union {
     lexeme lex_value;
-	node* node;
-	list_node* nodes;
-	char* str;
+    node* node;
+    list_node* nodes;
+    char* str;
 }
 
 %type<node> screens;
@@ -73,77 +73,77 @@ list_node* list_screens;
 
 
 //-----------------------------------------------------------------------------
-//		Settings                                                             
+//        Settings                                                             
 //-----------------------------------------------------------------------------
 %define parse.error verbose
 %start query
 
 
 //-----------------------------------------------------------------------------
-//		Grammar                                                              
+//        Grammar                                                              
 //-----------------------------------------------------------------------------
 %%
 query: 
-	{ initialize(); } mobilang
-	| 
+    { initialize(); } mobilang
+    | 
 ;
 
 mobilang: 
-	TK_MOBILANG_OPEN screens persistence properties TK_MOBILANG_CLOSE 	{ tree = create_3node($2, $3, $4, to_node($<lex_value>1, false)); }
-	| TK_MOBILANG_OPEN screens properties persistence TK_MOBILANG_CLOSE	{ tree = create_3node($2, $3, $4, to_node($<lex_value>1, false)); }
-	| TK_MOBILANG_OPEN properties screens persistence TK_MOBILANG_CLOSE	{ tree = create_3node($2, $3, $4, to_node($<lex_value>1, false)); }
-	| TK_MOBILANG_OPEN properties persistence screens TK_MOBILANG_CLOSE	{ tree = create_3node($2, $3, $4, to_node($<lex_value>1, false)); }
-	| TK_MOBILANG_OPEN persistence properties screens TK_MOBILANG_CLOSE	{ tree = create_3node($2, $3, $4, to_node($<lex_value>1, false)); }
-	| TK_MOBILANG_OPEN persistence screens properties TK_MOBILANG_CLOSE	{ tree = create_3node($2, $3, $4, to_node($<lex_value>1, false)); }
+    TK_MOBILANG_OPEN screens persistence properties TK_MOBILANG_CLOSE       { tree = create_3node($2, $3, $4, to_node($<lex_value>1, false)); }
+    | TK_MOBILANG_OPEN screens properties persistence TK_MOBILANG_CLOSE     { tree = create_3node($2, $3, $4, to_node($<lex_value>1, false)); }
+    | TK_MOBILANG_OPEN properties screens persistence TK_MOBILANG_CLOSE     { tree = create_3node($2, $3, $4, to_node($<lex_value>1, false)); }
+    | TK_MOBILANG_OPEN properties persistence screens TK_MOBILANG_CLOSE     { tree = create_3node($2, $3, $4, to_node($<lex_value>1, false)); }
+    | TK_MOBILANG_OPEN persistence properties screens TK_MOBILANG_CLOSE     { tree = create_3node($2, $3, $4, to_node($<lex_value>1, false)); }
+    | TK_MOBILANG_OPEN persistence screens properties TK_MOBILANG_CLOSE     { tree = create_3node($2, $3, $4, to_node($<lex_value>1, false)); }
 ;
 
 screens: 
-	TK_SCREENS_OPEN screens_inner TK_SCREENS_CLOSE						{ $$ = create_n_node(list_screens, to_node($<lex_value>1, false)); }
+    TK_SCREENS_OPEN screens_inner TK_SCREENS_CLOSE                          { $$ = create_n_node(list_screens, to_node($<lex_value>1, false)); }
 ;
 
 screens_inner:
-	screen screens_inner												{ append_list_nodes($1, list_screens); }
-	| 																	{ };
+    screen screens_inner                                                    { append_list_nodes($1, list_screens); }
+    |                                                                       { };
 ;
 
 screen: 
-	TK_SCREEN_OPEN structure style behavior TK_SCREEN_CLOSE 			{ $$ = create_3node($2, $3, $4, to_node($<lex_value>1, true)); }
-	| TK_SCREEN_OPEN structure behavior style TK_SCREEN_CLOSE 			{ $$ = create_3node($2, $3, $4, to_node($<lex_value>1, true)); }
-	| TK_SCREEN_OPEN style structure behavior TK_SCREEN_CLOSE 			{ $$ = create_3node($2, $3, $4, to_node($<lex_value>1, true)); }
-	| TK_SCREEN_OPEN style behavior structure TK_SCREEN_CLOSE 			{ $$ = create_3node($2, $3, $4, to_node($<lex_value>1, true)); }
-	| TK_SCREEN_OPEN behavior structure style TK_SCREEN_CLOSE 			{ $$ = create_3node($2, $3, $4, to_node($<lex_value>1, true)); }
-	| TK_SCREEN_OPEN behavior style structure TK_SCREEN_CLOSE 			{ $$ = create_3node($2, $3, $4, to_node($<lex_value>1, true)); }
+    TK_SCREEN_OPEN structure style behavior TK_SCREEN_CLOSE                 { $$ = create_3node($2, $3, $4, to_node($<lex_value>1, true)); }
+    | TK_SCREEN_OPEN structure behavior style TK_SCREEN_CLOSE               { $$ = create_3node($2, $3, $4, to_node($<lex_value>1, true)); }
+    | TK_SCREEN_OPEN style structure behavior TK_SCREEN_CLOSE               { $$ = create_3node($2, $3, $4, to_node($<lex_value>1, true)); }
+    | TK_SCREEN_OPEN style behavior structure TK_SCREEN_CLOSE               { $$ = create_3node($2, $3, $4, to_node($<lex_value>1, true)); }
+    | TK_SCREEN_OPEN behavior structure style TK_SCREEN_CLOSE               { $$ = create_3node($2, $3, $4, to_node($<lex_value>1, true)); }
+    | TK_SCREEN_OPEN behavior style structure TK_SCREEN_CLOSE               { $$ = create_3node($2, $3, $4, to_node($<lex_value>1, true)); }
 ;
 
 structure: 
-	TK_STRUCTURE_OPEN content TK_STRUCTURE_CLOSE 						{ $$ = create_node($2, to_node($<lex_value>1, false)); }
+    TK_STRUCTURE_OPEN content TK_STRUCTURE_CLOSE                            { $$ = create_node($2, to_node($<lex_value>1, false)); }
 ;
 
 content: 
-	TK_TEXT content														{ $$ = merge_nodes_label(to_node($<lex_value>1, false), $2); }
-	| 																	{ $$ = NULL; }
+    TK_TEXT content                                                         { $$ = merge_nodes_label(to_node($<lex_value>1, false), $2); }
+    |                                                                       { $$ = NULL; }
 ;
 
 style: 
-	TK_STYLE_OPEN content TK_STYLE_CLOSE 								{ $$ = create_node($2, to_node($<lex_value>1, false)); }
+    TK_STYLE_OPEN content TK_STYLE_CLOSE                                    { $$ = create_node($2, to_node($<lex_value>1, false)); }
 ;
 
 behavior:
-	TK_BEHAVIOR_OPEN content TK_BEHAVIOR_CLOSE 							{ $$ = create_node($2, to_node($<lex_value>1, false)); }
+    TK_BEHAVIOR_OPEN content TK_BEHAVIOR_CLOSE                              { $$ = create_node($2, to_node($<lex_value>1, false)); }
 ;
 
 properties: 
-	TK_PROPERTIES_OPEN content TK_PROPERTIES_CLOSE 						{ $$ = create_json_node($2, to_node($<lex_value>1, false)); }
+    TK_PROPERTIES_OPEN content TK_PROPERTIES_CLOSE                          { $$ = create_json_node($2, to_node($<lex_value>1, false)); }
 ;
 
 persistence: 
-	TK_PERSISTENCE_OPEN content TK_PERSISTENCE_CLOSE 					{ $$ = create_json_node($2, to_node($<lex_value>1, false)); }
+    TK_PERSISTENCE_OPEN content TK_PERSISTENCE_CLOSE                        { $$ = create_json_node($2, to_node($<lex_value>1, false)); }
 ;
 %%
 
 
 //-----------------------------------------------------------------------------
-//		Functions                                                            
+//        Functions                                                            
 //-----------------------------------------------------------------------------
 void yyerror (char const *s)
 {
@@ -152,6 +152,6 @@ void yyerror (char const *s)
 
 void initialize()
 {
-	tree = NULL;
-	list_screens = initialize_list_nodes();
+    tree = NULL;
+    list_screens = initialize_list_nodes();
 }
