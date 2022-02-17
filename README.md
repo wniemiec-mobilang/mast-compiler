@@ -20,13 +20,13 @@ MobiLang is an extended markup language created for representing any mobile appl
 
 ```
 make
-sudo make compilation file=<mobilang_filepath_without_extension>
+sudo make compilation file=<mobilang_filepath_without_extension> output=<output_location> name=<output_filename>
 ```
 
 ### Example
 
 ```
-sudo make compilation file=./src/resources/close2dinoapp
+sudo make compilation file=./src/resources/close2dinoapp output=./ name=close2dinoapp
 ```
 
 ## ✔ Requirements
@@ -34,6 +34,7 @@ sudo make compilation file=./src/resources/close2dinoapp
 - [Python 3+](https://python.org)
 - [Flex](https://www.geeksforgeeks.org/flex-fast-lexical-analyzer-generator/)
 - [Bison](https://www.gnu.org/software/bison/)
+- [C Compiler](https://gcc.gnu.org)
 
 ## ⚠ Warnings
 - Behavior tag

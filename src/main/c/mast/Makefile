@@ -1,9 +1,8 @@
-MAIN 				= ./src/main
-RESOURCES			= ./src/resources
+MAIN 				= ../../
 C_SRC				= $(MAIN)/c
 PYTHON_SRC			= $(MAIN)/python
 JAVSCRIPT_SRC		= $(MAIN)/javascript
-MAST_SRC			= $(C_SRC)/wniemiec/mobilang/mast
+MAST_SRC			= $(C_SRC)/mast
 EXPORT				= $(MAST_SRC)/export
 DATA				= $(MAST_SRC)/data
 SEMANTIC			= $(MAST_SRC)/semantic
@@ -12,7 +11,7 @@ FLEX_FILE			= $(SYNTAX)/scanner.l
 BISON_FILE			= $(SEMANTIC)/parser.y
 OBJS				= $(SYNTAX)/lex.yy.o $(SEMANTIC)/parser.tab.o $(MAST_SRC)/main.o $(DATA)/text/string_utils.o $(DATA)/n_tree/n_tree.o
 TMP_SRC				= $(SYNTAX)/lex.yy.c $(SEMANTIC)/parser.tab.c $(SEMANTIC)/parser.tab.h
-OUT					= mast
+OUT					= $(MAST_SRC)/mast
 CC					= gcc 
 FLAGS				= -c
 LFLAGS				= -lfl
@@ -33,7 +32,7 @@ clean:
 		$(MAKE) -C $(DATA)/text clean
 
 run: 
-		./$(OUT)
+		$(OUT)
 
 debug:
 		bison -v -d $(BISON_FILE) -o $(SEMANTIC)/parser.tab.c
@@ -47,5 +46,5 @@ debug:
 
 compilation:
 		./$(OUT) < $(file).xml > $(file).ast
-		$(MAKE) -C $(EXPORT) file=$(file)
+		$(MAKE) -C $(EXPORT) file=$(file) output=$(output) name=$(name)
 
