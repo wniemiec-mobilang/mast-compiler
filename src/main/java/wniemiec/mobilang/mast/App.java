@@ -19,7 +19,6 @@ public class App {
     //-------------------------------------------------------------------------
     private static Path mobilangFilePath;
     private static Path outputLocationPath;
-    private static String filename;
 
 
     //-------------------------------------------------------------------------
@@ -31,7 +30,7 @@ public class App {
             runMast();
         }
         catch (InvalidPathException e) {
-            Consolex.writeError("Invalid dot file location: " + e.getMessage());
+            Consolex.writeError("Invalid output location: " + e.getMessage());
         }
         catch (Exception e) {
             Consolex.writeError("Fatal error");
@@ -48,7 +47,6 @@ public class App {
 
         mobilangFilePath = normalizePath(Path.of(args[0]));
         outputLocationPath = normalizePath(Path.of(args[1]));
-        filename = args[2];
     }
 
     private static Path normalizePath(Path path) {
@@ -56,8 +54,8 @@ public class App {
     }
 
     private static void validateArgs(String[] args) {
-        if (args.length < 3) {
-            Consolex.writeError("Missing args! Correct usage: <mobilang_file> <output_location> <output_filename>");
+        if (args.length < 2) {
+            Consolex.writeError("Missing args! Correct usage: <mobilang_file> <output_location>");
             System.exit(-1);
         }
     }
@@ -65,8 +63,7 @@ public class App {
     private static void runMast() throws IOException {
         Mast mast = new Mast(
             mobilangFilePath, 
-            outputLocationPath,
-            filename
+            outputLocationPath
         );
 
         mast.run();
