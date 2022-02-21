@@ -9,6 +9,9 @@ import java.nio.file.Path;
 import wniemiec.mobilang.mast.utils.Shell;
 
 
+/**
+ * Responsible for managing MAST compiler pipeline.
+ */
 public class Mast {
 
     //-------------------------------------------------------------------------
@@ -37,6 +40,12 @@ public class Mast {
     //-------------------------------------------------------------------------
     //		Constructor
     //-------------------------------------------------------------------------
+    /**
+     * Manager for MAST compiler pipeline.
+     * 
+     * @param       mobilangFilePath MobiLang XML file
+     * @param       outputLocationPath Path where compiler output will be put
+     */
     public Mast(Path mobilangFilePath, Path outputLocationPath) {
         this.mobilangFilePath = mobilangFilePath;
         this.outputLocationPath = outputLocationPath;
