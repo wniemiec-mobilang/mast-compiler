@@ -3,8 +3,12 @@ package wniemiec.mobilang.mast;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
 import wniemiec.io.java.Consolex;
 
 
@@ -17,8 +21,19 @@ public class App {
     //-------------------------------------------------------------------------
     //		Attributes
     //-------------------------------------------------------------------------
+    private static final String LBL_MOBILANG;
+    private static final String LBL_OUTPUT;
     private static Path mobilangFilePath;
     private static Path outputLocationPath;
+
+
+    //-------------------------------------------------------------------------
+    //		Initialization block
+    //-------------------------------------------------------------------------
+    static {
+        LBL_MOBILANG = "mobilang";
+        LBL_OUTPUT = "output";
+    }
 
 
     //-------------------------------------------------------------------------
@@ -29,12 +44,11 @@ public class App {
             parseArgs(args);
             runMast();
         }
-        catch (InvalidPathException e) {
-            Consolex.writeError("Invalid output location: " + e.getMessage());
+        catch (IllegalArgumentException e) {
+            Consolex.writeError("Invalid cmd args: " + e.getMessage());
         }
         catch (Exception e) {
-            Consolex.writeError("Fatal error");
-            e.printStackTrace();
+            Consolex.writeError("Fatal error: " + e.getMessage());
         }
     }
 
@@ -42,22 +56,56 @@ public class App {
     //-------------------------------------------------------------------------
     //		Methods
     //-------------------------------------------------------------------------
-    private static void parseArgs(String[] args) {
-        validateArgs(args);
-
-        mobilangFilePath = normalizePath(Path.of(args[0]));
-        outputLocationPath = normalizePath(Path.of(args[1]));
+    private static void parseArgs(String[] args) throws ParseException {
+        CommandLine cmd = buildCmd(args);
+        
+        validateArgs(cmd);
+        
+        mobilangFilePath = getMobilangCliArg(cmd);
+        outputLocationPath = getOutputCliArg(cmd);
     }
 
+    private static CommandLine buildCmd(String[] args) throws ParseException {
+        Options options = buildCliOptions();
+        CommandLineParser parser = new DefaultParser();
+        
+        return parser.parse(options, args);
+    }
+
+
+    private static Options buildCliOptions() {
+        Options options = new Options();
+
+        options.addOption(LBL_MOBILANG, true, "MobiLang XML file");
+        options.addOption(LBL_OUTPUT, true, "Output location");
+        
+        return options;
+    }
+
+    private static void validateArgs(CommandLine cmd) {
+        if (!cmd.hasOption(LBL_MOBILANG)) {
+            throw new IllegalArgumentException(LBL_MOBILANG + " is missing");
+        }
+
+        if (!cmd.hasOption(LBL_OUTPUT)) {
+            throw new IllegalArgumentException(LBL_OUTPUT + " is missing");
+        }
+    }
+
+    private static Path getMobilangCliArg(CommandLine cmd) {
+        String mobilangCliArg = cmd.getOptionValue(LBL_MOBILANG);
+
+        return normalizePath(Path.of(mobilangCliArg));
+    }
+    
     private static Path normalizePath(Path path) {
         return path.toAbsolutePath().normalize();
     }
 
-    private static void validateArgs(String[] args) {
-        if (args.length < 2) {
-            Consolex.writeError("Missing args! Correct usage: <mobilang_file> <output_location>");
-            System.exit(-1);
-        }
+    private static Path getOutputCliArg(CommandLine cmd) {
+        String outputCliArg = cmd.getOptionValue(LBL_OUTPUT);
+
+        return normalizePath(Path.of(outputCliArg));
     }
 
     private static void runMast() throws IOException {
@@ -73,10 +121,28 @@ public class App {
     //-------------------------------------------------------------------------
     //		Getters
     //-------------------------------------------------------------------------
-    public static Path getAppLocation() {
-        Path appBinPath = getAppBinPath();
+    public static Path getAppRootPath() {
+        Path binRootPath = getBinRootPath();
+
+        if (isDevelopmentEnvironment(binRootPath)) {
+            return binRootPath
+                .getParent()
+                .getParent()
+                .resolve("src")
+                .resolve("main");
+        }
         
-        return appBinPath.normalize().toAbsolutePath();
+        return binRootPath;
+    }
+
+    private static Path getBinRootPath() {
+        return getAppBinPath()
+            .normalize()
+            .toAbsolutePath()
+            .getParent()
+            .getParent()
+            .getParent()
+            .getParent();
     }
 
     private static Path getAppBinPath() {
@@ -86,4 +152,11 @@ public class App {
 	private static Path urlToPath(URL url) {
 		return new File(url.getPath()).toPath();
 	}
+
+    private static boolean isDevelopmentEnvironment(Path binRootPath) {
+        return binRootPath
+            .getFileName()
+            .toString()
+            .equals("classes");
+    }
 }

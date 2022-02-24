@@ -45,6 +45,6 @@ debug:
 		$(CC) $(OBJS) -o $(OUT) $(LFLAGS)
 
 compilation:
-		./$(OUT) < $(file).xml > $(file).ast
+		./$(OUT) < $(file) > $(file).ast
 		$(MAKE) -C $(EXPORT) file=$(file) output=$(output) name=$(name)
 

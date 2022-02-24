@@ -1,12 +1,13 @@
 package wniemiec.mobilang.mast;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
-import wniemiec.mobilang.mast.utils.Shell;
+
+import wniemiec.io.java.Consolex;
+import wniemiec.io.java.StandardTerminalBuilder;
+import wniemiec.io.java.Terminal;
 
 
 /**
@@ -27,11 +28,7 @@ public class Mast {
     //-------------------------------------------------------------------------
     static {
         MAST_LOCATION = App
-            .getAppLocation()
-            .getParent()
-            .getParent()
-            .getParent()
-            .getParent()
+            .getAppRootPath()
             .resolve("c")
             .resolve("mast");
     }
@@ -56,15 +53,18 @@ public class Mast {
     //		Methods
     //-------------------------------------------------------------------------
     public Path run() throws IOException {
-        Shell shell = new Shell(MAST_LOCATION, true);
+        Terminal terminal = StandardTerminalBuilder
+            .getInstance()
+            .outputHandler(Consolex::writeInfo)
+            .outputErrorHandler(Consolex::writeError)
+            .build();
         String appName = extractAppName();
 
-        makeAll(shell);
-        makeCompilation(shell, appName);
+        makeAll(terminal);
+        makeCompilation(terminal, appName);
 
         return outputLocationPath.resolve(appName + ".dot");
     }
-
 
     private String extractAppName() throws IOException {
         String appName = null;
@@ -85,16 +85,16 @@ public class Mast {
         return appName;
     }
 
-    private void makeAll(Shell shell) throws IOException {
-        shell.exec(
+    private void makeAll(Terminal terminal) throws IOException {
+        terminal.exec(
             "make", 
             "-C", 
             MAST_LOCATION.toString()
         );
     }
 
-    private void makeCompilation(Shell shell, String appName) throws IOException {
-        shell.exec(
+    private void makeCompilation(Terminal terminal, String appName) throws IOException {
+        terminal.exec(
             "make", 
             "-C", 
             MAST_LOCATION.toString(), 
