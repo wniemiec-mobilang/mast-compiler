@@ -29,9 +29,16 @@
 			</excludes>
 		</fileSet>
 		<fileSet>
-		
-			<directory>${basedir}/lib</directory>
-			<outputDirectory>/lib/</outputDirectory>
+			<directory>${basedir}/src/main/c</directory>
+			<outputDirectory>/c/</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>${basedir}/src/main/python</directory>
+			<outputDirectory>/python/</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>${basedir}/src/main/javascript</directory>
+			<outputDirectory>/javascript/</outputDirectory>
 		</fileSet>
 		<fileSet>
 			<directory>${basedir}/src/main/resources</directory>
