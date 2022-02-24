@@ -1,7 +1,7 @@
-MAIN 				= ../../
-C_SRC				= $(MAIN)/c
-PYTHON_SRC			= $(MAIN)/python
-JAVSCRIPT_SRC		= $(MAIN)/javascript
+APP_ROOT			= $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))/../..
+C_SRC				= $(APP_ROOT)/c
+PYTHON_SRC			= $(APP_ROOT)/python
+JAVSCRIPT_SRC		= $(APP_ROOT)/javascript
 MAST_SRC			= $(C_SRC)/mast
 EXPORT				= $(MAST_SRC)/export
 DATA				= $(MAST_SRC)/data
@@ -45,6 +45,6 @@ debug:
 		$(CC) $(OBJS) -o $(OUT) $(LFLAGS)
 
 compilation:
-		./$(OUT) < $(file) > $(file).ast
+		$(OUT) < $(file) > $(file).ast
 		$(MAKE) -C $(EXPORT) file=$(file) output=$(output) name=$(name)
 
