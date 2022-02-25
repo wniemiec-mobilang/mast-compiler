@@ -55,7 +55,7 @@ public class Mast {
     public Path run() throws IOException {
         Terminal terminal = StandardTerminalBuilder
             .getInstance()
-            .outputHandler(Consolex::writeInfo)
+            .outputHandler(Consolex::writeDebug)
             .outputErrorHandler(Consolex::writeError)
             .build();
         String appName = extractAppName();

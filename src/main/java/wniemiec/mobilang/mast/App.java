@@ -10,6 +10,7 @@ import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import wniemiec.io.java.Consolex;
+import wniemiec.io.java.LogLevel;
 
 
 /**
@@ -23,6 +24,7 @@ public class App {
     //-------------------------------------------------------------------------
     private static final String LBL_MOBILANG;
     private static final String LBL_OUTPUT;
+    private static final String LBL_VERBOSE;
     private static Path mobilangFilePath;
     private static Path outputLocationPath;
 
@@ -33,6 +35,7 @@ public class App {
     static {
         LBL_MOBILANG = "mobilang";
         LBL_OUTPUT = "output";
+        LBL_VERBOSE = "verbose";
     }
 
 
@@ -78,6 +81,7 @@ public class App {
 
         options.addOption(LBL_MOBILANG, true, "MobiLang XML file");
         options.addOption(LBL_OUTPUT, true, "Output location");
+        options.addOption(LBL_VERBOSE, false, "Display debug messages");
         
         return options;
     }
@@ -89,6 +93,12 @@ public class App {
 
         if (!cmd.hasOption(LBL_OUTPUT)) {
             throw new IllegalArgumentException(LBL_OUTPUT + " is missing");
+        }
+    }
+
+    private static void checkVerboseOption(CommandLine cmd) {
+        if (cmd.hasOption(LBL_VERBOSE)) {
+            Consolex.setLoggerLevel(LogLevel.DEBUG);
         }
     }
 
