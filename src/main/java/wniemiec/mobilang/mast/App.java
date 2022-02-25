@@ -63,6 +63,7 @@ public class App {
         CommandLine cmd = buildCmd(args);
         
         validateArgs(cmd);
+        checkVerboseOption(cmd);
         
         mobilangFilePath = getMobilangCliArg(cmd);
         outputLocationPath = getOutputCliArg(cmd);
