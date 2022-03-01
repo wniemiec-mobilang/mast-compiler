@@ -5,4 +5,4 @@ lex.yy.c
 *.ast
 *.dot
 .vscode
-.target
+target

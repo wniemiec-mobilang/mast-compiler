@@ -76,7 +76,6 @@ public class App {
         return parser.parse(options, args);
     }
 
-
     private static Options buildCliOptions() {
         Options options = new Options();
 

@@ -72,7 +72,7 @@ public class Mast {
         try (BufferedReader buffer = new BufferedReader(new FileReader(mobilangFilePath.toFile()))) {
             for(String line = buffer.readLine(); line != null; line = buffer.readLine()) {
                 if (line.contains("\"application_name\":")) {
-                    appName = line.split(":")[1].strip();
+                    appName = line.split(":")[1].strip().replace("\"", "");
                     break;
                 }
             }
