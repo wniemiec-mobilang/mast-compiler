@@ -3,11 +3,13 @@ package wniemiec.mobilang.mast;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
-
 import wniemiec.io.java.Consolex;
+import wniemiec.io.java.JarFileManager;
 import wniemiec.io.java.StandardTerminalBuilder;
 import wniemiec.io.java.Terminal;
+import wniemiec.io.java.TextFileManager;
 
 
 /**
@@ -18,20 +20,10 @@ public class Mast {
     //-------------------------------------------------------------------------
     //		Attributes
     //-------------------------------------------------------------------------
-    private static final Path MAST_LOCATION;
     private final Path mobilangFilePath;
     private final Path outputLocationPath;
-
-
-    //-------------------------------------------------------------------------
-    //		Initialization block
-    //-------------------------------------------------------------------------
-    static {
-        MAST_LOCATION = App
-            .getAppRootPath()
-            .resolve("c")
-            .resolve("mast");
-    }
+    private Path mastLocation;
+    private Terminal terminal;
 
 
     //-------------------------------------------------------------------------
@@ -53,51 +45,75 @@ public class Mast {
     //		Methods
     //-------------------------------------------------------------------------
     public Path run() throws IOException {
-        Terminal terminal = StandardTerminalBuilder
-            .getInstance()
-            .outputHandler(Consolex::writeDebug)
-            .outputErrorHandler(Consolex::writeError)
-            .build();
         String appName = extractAppName();
 
-        makeAll(terminal);
-        makeCompilation(terminal, appName);
+        setUpTerminal();
+        setUpMastLocation();
+        runTerminal(appName);
 
         return outputLocationPath.resolve(appName + ".dot");
     }
 
     private String extractAppName() throws IOException {
-        String appName = null;
-
-        try (BufferedReader buffer = new BufferedReader(new FileReader(mobilangFilePath.toFile()))) {
-            for(String line = buffer.readLine(); line != null; line = buffer.readLine()) {
-                if (line.contains("\"application_name\":")) {
-                    appName = line.split(":")[1].strip().replace("\"", "");
-                    break;
-                }
-            }
-        }
+        TextFileManager txtManager = new TextFileManager(mobilangFilePath, StandardCharsets.UTF_8);
+        String appName = txtManager.getFileLineThatContains("\"application_name\":");
 
         if (appName == null) {
             throw new IllegalStateException("application_name not found in properties");
         }
 
-        return appName;
+        return appName.split(":")[1].strip().replace("\"", "");
     }
 
-    private void makeAll(Terminal terminal) throws IOException {
+    private void setUpTerminal() {
+        terminal = StandardTerminalBuilder
+            .getInstance()
+            .outputHandler(Consolex::writeDebug)
+            .outputErrorHandler(Consolex::writeError)
+            .build();
+    }
+
+    private void setUpMastLocation() throws IOException {
+        Path baseDir = buildBaseDir();
+
+        mastLocation = baseDir
+            .resolve("c")
+            .resolve("mast");
+    }
+
+    private static Path buildBaseDir() throws IOException {
+        if (!isJarFile()) {
+            return App.getAppRootPath();
+        }
+
+        Path tmpDir = Path.of(System.getProperty("java.io.tmpdir"));
+        JarFileManager jarManager = new JarFileManager(App.getAppRootPath());
+
+        return jarManager.extractTo(tmpDir);
+    }
+
+    private static boolean isJarFile() {
+        return JarFileManager.isJarFile(App.getAppRootPath());
+    }
+
+    private void runTerminal(String appName) throws IOException {
+        makeAll();
+        makeCompilation(appName);
+    }
+
+    private void makeAll() throws IOException {
         terminal.exec(
             "make", 
             "-C", 
-            MAST_LOCATION.toString()
+            mastLocation.toString()
         );
     }
 
-    private void makeCompilation(Terminal terminal, String appName) throws IOException {
+    private void makeCompilation(String appName) throws IOException {
         terminal.exec(
             "make", 
             "-C", 
-            MAST_LOCATION.toString(), 
+            mastLocation.toString(), 
             "compilation", 
             "file=" + mobilangFilePath, 
             "output=" + outputLocationPath, 

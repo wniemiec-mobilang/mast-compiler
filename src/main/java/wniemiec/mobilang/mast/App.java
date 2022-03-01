@@ -142,7 +142,7 @@ public class App {
                 .resolve("main");
         }
         
-        return binRootPath;
+        return Path.of(binRootPath.toString().split("file:")[1]);
     }
 
     private static Path getBinRootPath() {

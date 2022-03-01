@@ -15,6 +15,7 @@
 			<scope>runtime</scope>
 			<includes>
 				<include>io.github.wniemiec-*:*</include>
+				<include>commons-io:*</include>
 			</includes>
 		</dependencySet>
 	</dependencySets>
