@@ -51,7 +51,13 @@ public class Mast {
         setUpMastLocation();
         runTerminal(appName);
 
-        return outputLocationPath.resolve(appName + ".dot");
+        return buildAstFilePath(appName);
+    }
+
+    private Path buildAstFilePath(String appName) {
+        return outputLocationPath
+            .resolve(appName)
+            .resolve(appName + ".dot");
     }
 
     private String extractAppName() throws IOException {
@@ -116,7 +122,7 @@ public class Mast {
             mastLocation.toString(), 
             "compilation", 
             "file=" + mobilangFilePath, 
-            "output=" + outputLocationPath, 
+            "output=" + outputLocationPath.resolve(appName), 
             "name=" + appName
         );
     }
