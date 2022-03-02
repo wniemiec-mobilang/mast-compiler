@@ -8,7 +8,7 @@ try:
     original_umask = os.umask(0)
     if os.path.isfile(output_path):
         os.remove(output_path)
-    os.makedirs(output_path, 0o777) # read/write by everyone
+    os.makedirs(output_path, 0o777, exist_ok=True) # read/write by everyone
 finally:
     os.umask(original_umask)
 
