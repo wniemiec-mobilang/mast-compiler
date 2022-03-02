@@ -57,6 +57,7 @@ public class Mast {
     private Path buildAstFilePath(String appName) {
         return outputLocationPath
             .resolve(appName)
+            .resolve("ast")
             .resolve(appName + ".dot");
     }
 
@@ -122,7 +123,7 @@ public class Mast {
             mastLocation.toString(), 
             "compilation", 
             "file=" + mobilangFilePath, 
-            "output=" + outputLocationPath.resolve(appName), 
+            "output=" + outputLocationPath.resolve(appName).resolve("ast"), 
             "name=" + appName
         );
     }
