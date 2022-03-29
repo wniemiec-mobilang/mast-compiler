@@ -39,6 +39,8 @@ sudo make compilation file=./src/resources/close2dinoapp output=./ name=close2di
 ## ⚠ Warnings
 - Behavior tag
   - Every statement must end with `;`
+  - Inline comments (comments starting with `//`) are not allowed
+  - There must be some screen with `id` equals to `home`
    
 ## 🚩 Changelog
 Details about each version are documented in the [releases section](https://github.com/williamniemiec/mast-compiler/releases).

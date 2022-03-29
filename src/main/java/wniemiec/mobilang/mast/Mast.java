@@ -1,7 +1,5 @@
 package wniemiec.mobilang.mast;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
@@ -76,7 +74,7 @@ public class Mast {
         terminal = StandardTerminalBuilder
             .getInstance()
             .outputHandler(Consolex::writeDebug)
-            .outputErrorHandler(Consolex::writeError)
+            .outputErrorHandler(Consolex::writeWarning)
             .build();
     }
 
