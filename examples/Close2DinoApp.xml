@@ -436,7 +436,7 @@
                     border-radius: 10px;
                     font-size: 20px;
                     padding-left: 20px;
-                    width: 100%;
+                    width: 94%;
                 }
                 
                 #faq {
@@ -587,8 +587,8 @@
             </style>
 
             <behavior>
-                document.getElementById("menu-btn").onclick = () => window.location.href = "app.html";
-                document.getElementById("back-btn").onclick = () => window.location.href = "app.html";
+                document.getElementById("menu-btn").onclick = () => window.location.href = "mobilang:screen:home";
+                document.getElementById("back-btn").onclick = () => window.location.href = "mobilang:screen:home";
                 document.getElementById("reload-btn").onclick = () => window.location.reload();
 
                 function openModal() {
@@ -653,7 +653,7 @@
                                         <div class="item">
                                             <h2 onClick="openDescription(${i})">${item.title}</h2>
                                             <div class="item-content">
-                                                <p>${item.content ?? "Sua pergunta ainda não foi respondida."}</p>
+                                                <p>${item.content ? item.content : "Sua pergunta ainda não foi respondida."}</p>
                                             </div>
                                         </div>
                                         `;
