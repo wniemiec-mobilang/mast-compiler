@@ -1,0 +1,53 @@
+0x55c33305dd70, 0x55c333053d70
+0x55c333053d70, 0x55c333053cb0
+0x55c333053cb0, 0x55c332fbfaf0
+0x55c332fbfaf0, 0x55c332fbd3a0
+0x55c333053cb0, 0x55c33301d690
+0x55c33301d690, 0x55c33301af40
+0x55c333053cb0, 0x55c333053c60
+0x55c333053c60, 0x55c333051510
+0x55c333053d70, 0x55c332fa1fe0
+0x55c332fa1fe0, 0x55c332e90090
+0x55c332e90090, 0x55c332e8d940
+0x55c332fa1fe0, 0x55c332f4def0
+0x55c332f4def0, 0x55c332f4b7a0
+0x55c332fa1fe0, 0x55c332fa1f90
+0x55c332fa1f90, 0x55c332f9f840
+0x55c333053d70, 0x55c332e486d0
+0x55c332e486d0, 0x55c332df9690
+0x55c332df9690, 0x55c332df6f40
+0x55c332e486d0, 0x55c332e48570
+0x55c332e48570, 0x55c332e45e20
+0x55c332e486d0, 0x55c332e48680
+0x55c332e48680, 0x55c332e48650
+0x55c33305dd70, 0x55c333058d20
+0x55c333058d20, 0x55c3330565d0
+0x55c33305dd70, 0x55c33305dd00
+0x55c33305dd00, 0x55c33305b5b0
+0x55c33305dd70 [label="<mobilang>"];
+0x55c333053d70 [label="<screens>"];
+0x55c333053cb0 [label="<screen id=\"glossary-desc\">"];
+0x55c332fbfaf0 [label="<structure>"];
+0x55c332fbd3a0 [label="<html><body><div id="status-bar"><button id="menu-btn"><img height="25" width="25" src="https://cdn0.iconfinder.com/data/icons/heroicons-ui/24/icon-menu-512.png" /></button><button id="back-btn"><img height="25" width="25" src="http://cdn.onlinewebfonts.com/svg/img_259786.png" /></button></div><div id="glossary-area"></div></body></html>"];
+0x55c33301d690 [label="<style>"];
+0x55c33301af40 [label="* {margin: 0;}body {background-color: #222;}#status-bar {background-color: #ccc;height: 50px;width: 100%;display: flex;align-items: center;}#status-bar button {border: 0;background-color: transparent;margin: 0 15px;cursor: pointer;}#glossary {font-family: Arial, Helvetica, sans-serif;color: white;font-size: 15px;margin: 10px;}#glossary .header {margin: 20px 0;padding-bottom: 10px;border-bottom: 1px solid black;}#glossary .header h2 {font-size: 15px;color: gray;}#glossary p {line-height: 20px;color: white;font-size: 15px;}"];
+0x55c333053c60 [label="<behavior>"];
+0x55c333051510 [label="document.getElementById("menu-btn").onclick = () => window.location.href = "mobilang:screen:home";document.getElementById("back-btn").onclick = () => window.location.href = "mobilang:screen:glossary";const glossary = document.getElementById("glossary-area");fetch('http://192.168.0.62:8080/glossary').then(res => {res.json().then(data => {const id = "mobilang:param:id";const glossaryItem = data.filter(item => item.id == id)[0];glossary.innerHTML = "";glossary.innerHTML += `<div id="glossary"><div class="header"><h1>${glossaryItem.name}</h1><h2>${glossaryItem.type}</h2></div><p>${glossaryItem.description}</p></div>`;})});"];
+0x55c332fa1fe0 [label="<screen id=\"glossary\">"];
+0x55c332e90090 [label="<structure>"];
+0x55c332e8d940 [label="<html><body><div id="status-bar"><div class="left"><button id="menu-btn"><img src="https://cdn0.iconfinder.com/data/icons/heroicons-ui/24/icon-menu-512.png" width="25"height="25"></img></button><button id="back-btn"><img src="http://cdn.onlinewebfonts.com/svg/img_259786.png" width="25" height="25"></img></button></div><div class="right"><button id="reload-btn"><img src="http://cdn.onlinewebfonts.com/svg/img_209352.png" width="25" height="25"></img></button></div></div><div id="search"><input type="text" placeholder="Buscar..." /></div><div id="glossary"><h1>Glossário</h1><div id="glossary-content"></div></div></body></html>"];
+0x55c332f4def0 [label="<style>"];
+0x55c332f4b7a0 [label="* {margin: 0;}body {background-color: #444;}#status-bar {background-color: #ccc;height: 50px;width: 100%;display: flex;align-items: center;justify-content: space-between;}#status-bar .left,#status-bar .right  {flex: 1;}#status-bar .right  {display: flex;justify-content: flex-end;}#status-bar button {border: 0;background-color: transparent;margin: 0 15px;cursor: pointer;}#search {margin: 10px;}#search input {border: 1px solid #ccc;height: 50px;border-radius: 10px;font-size: 20px;padding-left: 20px;width: 94%;}#glossary {font-family: Arial, Helvetica, sans-serif;color: white;font-size: 15px;margin: 10px;}#glossary h1 {margin: 20px 0;color: white;}#glossary-content {background-color: #222;}#glossary-content .item {border-bottom: 1px solid #000;display: flex;flex-direction: column;justify-content: center;}#glossary-content .item h2 {margin: 5px;margin-left: 20px;padding: 10px 0;cursor: pointer;}#glossary-content .item .item-content {display: none;padding: 20px;}#glossary-content .item .item-content p {margin: 20px 0;}#glossary-content .item .item-content a {color: #48cdd1;text-decoration: none;}.item-content-open {display: block !important;}"];
+0x55c332fa1f90 [label="<behavior>"];
+0x55c332f9f840 [label="document.getElementById("menu-btn").onclick = () => window.location.href = "mobilang:screen:home";document.getElementById("back-btn").onclick = () => window.location.href = "mobilang:screen:home";document.getElementById("reload-btn").onclick = () => window.location.reload();const glossaryContent = document.getElementById("glossary-content");function openDescription(item) {item.children[1].classList.toggle("item-content-open");}fetch('http://192.168.0.62:8080/glossary').then(res => {res.json().then(data => {function loadGlossaryWithName(name='') {glossaryContent.innerHTML = "";for (let item in data) {if (data[item].name.toLowerCase().startsWith(name.toLowerCase())) {glossaryContent.innerHTML += `<div class="item" onclick="openDescription(this);"><h2>${data[item].name}</h2><div class="item-content"><h3>${data[item].type}</h3><p>${data[item].description}</p><a href="mobilang:screen:glossary-desc?id=${data[item].id}">Leia mais</a></div></div>`;}}}loadGlossaryWithName();var searchInput = document.getElementById("search").children[0];searchInput.addEventListener("keyup", function (event) {loadGlossaryWithName(searchInput.value);});})});"];
+0x55c332e486d0 [label="<screen id=\"home\">"];
+0x55c332df9690 [label="<structure>"];
+0x55c332df6f40 [label="<html><body><div id="status-bar"><button id="menu-btn"><img height="25" width="25" src="https://cdn0.iconfinder.com/data/icons/heroicons-ui/24/icon-menu-512.png" /></button></div><div id="items"><a href="mobilang:screen:glossary">Glossário</a></div></body></html>"];
+0x55c332e48570 [label="<style>"];
+0x55c332e45e20 [label="* {margin: 0;}body {background-color: #444;}#status-bar {background-color: #ccc;height: 50px;width: 100%;display: flex;align-items: center;}#status-bar button {border: 0;background-color: transparent;margin: 0 15px;cursor: pointer;}#items a {background-color: #18bfa0;text-decoration: none;padding: 20px;display: block;text-align: center;font-weight: bold;font-size: 20px;font-family: Arial;color: purple;}#items a:visited {color: purple;}"];
+0x55c332e48680 [label="<behavior>"];
+0x55c332e48650 [label="document.getElementById("menu-btn").onclick = () => window.location.href = "mobilang:screen:home";"];
+0x55c333058d20 [label="<properties>"];
+0x55c3330565d0 [label="{\"application_name\": \"Close2DinoApp\"}"];
+0x55c33305dd00 [label="<persistence>"];
+0x55c33305b5b0 [label="{\"type\": \"memory\"}"];

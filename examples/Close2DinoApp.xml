@@ -11,6 +11,7 @@
                         </div>
                         <div id="items">
                             <a href="mobilang:screen:glossary">Glossário</a>
+                            <a href="mobilang:screen:faq">F.A.Q.</a>
                         </div>
                     </body>
                 </html>
@@ -332,6 +333,347 @@
                     });
             </behavior>
         </screen>
+
+        <screen id="faq">
+            <structure>
+                <html>
+                    <body>
+                        <div id="status-bar">
+                            <div class="left">
+                                <button id="menu-btn">
+                                    <img src="https://cdn0.iconfinder.com/data/icons/heroicons-ui/24/icon-menu-512.png" width="25"
+                                        height="25">
+                                    </img>
+                                </button>
+                                <button id="back-btn">
+                                    <img src="http://cdn.onlinewebfonts.com/svg/img_259786.png" width="25" height="25">
+                                    </img>
+                                </button>
+                            </div>
+                            <div class="right">
+                                <button id="reload-btn">
+                                    <img src="http://cdn.onlinewebfonts.com/svg/img_209352.png" width="25" height="25">
+                                    </img>
+                                </button>
+                            </div>
+                        </div>
+                        <div id="search">
+                            <input type="text" placeholder="Buscar..." />
+                        </div>
+                        <div id="faq">
+                            <h1>F.A.Q.</h1>
+                            <div id="faq-content"></div>
+                            <div class="faq-footer">
+                                <button class="send-question" onClick="openModal()">
+                                    Não encontrou sua pergunta?
+                                </button>
+                            </div>
+                
+                            <div class="modal" id="modal-pergunta">
+                                <div class="modal-area">
+                                    <div class="header">
+                                        <h2>Janela Modal</h2>
+                                        <img height="30" src="https://www.imagensempng.com.br/wp-content/uploads/2021/05/06-2.png" alt="icon" />
+                                    </div>
+                                    <div class="body">
+                                        <h3>Mande para os profissionais!</h3>
+                                        <input id="pergunta-input" type="text" placeholder="Pergunta*" />
+                                    </div>
+                                    <div class="footer">
+                                        <button onClick="handleClose()">Cancelar</button>
+                                        <button onClick="handleSave()">Salvar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </body>
+                </html>
+            </structure>
+
+            <style>
+                * {
+                    margin: 0;
+                }
+    
+                body {
+                    background-color: #444;
+                }
+    
+                #status-bar {
+                    background-color: #ccc;
+                    height: 50px;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                }
+                
+                #status-bar .left,
+                #status-bar .right  {
+                    flex: 1;
+                }
+                
+                #status-bar .right  {
+                    display: flex;
+                    justify-content: flex-end;
+                }
+    
+                #status-bar button {
+                    border: 0;
+                    background-color: transparent;
+                    margin: 0 15px;
+                    cursor: pointer;
+                }
+    
+                #search {
+                    margin: 10px;
+    
+                }
+    
+                #search input {
+                    border: 1px solid #ccc;
+                    height: 50px;
+                    border-radius: 10px;
+                    font-size: 20px;
+                    padding-left: 20px;
+                    width: 100%;
+                }
+                
+                #faq {
+                    font-family: Arial, Helvetica, sans-serif;
+                    color: white;
+                    font-size: 15px;
+                    margin: 10px;
+                }
+    
+                #faq h1 {
+                    margin: 20px 0;
+                }
+    
+                #faq-content {
+                    background-color: #222;
+                }
+    
+                #faq-content .item {
+                    border-bottom: 1px solid #000;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                }
+    
+                #faq-content .item h2 {
+                    margin: 5px;
+                    margin-left: 20px;
+                    padding: 10px 0;
+                    cursor: pointer;
+                    font-size: medium;
+                }
+    
+                #faq-content .item .item-content {
+                    display: none;
+                    padding: 20px;
+                }
+    
+                #faq-content .item .item-content p {
+                    margin: 0 0 10px 0;
+                }
+    
+                #faq-content .item .item-content a {
+                    color: #48cdd1;
+                    text-decoration: none;
+                }
+    
+                .item-content-open {
+                    display: block !important;
+                }
+    
+                .faq-footer {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 20px 0;
+                }
+    
+                .send-question {
+                    color: #18bfa0;
+                    font-size: small;
+                    border: 0;
+                    background-color: transparent;
+                    cursor: pointer;
+                }
+    
+                .modal {
+                    position: fixed;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    font-family: Arial, Helvetica, sans-serif;
+                    background: rgba(0,0,0,0.8);
+                    z-index: 99999;
+                    opacity:0;
+                    transition: opacity 400ms ease-in;
+                    pointer-events: none;
+                }
+    
+                .modal:target {
+                    opacity: 1;
+                    pointer-events: auto;
+                }
+    
+                .modal > div {
+                    width: 400px;
+                    position: relative;
+                    margin: 10% auto;
+                    background: #444;
+                }
+    
+                .modal-area {
+                    display: flex;
+                    flex-direction: column;
+                }
+    
+                .modal-area .header,
+                .modal-area .body,
+                .modal-area .footer {
+                    padding: 10px 20px;
+                }
+    
+                .modal-area .header {
+                    height: 50px;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                    background: #222;
+                }
+    
+                .modal-area .body {
+                    display: flex;
+                    flex-direction: column;
+                    margin-top: 20px;
+                }
+    
+                .modal-area .footer {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-end;
+                    padding: 15px 20px;
+                }
+    
+                .modal-area .footer button {
+                    background-color: transparent;
+                    color: white;
+                    text-transform: uppercase;
+                    border: 0;
+                    cursor: pointer;
+                    margin-left: 20px;
+                }
+    
+                #pergunta-input {
+                    background-color: transparent;
+                    color: white;
+                    font-size: large;
+                    border: 0;
+                    margin: 20px 0;
+                    padding-bottom: 5px;
+                    border-bottom: 1px solid white;
+                }
+    
+                #pergunta-input:focus {
+                    outline: none;
+                    border-bottom: 1px solid #18bfa0;
+                }
+            </style>
+
+            <behavior>
+                document.getElementById("menu-btn").onclick = () => window.location.href = "app.html";
+                document.getElementById("back-btn").onclick = () => window.location.href = "app.html";
+                document.getElementById("reload-btn").onclick = () => window.location.reload();
+
+                function openModal() {
+                    document.getElementById("modal-pergunta").style.display = 'block';
+                    document.getElementById("modal-pergunta").style.pointerEvents = 'auto';
+                    
+                    setTimeout(function () {
+                        document.getElementById("modal-pergunta").style.opacity = 1;
+                    }, 50)
+                    
+                }
+
+                function handleClose() {
+                    closeModal();
+                }
+
+                function closeModal() {
+                    document.getElementById("modal-pergunta").style.opacity = 0;
+                    setTimeout(function () {
+                        document.getElementById("modal-pergunta").style.display = 'none';
+                    }, 500);
+                }
+
+                function handleSave() {
+                    const message = document.getElementById("pergunta-input").value;
+
+                    fetch('http://192.168.0.62:8080/faq', {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ title: message })
+                    })
+                    .then(res => {
+                        closeModal();
+                        loadFaqData();
+                    })
+                    .catch(err => {
+                        alert(err);
+                    })
+                }
+            
+                function openDescription(itemId) {
+                    const faqContent = document.getElementById("faq-content");
+                    faqContent.children[itemId].children[1].classList.toggle("item-content-open");
+                }
+
+                const faqContent = document.getElementById("faq-content");
+
+                function loadFaqData() {
+                    fetch('http://192.168.0.62:8080/faq')
+                    .then(res => {
+                        res.json()
+                        .then(data => {
+                            function loadFaqWithTitle(title='') {
+                                faqContent.innerHTML = "";
+                                for (let i in data) {
+                                    let item = data[i];
+                                    if (item.title.toLowerCase().startsWith(title.toLowerCase())) {
+                                        faqContent.innerHTML += `
+                                        <div class="item">
+                                            <h2 onClick="openDescription(${i})">${item.title}</h2>
+                                            <div class="item-content">
+                                                <p>${item.content ?? "Sua pergunta ainda não foi respondida."}</p>
+                                            </div>
+                                        </div>
+                                        `;
+                                    }
+                                }
+                            }
+
+                            loadFaqWithTitle();
+
+                            const searchInput = document.getElementById("search").children[0];
+                            searchInput.addEventListener('keyup', (event) => {
+                                loadFaqWithTitle(searchInput.value);
+                            })
+                        })
+                    });
+                }
+
+                loadFaqData();
+            </behavior>
+        </screen>
     </screens>
 
     <properties>
@@ -341,8 +683,5 @@
     </properties>
     
     <persistence>
-        {
-            "type": "memory"
-        }
     </persistence>
 </mobilang>

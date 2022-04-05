@@ -2,7 +2,5 @@
 
 lex.yy.c
 *.tab.*
-*.ast
-*.dot
 .vscode
 target
