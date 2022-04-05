@@ -1,5 +1,5 @@
 *.o
-
+mast_runner
 lex.yy.c
 *.tab.*
 .vscode

@@ -597,7 +597,7 @@
                     
                     setTimeout(function () {
                         document.getElementById("modal-pergunta").style.opacity = 1;
-                    }, 50)
+                    }, 50);
                     
                 }
 
@@ -629,7 +629,7 @@
                     })
                     .catch(err => {
                         alert(err);
-                    })
+                    });
                 }
             
                 function openDescription(itemId) {
@@ -666,7 +666,7 @@
                             const searchInput = document.getElementById("search").children[0];
                             searchInput.addEventListener('keyup', (event) => {
                                 loadFaqWithTitle(searchInput.value);
-                            })
+                            });
                         })
                     });
                 }
@@ -683,5 +683,8 @@
     </properties>
     
     <persistence>
+    {
+    	"type": "memory"
+    }
     </persistence>
 </mobilang>
