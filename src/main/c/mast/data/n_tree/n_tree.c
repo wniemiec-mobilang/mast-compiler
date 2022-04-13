@@ -12,7 +12,9 @@
 void display_nodes(node* root)
 {
 	if(root == NULL) 
+	{
 		return;
+	}
 
 	char* node_label = (root->key).label;
     printf("%p [label=\"%s\"];\n", root, node_label);
@@ -34,7 +36,9 @@ void display_edge(node* root, node* child)
 void display_edges(node* root)
 {
 	if(root == NULL) 
+	{
 		return;
+	}
 
 	node* p = root->child;
 	
@@ -55,7 +59,9 @@ void export_tree(void* tree)
 void __free_tree(node* root)
 {
 	if(root == NULL) 
+	{
 		return;
+	}
 	
 	node* p = root->child;
 	free(root);
@@ -76,47 +82,64 @@ void free_tree(void* tree)
 node* create_node(node* n, node* parent)
 {
 	if (parent == NULL)
+	{
 		return n;
+	}
 	
 	if (n == NULL)
+	{
 		return parent;
+	}
 
 	node* p = parent->child;
 	
-	if (!p) {
+	if (!p) 
+	{
 		parent->child = n;
 	}
-	else {
-		while (p->brother)
+	else 
+	{
+		while (p->brother) 
+		{
 			p = p->brother;
+		}
 
 		p->brother = n;
 	}
+
 	return parent;
 }
 
 node* create_2node(node* child1, node* child2, node* parent)
 {
-	if (child2 == NULL)
+	if (child2 == NULL) 
+	{
 		return create_node(child1, parent);
+	}
 
-	if (child1 == NULL)
+	if (child1 == NULL) 
+	{
 		return create_node(child2, parent);
+	}
 
-	if (parent == NULL)
+	if (parent == NULL)	
 	{
 		child1->brother = child2;
 		return child1;
 	}
 
 	node* p = parent->child;
-	if (!p) {
+	if (!p) 
+	{
 		parent->child = child1;
 		parent->child->brother = child2;
 	}
-	else {
+	else 
+	{
 		while (p->brother)
+		{
 			p = p->brother;
+		}
 
 		p->brother = child1;
 		p->brother->brother = child2;
@@ -133,14 +156,18 @@ node* create_3node(node* child1, node* child2, node* child3, node* parent)
 	}
 
 	node* p = parent->child;
-	if (!p) {
+	if (!p) 
+	{
 		parent->child = child1;
 		parent->child->brother = child2;
 		parent->child->brother->brother = child3;
 	}
-	else {
+	else 
+	{
 		while (p->brother)
+		{
 			p = p->brother;
+		}
 
 		p->brother = child1;
 		p->brother->brother = child2;
@@ -162,11 +189,16 @@ node* create_n_node(list_node* nodes, node* parent)
 	return parent;
 }
 
-node* create_json_node(node* n, node* parent)
+node* create_json_node(node* child, node* parent)
 {
-	(n->key).label = replace_str((n->key).label, "\"", "\\\"");
+	if (child == NULL) 
+	{
+		return parent;
+	}
 
-	return create_node(n, parent);
+	(child->key).label = replace_str((child->key).label, "\"", "\\\"");
+
+	return create_node(child, parent);
 }
 
 node* to_node(lexeme lex, bool escape_quotes)
@@ -195,8 +227,10 @@ lexeme generate_key_from_lexeme(lexeme lex, bool escape_quotes)
 
 node* merge_nodes_label(node* n1, node* n2)
 {
-	if (n2 == NULL)
+	if (n2 == NULL) 
+	{
 		return n1;
+	}
 	
 	char* txt = (char*) malloc(sizeof(char)*10000);
 	
@@ -209,18 +243,19 @@ node* merge_nodes_label(node* n1, node* n2)
 
 void append_list_nodes(node* n, list_node* nodes)
 {
-	if (n == NULL)
+	if ((n == NULL) || (nodes == NULL)) 
+	{
 		return;
-
-	if (nodes == NULL)
-		return;
+	}
 
 	list_node* position = nodes;
 
 	while (position->value != NULL)
 	{
 		if (position->next == NULL)
+		{
 			position->next = initialize_list_nodes();
+		}
 		
 		position = position->next;
 	}

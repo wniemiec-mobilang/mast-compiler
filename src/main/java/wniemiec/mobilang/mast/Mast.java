@@ -67,7 +67,7 @@ public class Mast {
             throw new IllegalStateException("application_name not found in properties");
         }
 
-        return appName.split(":")[1].strip().replace("\"", "");
+        return appName.split(":")[1].strip().replace("\"", "").replace(",", "");
     }
 
     private void setUpTerminal() {

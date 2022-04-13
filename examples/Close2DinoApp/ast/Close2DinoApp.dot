@@ -30,8 +30,6 @@ n23 -> n28;
 n28 -> n29;
 n0 -> n30;
 n30 -> n31;
-n0 -> n32;
-n32 -> n33;
 n0 [label="<mobilang>"];
 n1 [label="<screens>"];
 n2 [label="<screen id=\"faq\">"];
@@ -63,9 +61,7 @@ n27 [label="{\"type\":\"stylesheet\",\"stylesheet\":{\"rules\":[{\"type\":\"rule
 n28 [label="<behavior>"];
 n29 [label="{\"type\":\"Program\",\"start\":0,\"end\":98,\"body\":[{\"type\":\"ExpressionStatement\",\"start\":0,\"end\":98,\"expression\":{\"type\":\"AssignmentExpression\",\"start\":0,\"end\":97,\"operator\":\"=\",\"left\":{\"type\":\"MemberExpression\",\"start\":0,\"end\":43,\"object\":{\"type\":\"CallExpression\",\"start\":0,\"end\":35,\"callee\":{\"type\":\"MemberExpression\",\"start\":0,\"end\":23,\"object\":{\"type\":\"Identifier\",\"start\":0,\"end\":8,\"name\":\"document\"},\"property\":{\"type\":\"Identifier\",\"start\":9,\"end\":23,\"name\":\"getElementById\"},\"computed\":false,\"optional\":false},\"arguments\":[{\"type\":\"Literal\",\"start\":24,\"end\":34,\"value\":\"menu-btn\",\"raw\":\"\\"menu-btn\\"\"}],\"optional\":false},\"property\":{\"type\":\"Identifier\",\"start\":36,\"end\":43,\"name\":\"onclick\"},\"computed\":false,\"optional\":false},\"right\":{\"type\":\"ArrowFunctionExpression\",\"start\":46,\"end\":97,\"id\":null,\"expression\":true,\"generator\":false,\"async\":false,\"params\":[],\"body\":{\"type\":\"AssignmentExpression\",\"start\":52,\"end\":97,\"operator\":\"=\",\"left\":{\"type\":\"MemberExpression\",\"start\":52,\"end\":72,\"object\":{\"type\":\"MemberExpression\",\"start\":52,\"end\":67,\"object\":{\"type\":\"Identifier\",\"start\":52,\"end\":58,\"name\":\"window\"},\"property\":{\"type\":\"Identifier\",\"start\":59,\"end\":67,\"name\":\"location\"},\"computed\":false,\"optional\":false},\"property\":{\"type\":\"Identifier\",\"start\":68,\"end\":72,\"name\":\"href\"},\"computed\":false,\"optional\":false},\"right\":{\"type\":\"Literal\",\"start\":75,\"end\":97,\"value\":\"mobilang:screen:home\",\"raw\":\"\\"mobilang:screen:home\\"\"}}}}}],\"sourceType\":\"script\"}"];
 n30 [label="<properties>"];
-n31 [label="{\"application_name\": \"Close2DinoApp\"}"];
-n32 [label="<persistence>"];
-n33 [label="{\"type\": \"memory\"}"];
+n31 [label="{\"application_name\": \"Close2DinoApp\",\"platforms\": [\"android\",\"ios\"]}"];
 
 }
 
