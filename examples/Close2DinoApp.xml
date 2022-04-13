@@ -678,13 +678,11 @@
 
     <properties>
         {
-            "application_name": "Close2DinoApp"
+            "application_name": "Close2DinoApp",
+            "platforms": [
+                "android",
+                "ios"
+            ]
         }
     </properties>
-    
-    <persistence>
-    {
-    	"type": "memory"
-    }
-    </persistence>
 </mobilang>

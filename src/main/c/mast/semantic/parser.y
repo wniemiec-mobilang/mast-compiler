@@ -46,8 +46,6 @@ list_node* list_screens;
 %token TK_BEHAVIOR_CLOSE
 %token TK_PROPERTIES_OPEN
 %token TK_PROPERTIES_CLOSE
-%token TK_PERSISTENCE_OPEN
-%token TK_PERSISTENCE_CLOSE
 %token TK_TAG_PROPERTY
 %token TK_TEXT
 
@@ -69,7 +67,6 @@ list_node* list_screens;
 %type<node> style;
 %type<node> behavior;
 %type<node> properties;
-%type<node> persistence;
 
 
 //-----------------------------------------------------------------------------
@@ -89,12 +86,8 @@ query:
 ;
 
 mobilang: 
-    TK_MOBILANG_OPEN screens persistence properties TK_MOBILANG_CLOSE       { tree = create_3node($2, $3, $4, to_node($<lex_value>1, false)); }
-    | TK_MOBILANG_OPEN screens properties persistence TK_MOBILANG_CLOSE     { tree = create_3node($2, $3, $4, to_node($<lex_value>1, false)); }
-    | TK_MOBILANG_OPEN properties screens persistence TK_MOBILANG_CLOSE     { tree = create_3node($2, $3, $4, to_node($<lex_value>1, false)); }
-    | TK_MOBILANG_OPEN properties persistence screens TK_MOBILANG_CLOSE     { tree = create_3node($2, $3, $4, to_node($<lex_value>1, false)); }
-    | TK_MOBILANG_OPEN persistence properties screens TK_MOBILANG_CLOSE     { tree = create_3node($2, $3, $4, to_node($<lex_value>1, false)); }
-    | TK_MOBILANG_OPEN persistence screens properties TK_MOBILANG_CLOSE     { tree = create_3node($2, $3, $4, to_node($<lex_value>1, false)); }
+    TK_MOBILANG_OPEN screens properties TK_MOBILANG_CLOSE                   { tree = create_2node($2, $3, to_node($<lex_value>1, false)); }
+    | TK_MOBILANG_OPEN properties screens TK_MOBILANG_CLOSE                 { tree = create_2node($2, $3, to_node($<lex_value>1, false)); }
 ;
 
 screens: 
@@ -134,10 +127,6 @@ behavior:
 
 properties: 
     TK_PROPERTIES_OPEN content TK_PROPERTIES_CLOSE                          { $$ = create_json_node($2, to_node($<lex_value>1, false)); }
-;
-
-persistence: 
-    TK_PERSISTENCE_OPEN content TK_PERSISTENCE_CLOSE                        { $$ = create_json_node($2, to_node($<lex_value>1, false)); }
 ;
 %%
 

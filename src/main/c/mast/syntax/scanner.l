@@ -31,8 +31,6 @@ behavior_open \<behavior\>
 behavior_close \<\/behavior\>
 properties_open \<properties\>
 properties_close \<\/properties\>
-persistence_open \<persistence\>
-persistence_close \<\/persistence\>
 text .+
 
 
@@ -61,8 +59,6 @@ text .+
 {behavior_close}		{ return parse_token(TK_BEHAVIOR_CLOSE); }
 {properties_open}		{ return parse_token(TK_PROPERTIES_OPEN); }
 {properties_close}		{ return parse_token(TK_PROPERTIES_CLOSE); }
-{persistence_open}		{ return parse_token(TK_PERSISTENCE_OPEN); }
-{persistence_close}		{ return parse_token(TK_PERSISTENCE_CLOSE); }
 {tag_property} 			{ return parse_token(TK_TAG_PROPERTY); }
 {text} 					{ return parse_token(TK_TEXT); }
 %%
