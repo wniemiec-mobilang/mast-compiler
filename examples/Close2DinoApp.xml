@@ -10,8 +10,8 @@
                             </button>
                         </div>
                         <div id="items">
-                            <a href="mobilang:screen:glossary">Glossário</a>
-                            <a href="mobilang:screen:faq">F.A.Q.</a>
+                            <a href="mobilang::screen::glossary">Glossário</a>
+                            <a href="mobilang::screen::faq">F.A.Q.</a>
                         </div>
                     </body>
                 </html>
@@ -59,7 +59,10 @@
             </style>
             
             <behavior>
-                document.getElementById("menu-btn").onclick = () => window.location.href = "mobilang:screen:home";
+                document.getElementById("menu-btn").onclick = () => window.location.href = "mobilang::screen::home";
+                function teste(n1, n2) {
+                	return n1 + n2;
+                }
             </behavior>
         </screen>
 
@@ -87,7 +90,7 @@
                             </div>
                         </div>
                         <div id="search">
-                            <input type="text" placeholder="Buscar..." />
+                            <input type="text" placeholder="Buscar..." id="search-input" />
                         </div>
                         <div id="glossary">
                             <h1>Glossário</h1>
@@ -167,6 +170,8 @@
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
+                    background-color: transparent;
+					width: 100%;
                 }
     
                 #glossary-content .item h2 {
@@ -191,13 +196,15 @@
                 }
     
                 .item-content-open {
-                    display: block !important;
+                    display: flex !important;
+					flex-direction: column;
+					align-items: flex-start;
                 }
             </style>
 
             <behavior>
-                document.getElementById("menu-btn").onclick = () => window.location.href = "mobilang:screen:home";
-                document.getElementById("back-btn").onclick = () => window.location.href = "mobilang:screen:home";
+                document.getElementById("menu-btn").onclick = () => window.location.href = "mobilang::screen::home";
+                document.getElementById("back-btn").onclick = () => window.location.href = "mobilang::screen::home";
                 document.getElementById("reload-btn").onclick = () => window.location.reload();
                 
                 const glossaryContent = document.getElementById("glossary-content");
@@ -215,14 +222,14 @@
                             for (let item in data) {
                                 if (data[item].name.toLowerCase().startsWith(name.toLowerCase())) {
                                     glossaryContent.innerHTML += `
-                                    <div class="item" onclick="openDescription(this);">
+                                    <button class="item" onclick="openDescription(this);">
                                         <h2>${data[item].name}</h2>
                                         <div class="item-content">
                                             <h3>${data[item].type}</h3>
                                             <p>${data[item].description}</p>
-                                            <a href="mobilang:screen:glossary-desc?id=${data[item].id}">Leia mais</a>
+                                            <a href="mobilang::screen::glossary-desc?id=${data[item].id}">Leia mais</a>
                                         </div>
-                                    </div>
+                                    </button>
                                     `;
                                 }
                             }
@@ -231,7 +238,7 @@
                           loadGlossaryWithName();
                           var searchInput = document.getElementById("search").children[0];
                           searchInput.addEventListener("keyup", function (event) {
-                            loadGlossaryWithName(searchInput.value);
+                            loadGlossaryWithName("mobilang::input::search-input");
                           });
                         })
                     });
@@ -305,8 +312,8 @@
             </style>
 
             <behavior>
-                document.getElementById("menu-btn").onclick = () => window.location.href = "mobilang:screen:home";
-                document.getElementById("back-btn").onclick = () => window.location.href = "mobilang:screen:glossary";
+                document.getElementById("menu-btn").onclick = () => window.location.href = "mobilang::screen::home";
+                document.getElementById("back-btn").onclick = () => window.location.href = "mobilang::screen::glossary";
 
                 const glossary = document.getElementById("glossary-area");
 
@@ -314,7 +321,7 @@
                     .then(res => {
                       res.json()
                         .then(data => {
-                            const id = "mobilang:param:id";
+                            const id = "mobilang::param::id";
                             const glossaryItem = data.filter(item => item.id == id)[0];
 
                             glossary.innerHTML = "";
@@ -358,7 +365,7 @@
                             </div>
                         </div>
                         <div id="search">
-                            <input type="text" placeholder="Buscar..." />
+                            <input type="text" placeholder="Buscar..." id="search-input" />
                         </div>
                         <div id="faq">
                             <h1>F.A.Q.</h1>
@@ -377,7 +384,7 @@
                                     </div>
                                     <div class="body">
                                         <h3>Mande para os profissionais!</h3>
-                                        <input id="pergunta-input" type="text" placeholder="Pergunta*" />
+                                        <input id="question-input" type="text" placeholder="Pergunta*" />
                                     </div>
                                     <div class="footer">
                                         <button onClick="handleClose()">Cancelar</button>
@@ -461,7 +468,7 @@
                     justify-content: center;
                 }
     
-                #faq-content .item h2 {
+                #faq-content .item button {
                     margin: 5px;
                     margin-left: 20px;
                     padding: 10px 0;
@@ -587,8 +594,8 @@
             </style>
 
             <behavior>
-                document.getElementById("menu-btn").onclick = () => window.location.href = "mobilang:screen:home";
-                document.getElementById("back-btn").onclick = () => window.location.href = "mobilang:screen:home";
+                document.getElementById("menu-btn").onclick = () => window.location.href = "mobilang::screen::home";
+                document.getElementById("back-btn").onclick = () => window.location.href = "mobilang::screen::home";
                 document.getElementById("reload-btn").onclick = () => window.location.reload();
 
                 function openModal() {
@@ -613,7 +620,7 @@
                 }
 
                 function handleSave() {
-                    const message = document.getElementById("pergunta-input").value;
+                    const message = "mobilang::input::question-input";
 
                     fetch('http://192.168.0.62:8080/faq', {
                         method: 'POST',
@@ -651,7 +658,7 @@
                                     if (item.title.toLowerCase().startsWith(title.toLowerCase())) {
                                         faqContent.innerHTML += `
                                         <div class="item">
-                                            <h2 onClick="openDescription(${i})">${item.title}</h2>
+                                            <button onClick="openDescription(${i})">${item.title}</button>
                                             <div class="item-content">
                                                 <p>${item.content ? item.content : "Sua pergunta ainda não foi respondida."}</p>
                                             </div>
@@ -665,7 +672,7 @@
 
                             const searchInput = document.getElementById("search").children[0];
                             searchInput.addEventListener('keyup', (event) => {
-                                loadFaqWithTitle(searchInput.value);
+                                loadFaqWithTitle("mobilang::input::search-input");
                             });
                         })
                     });

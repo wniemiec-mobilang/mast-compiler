@@ -1,0 +1,1544 @@
+<mobilang>
+  <screens>
+    <screen id="home">
+      <structure>
+        <html>
+          <div class="container">
+            <div class="side-bar-container">
+              <header>
+                <h1 class='header-text'>
+                  Close2Booking.com
+                </h1>
+                <div class='header-actions'>
+                  <button>
+                    <img class="search-icon" src="https://www.inf.ufrgs.br/~wniemiec/shared/img/chat2-white.png" />
+                  </button>
+                  <button>
+                    <img class="search-icon" src="https://www.inf.ufrgs.br/~wniemiec/shared/img/bell-white.png" />
+                  </button>
+                </div>
+              </header>
+              <div class='tab-bar'>
+                <div class="text-buttons">
+                  <button class="text active">
+                    <div class="icon">
+                      <img src="https://www.inf.ufrgs.br/~wniemiec/shared/img/bed-white.png" height="15" />
+                    </div>
+                    <p>Stays</p>
+                  </button>
+                  <button class="text">
+                    <div class="icon">
+                      <img src="https://www.inf.ufrgs.br/~wniemiec/shared/img/car-white.png" height="15" />
+                    </div>
+                    <p class="big">Car rental</p>
+                  </button>
+                  <button class="text">
+                    <div class="icon">
+                      <img src="https://www.inf.ufrgs.br/~wniemiec/shared/img/ferris-wheel-white.png" height="15" />
+                    </div>
+                    <p>Attractions</p>
+                  </button>
+                  <button class="text">
+                    <div class="icon">
+                      <img src="https://www.inf.ufrgs.br/~wniemiec/shared/img/taxi-white.png" height="15" />
+                    </div>
+                    <p>Taxi</p>
+                  </button>
+                </div>
+              </div>
+      
+              <div class='body'>
+                <div class="search-box">
+                  <div class="input-field">
+                    <div class="icon">
+                      <img src="https://www.inf.ufrgs.br/~wniemiec/shared/img/search-black.png" height="15" />
+                    </div>
+                    <input type="text" value="Gramado" />
+                  </div>
+                  <div class="input-field">
+                    <div class="icon">
+                      <img src="https://www.inf.ufrgs.br/~wniemiec/shared/img/calendar-black.png" height="15" />
+                    </div>
+                    <input type="text" value="Sat, Jun 04 - Sun, Jun 05" />
+                  </div>
+                  <div class="input-field">
+                    <div class="icon">
+                      <img src="https://www.inf.ufrgs.br/~wniemiec/shared/img/person-black.png" height="15" />
+                    </div>
+                    <input type="text" value="1 room - 2 adults - 0 children" />
+                  </div>
+                  <button class="search-action">
+                    Search
+                  </button>
+                </div>
+      
+                <div class="widget">
+                  <h2 class="title">Travel more, spend less</h2>
+                  <div class="carrosel">
+                  </div>
+                </div>
+      
+                <div class="widget">
+                  <h2 class="title">More for you</h2>
+                  <div class="two-columns">
+                    <div class="left">
+                      <button class="box-large full" onclick="window.location.href='mobilang::screen::quick-trips'">
+                        <div class="header-transparent">
+                          <h2>Quick trips</h2>
+                        </div>
+                      </button>
+                      <div class="box-large">
+                        <div class="background">
+                          <img src="https://www.inf.ufrgs.br/~wniemiec/shared/close2booking/assets/images/rio.jpg" />
+                        </div>
+                        <div class="header">
+                          <small>Travel talk</small>
+                          <h2>Brazil</h2>
+                        </div>
+                      </div>
+                    </div>
+      
+                    <div class="right">
+                      <div class="box-medium">
+                        <div class="background">
+                          <img src="https://www.inf.ufrgs.br/~wniemiec/shared/close2booking/assets/images/park.jpg" />
+                        </div>
+                        <div class="header">
+                          <h2>Save 15% or more</h2>
+                          <small>Plan your dream trip with a Getaway Deal</small>
+                        </div>
+                      </div>
+                      <div class="box-medium full ballon">
+                        <div class="header-transparent">
+                          <h2>Travel talk</h2>
+                        </div>
+                      </div>
+                      <div class="box-medium full compass">
+                          <div class="header-transparent">
+                            <h2>Travel articles</h2>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="padding"></div>
+              </div>
+      
+              <div class="bottom-tab">
+                <button class='active'>
+                  <div class="icon">
+                    <img src="https://www.inf.ufrgs.br/~wniemiec/shared/img/search-blue.png" height="15" />
+                  </div>
+                  <p>Search</p>
+                </button>
+                <button>
+                  <div class="icon">
+                    <img src="https://www.inf.ufrgs.br/~wniemiec/shared/img/favorite-black.png" height="15" />
+                  </div>
+                  <p>Saved</p>
+                </button>
+                <button>
+                  <div class="icon">
+                    <img src="https://www.inf.ufrgs.br/~wniemiec/shared/img/bag-black.png" height="15" />
+                  </div>
+                  <p>Bookings</p>
+                </button>
+                <button>
+                  <div class="icon">
+                    <img src="https://www.inf.ufrgs.br/~wniemiec/shared/img/avatar-black.png" height="15" />
+                  </div>
+                  <p>Profile</p>
+                </button>
+              </div>
+            </div>
+          </div>
+        </html>
+      </structure>
+      <style>
+        html, body, div, span, applet, object, iframe,
+      h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+      a, abbr, acronym, address, big, cite, code,
+      del, dfn, em, img, ins, kbd, q, s, samp,
+      small, strike, strong, sub, sup, tt, var,
+      b, u, i, center,
+      dl, dt, dd, ol, ul, li,
+      fieldset, form, label, legend,
+      table, caption, tbody, tfoot, thead, tr, th, td,
+      article, aside, canvas, details, embed, 
+      figure, figcaption, footer, header, hgroup, 
+      menu, nav, output, ruby, section, summary,
+      time, mark, audio, video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+      }
+      /* HTML5 display-role reset for older browsers */
+      article, aside, details, figcaption, figure, 
+      footer, header, hgroup, menu, nav, section {
+        display: block;
+      }
+      body {
+        line-height: 1;
+      }
+      ol, ul {
+        list-style: none;
+      }
+      blockquote, q {
+        quotes: none;
+      }
+      blockquote:before, blockquote:after,
+      q:before, q:after {
+        content: '';
+        content: none;
+      }
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      .container {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+      }
+
+      .side-bar-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .side-bar-container header {
+        height: 10vh;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #003580;
+      }
+
+      .side-bar-container header .header-text {
+        color: white;
+        font-size: 3vh;
+        margin-left: 2vh;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+        width: 100%;
+      }
+
+      .side-bar-container header .header-actions {
+        display: flex;
+      }
+
+      .side-bar-container header .header-actions button {
+        border: 0;
+        background-color: transparent;
+        outline: 0;
+        color: #919191;
+        height: 40px;
+        border-radius: 20px;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .side-bar-container .search {
+        background-color: #f6f6f6;
+        border-bottom: 1px solid #eee;
+        padding: 5px 15px;
+      }
+
+      .side-bar-container .search .search-input {
+        background-color: #fff;
+        height: 40px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+      }
+
+      .side-bar-container .search .search-input input {
+        flex: 1;
+        border: 0;
+        outline: 0;
+        background-color: transparent;
+        margin-left: 10px;
+      }
+
+      .side-bar-container .body {
+        flex: 1;
+        background-color: white;
+        overflow-y: auto;
+      }
+
+      .side-bar-container .body::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+
+      .side-bar-container .body::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.2);
+      }
+
+
+      .tab-bar {
+        display: flex;
+        align-items: center;
+        background-color: #003580;
+        height: 8vh;
+        overflow-x: scroll;
+      }
+
+      .tab-bar .camera {
+        height: 6vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: transparent;
+        border: 0;
+        outline: 0;
+        margin: 0 1.4vh;
+      }
+
+      
+      .tab-bar .active {
+        border-bottom: 0.7vh solid white;
+      }
+
+      .dots:after {
+        content: '\2807';
+        font-size: 3vh;
+        color: white;
+        margin-right: 1vw;
+      }
+
+      .search-icon {
+        height: 2.4vh;
+        margin-right: 3vw;
+      }
+
+      .new-message {
+        background-color: #02CC44;
+        position: fixed;
+        height: 10vh;
+        width: 10vh;
+        border-radius: 50%;
+        bottom: 0;
+        right: 0;
+        margin-right: 3vh;
+        margin-bottom: 3vh;
+        border: 0;
+      }
+
+      .new-message img {
+        width: 3vh;
+        height: 3vh;
+      }
+
+      .text-buttons {
+        display: flex;
+        width: 100%;
+        padding: 0 4vw;
+        justify-content: space-between;
+      }
+
+      .text-buttons button .icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 2vw;
+      }
+
+      .text-buttons button .icon img {
+        height: 3vh;
+      }
+
+      .text-buttons button {
+        margin: 0 0vw;
+      }
+
+      .tab-bar .text {
+        color: white;
+        background-color: transparent;
+        border-radius: 10vw;
+        border: 0;
+        outline: 0;
+        padding: 1.4vh 4vw;
+        font-size: 1.8vh;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .text.active {
+        background-color: #255391;
+      }
+
+      p.big {
+        width: 22vw;
+      }
+
+      .bottom-tab {
+        display: flex;
+        position: fixed;
+        height: 8vh;
+        bottom: 0;
+        width: 100%;
+        border-top: 0.1vh solid #ddd;
+        background-color: white;
+      }
+
+      .bottom-tab button {
+        flex: 1;
+        border: 0;
+        background-color: transparent;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        padding: 1vh 0;
+      }
+
+      .bottom-tab button p {
+        font-size: 1.4vh;
+      }
+
+      .bottom-tab button .icon img {
+        height: 2.5vh;
+      }
+
+      .bottom-tab .active {
+        color: #25679A;
+      }
+
+      .search-box {
+        display: flex;
+        flex-direction: column;
+        width: 96%;
+        border: 1vh solid gold;
+        border-radius: 1vh;
+        margin: 1vh;
+      }
+
+      .search-box .input-field {
+        display: flex;
+        width: 100%;
+        padding: 0 4vw;
+        border-bottom: 0.1vh solid #888;
+      }
+
+      .search-box .input-field .icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .search-box .input-field .icon img {
+        height: 3vh;
+      }
+
+      .search-box .input-field input {
+        width: 100%;
+        font-size: 2vh;
+        padding: 2vh 3vw;
+        border: 0;
+      }
+
+      .search-action {
+        background-color: #0173C0;
+        color: white;
+        font-size: 2vh;
+        text-align: center;
+        padding: 1.5vh 0;
+        border-bottom-right-radius: 0.5vh;
+        border-bottom-left-radius: 0.5vh;
+      }
+
+      .widget {
+        display: flex;
+        flex-direction: column;
+        margin: 2vh 2vw;
+      }
+
+      .widget .title {
+        font-size: 2vh;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 2vh 2vw;
+      }
+
+      .carrosel {
+        display: flex;
+        overflow-y: scroll;
+      }
+
+      .box-special-small, .box-small {
+        height: 15vh;
+        min-width: 55vw;
+        border-radius: 2vh;
+        font-size: 1.5vh;
+        line-height: 2vh;
+        margin: 0 2vw;
+        padding: 2vh;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .box-small {
+        border: 0.1vh solid gray;
+        background-color: #ddd;
+      }
+
+      .box-small.enabled {
+        border: 0.1vh solid #003580;
+        background-color: white;
+      }
+
+      .box-special-small {
+        background-color: #003580;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .box-special-small .icon {
+        width: 8vw;
+        height: 8vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 6vw;
+        margin-right: 2vw;
+      }
+
+      .box-special-small .icon img {
+        height: 9vh;
+      }
+
+      .highlight {
+        font-weight: bold;
+      }
+
+      .box-small .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1vh;
+      }
+
+      .box-small .header h2 {
+        font-weight: bold;
+      }
+
+      .box-small .header .icon {
+        width: 2.5vh;
+        height: 2.5vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .box-small .header .icon.highlight {
+        border: 0.1vh solid #003580;
+        border-radius: 50%;
+      }
+
+      .box-small .header .icon img {
+        height: 2vh;
+      }
+
+      .box-small.enabled .header .icon img {
+        height: 1.3vh;
+      }
+
+      .two-columns {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .two-columns .left, .two-columns .right {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        margin: 0 2vw;
+      }
+
+      .box-large {
+        flex: 1;
+        border: 0.1vh solid #999;
+        margin-bottom: 2vh;
+        color: white;
+        font-size: 2.5vh;
+        line-height: 3vh;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        min-height: 50vh;
+      }
+      
+      .box-large.full {
+        background-image: url('https://www.inf.ufrgs.br/~wniemiec/shared/close2booking/assets/images/trip.png');
+        background-position: center;
+        background-size: cover;
+        border-radius: 1vh;
+
+      }
+
+      .header-transparent {
+        width: 100%;
+        padding-right: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 2vh;
+      }
+
+      .box-large .header-transparent {
+        min-height: 100%;
+      }
+
+      .box-large .header-transparent h2 {
+        width: 100%;
+        text-align: left;
+      }
+
+      .box-medium {
+        flex: 1;
+        border: 0.1vh solid #999;
+        margin-bottom: 2vh;
+        color: white;
+        font-size: 2.5vh;
+        line-height: 3vh;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        min-height: 30vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .box-medium.full.ballon {
+        background-image: url('https://www.inf.ufrgs.br/~wniemiec/shared/close2booking/assets/images/ballon.jpg');
+        background-position: center;
+        background-size: cover;
+        border-radius: 1vh;
+      }
+
+      .box-medium.full.compass {
+        background-image: url('https://www.inf.ufrgs.br/~wniemiec/shared/close2booking/assets/images/compass.jpg');
+        background-position: center;
+        background-size: cover;
+        border-radius: 1vh;
+      }
+
+      .box-medium .background {
+        display: flex;
+        flex: 1;
+        justify-content: stretch;
+        align-items: stretch;
+      }
+
+      .background img {
+        width: 100%;
+      }
+
+      .box-medium .background img {
+        height: 18vh;
+        width: 100%;
+      }
+
+      .box-medium .header-transparent {
+        min-height: 100%;
+      }
+
+      .box-large .background img {
+        height: 40vh;
+        width: 100%;
+      }
+
+      .padding {
+        padding: 3vh;
+      }
+
+      .box-medium .header, .box-large .header {
+        flex: 1;
+        height: 6vh;
+        background-color: white;
+        padding: 2vw;
+      }
+
+      .box-medium .header small, .box-large .header small {
+        color: gray;
+        font-size: 1.5vh;
+        line-height: 1.2vh;
+      }
+
+      .box-medium .header h2, .box-large .header h2 {
+        color: black;
+        font-size: 2vh;
+      }
+      </style>
+
+      <behavior>
+        function loadUser() {
+          const body = document.querySelector(".carrosel");
+          const defaultMessage = "Enjoy discounts at participating properties worldwide";
+          const lockedMessage = "Complete 5 stays to unlock Genius Level 2";
+    
+          fetch('http://192.168.0.62:8080/user/')
+          .then(res => {
+              if (res.status != 200) {
+                  return;
+              }
+      
+              res.json()
+              .then(data => {
+                body.innerHTML = `
+                  <div class="box-special-small">
+                      <p>${data.name}, you're at <span class="highlight">Genius Nivel ${data.level}</span> in our loyalty program</p>
+                      <div class="icon">
+                        <img src="https://www.inf.ufrgs.br/~wniemiec/shared/img/genius-globe.png" height="15" />
+                      </div>
+                    </div>
+                    <div class="box-small ${data.level >= 1 ? "enabled" : ""}">
+                      <div class="header">
+                        <h2>10% discounts</h2>
+                        <div class="icon highlight">
+                          <img src="https://www.inf.ufrgs.br/~wniemiec/shared/img/percent-blue.png" height="15" />
+                        </div>
+                      </div>
+                      <p>${data.level >= 1 ? defaultMessage : lockedMessage}</p>
+                    </div>
+                    <div class="box-small ${data.level >= 2 ? "enabled" : ""}">
+                      <div class="header">
+                        <h2>15% discounts</h2>
+                        <div class="icon">
+                          <img src="https://www.inf.ufrgs.br/~wniemiec/shared/img/lock-gray.png" height="15" />
+                        </div>
+                      </div>
+                      <p>${data.level >= 2 ? defaultMessage : lockedMessage}</p>
+                    </div>
+                    <div class="box-small ${data.level >= 2 ? "enabled" : ""}">
+                      <div class="header">
+                        <h2>Free breakfasts</h2>
+                        <div class="icon">
+                          <img src="https://www.inf.ufrgs.br/~wniemiec/shared/img/lock-gray.png" height="15" />
+                        </div>
+                      </div>
+                      <p>${data.level >= 2 ? defaultMessage : lockedMessage}</p>
+                    </div>
+                    <div class="box-small ${data.level >= 2 ? "enabled" : ""}">
+                      <div class="header">
+                        <h2>Free room upgrades</h2>
+                        <div class="icon">
+                          <img src="https://www.inf.ufrgs.br/~wniemiec/shared/img/lock-gray.png" height="15" />
+                        </div>
+                      </div>
+                      <p>${data.level >= 2 ? defaultMessage : lockedMessage}</p>
+                    </div>
+                `;
+              });
+          }).catch(e => {
+          })
+        }
+    
+        loadUser();
+      </behavior>
+    </screen>
+
+    <screen id="quick-tips">
+      <structure>
+        <html>
+          <div class="container">
+            <div class="side-bar-container">
+              <header>
+                <button class="back" onclick="handleBack()"></button>
+                <h1 class='header-text'>
+                  Close2Booking.com
+                </h1>
+              </header>
+      
+              <div class='body'>
+                <h2>Find quick trips nearby</h2>
+                <h3>Weekend-worthy destinations</h3>
+                <div class="widget">
+                  <h2>Quick getaways</h2>
+                  <h3>Frequently booked from your location</h3>
+                  <div class="carrosel quick">
+                    
+                  </div>
+                </div>
+      
+                <div class="widget">
+                  <h2>Nature</h2>
+                  <h3>Scenery, hiking, and camping</h3>
+                  <div class="carrosel nature">
+                   
+                  </div>
+                </div>
+              </div>
+          </div>
+        </html>
+      </structure>
+      <style>
+        html, body, div, span, applet, object, iframe,
+      h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+      a, abbr, acronym, address, big, cite, code,
+      del, dfn, em, img, ins, kbd, q, s, samp,
+      small, strike, strong, sub, sup, tt, var,
+      b, u, i, center,
+      dl, dt, dd, ol, ul, li,
+      fieldset, form, label, legend,
+      table, caption, tbody, tfoot, thead, tr, th, td,
+      article, aside, canvas, details, embed, 
+      figure, figcaption, footer, header, hgroup, 
+      menu, nav, output, ruby, section, summary,
+      time, mark, audio, video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+      }
+      /* HTML5 display-role reset for older browsers */
+      article, aside, details, figcaption, figure, 
+      footer, header, hgroup, menu, nav, section {
+        display: block;
+      }
+      body {
+        line-height: 1;
+      }
+      ol, ul {
+        list-style: none;
+      }
+      blockquote, q {
+        quotes: none;
+      }
+      blockquote:before, blockquote:after,
+      q:before, q:after {
+        content: '';
+        content: none;
+      }
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      .container {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+      }
+
+      .side-bar-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .side-bar-container header {
+        height: 10vh;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #003580;
+      }
+
+      .side-bar-container header .header-text {
+        color: white;
+        font-size: 3vh;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+        width: 100%;
+        padding-right: 5vw;
+      }
+
+      .side-bar-container .body {
+        flex: 1;
+        background-color: white;
+        overflow-y: auto;
+      }
+
+      p.big {
+        width: 33vw;
+      }
+
+      .back {
+        height: 8vh;
+        background-color: transparent;
+        border: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border-radius: 50%;
+      }
+
+      .back:after {
+        content: '\2190';
+        color: white;
+        font-size: 6vh;
+        margin-bottom: 2vh;
+      }
+
+      .body {
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 2vh;
+      }
+
+      .body h2 {
+        font-size: 3vh;
+        font-weight: bold;
+        margin-bottom: 2vh;
+      }
+
+      .body h3 {
+        font-size: 2.6vh;
+        font-weight: bold;
+        color: gray;
+        line-height: 4vh;
+        margin-bottom: 2vh;
+      }
+
+      .widget {
+        margin: 6vh 0;
+      }
+
+      .widget h2 {
+        font-size: 2.7vh;
+        
+      }
+
+      .widget h3 {
+        font-size: 0.9vh;
+        font-weight: bold;
+      }
+
+      .carrosel {
+        display: flex;
+        overflow-x: scroll;
+      }
+
+      .box {
+        display: flex;
+        flex-direction: column;
+        height: 45vh;
+        width: 70vw;
+        min-width: 70vw;
+        border: 0.1vh solid #999;
+        margin-right: 5vw;
+        background-color: transparent;
+      }
+
+      .box .image img {
+        width: 70vw;
+        min-width: 70vw;
+      }
+
+      .box img {
+        height: 25vh;
+        max-width: 70vw;
+      }
+
+      .box .header {
+        display: flex;
+        flex-direction: column;
+        padding: 2vh 2vw;
+      }
+
+      .box .header h1 {
+        font-size: 3vh;
+        font-weight: bold;
+        margin-bottom: 3vh;
+        width: 100%;
+        text-align: left;
+      }
+
+      .box .header .info {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .box .header .info .item-row {
+        display: flex;
+        margin: 0.5vh 0;
+      }
+
+      .box .header .info .item-row .icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 2vw;
+      }
+
+      .box .header .info .item-row .icon img {
+        height: 3vh;
+        width: 3vh;
+      }
+
+      .box .header .info .item-row p {
+        color: gray;
+        font-size: 2vh;
+      }
+      </style>
+      <behavior>
+        function loadQuick() {
+          loadData("quick");
+        }
+    
+        function loadData(title) {
+          const body = document.querySelector(".carrosel." + title);
+    
+          fetch('http://192.168.0.62:8080/sites/' + title)
+          .then(res => {
+              if (res.status != 200) {
+                  return;
+              }
+      
+              res.json()
+              .then(data => {
+                for (let site of data) {
+                  let avgPrice = 0.0;
+                  
+                  for (let stay of site.stays) {
+                    avgPrice += stay.newPrice;
+                  }
+    
+                  avgPrice / site.stays.length;
+                  
+                  body.innerHTML += `
+                    <button class="box" onclick="window.location.href='mobilang::screen::stays?site=${site.id}'">
+                      <div class="image">
+                        <img src="https://www.inf.ufrgs.br/~wniemiec/shared/close2booking/assets/images/${site.image}" />
+                      </div>
+                      <div class="header">
+                        <h1>${site.name}</h1>
+                        <div class="info">
+                          <div class="item-row">
+                            <div class="icon">
+                              <img src="https://www.inf.ufrgs.br/~wniemiec/shared/img/place-black.png" />
+                            </div>
+                            <p>${site.stays[0].location.split(" ")[0]} away</p>
+                          </div>
+                          <div class="item-row">
+                            <div class="icon">
+                              <img src="https://www.inf.ufrgs.br/~wniemiec/shared/img/bed-black.png" />
+                            </div>
+                            <p>Avg. price/night: R$ ${avgPrice}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </button>
+                  `;
+                }
+              });
+          }).catch(e => {
+          })
+        }
+    
+        function loadNature() {
+          loadData("nature");
+        }
+    
+        loadQuick();
+        loadNature();
+    
+        function handleBack() {
+          window.location.href = "home.html";
+        }
+      </behavior>
+    </screen>
+
+    <screen id="stays">
+      <structure>
+        <html>
+          <div class="container">
+            <div class="side-bar-container">
+              <header>
+                <div class="up"></div>
+                <div class="center">
+                  <button class="back" onclick="handleBack()"></button>
+                  <h1 class='header-text'>
+                    Gramado . Jun 4 - Jun 5
+                  </h1>
+                </div>
+                <div class="down">
+                  <div class='tab-bar'>
+                    <div class="text-buttons">
+                      <button class="text">
+                        <div class="icon">
+                          <img src="https://www.inf.ufrgs.br/~wniemiec/shared/img/sort-black.png" height="15" />
+                        </div>
+                        <p>Sort</p>
+                      </button>
+                      <button class="text">
+                        <div class="icon">
+                          <img src="https://www.inf.ufrgs.br/~wniemiec/shared/img/filtro-black.png" height="15" />
+                        </div>
+                        <p>Filter</p>
+                      </button>
+                      <button class="text">
+                        <div class="icon">
+                          <img src="https://www.inf.ufrgs.br/~wniemiec/shared/img/mapa-black.png" height="15" />
+                        </div>
+                        <p>Map</p>
+                      </button>
+                  </div>
+                </div>
+                </div>
+              </header>
+              <div class='body'>
+                
+              </div>
+        </html>
+      </structure>
+      <style>
+        html, body, div, span, applet, object, iframe,
+      h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+      a, abbr, acronym, address, big, cite, code,
+      del, dfn, em, img, ins, kbd, q, s, samp,
+      small, strike, strong, sub, sup, tt, var,
+      b, u, i, center,
+      dl, dt, dd, ol, ul, li,
+      fieldset, form, label, legend,
+      table, caption, tbody, tfoot, thead, tr, th, td,
+      article, aside, canvas, details, embed, 
+      figure, figcaption, footer, header, hgroup, 
+      menu, nav, output, ruby, section, summary,
+      time, mark, audio, video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+      }
+      /* HTML5 display-role reset for older browsers */
+      article, aside, details, figcaption, figure, 
+      footer, header, hgroup, menu, nav, section {
+        display: block;
+      }
+      body {
+        line-height: 1;
+      }
+      ol, ul {
+        list-style: none;
+      }
+      blockquote, q {
+        quotes: none;
+      }
+      blockquote:before, blockquote:after,
+      q:before, q:after {
+        content: '';
+        content: none;
+      }
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      .container {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+      }
+
+      .side-bar-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .side-bar-container header {
+        height: 15vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: #003580;
+        margin-bottom: 5vh;
+      }
+
+
+      .side-bar-container .body {
+        flex: 1;
+        background-color: white;
+        overflow-y: auto;
+      }
+      
+      p.big {
+        width: 33vw;
+      }
+
+      .up {
+        min-height: 10vh;
+        background-color: #003580;
+      }
+
+      .down {
+        min-height: 10vh;
+        background-color: white;
+        border-bottom: 0.11vh solid #999;
+        padding-top: 5vh;
+      }
+
+      .back {
+        height: 2vh;
+        background-color: transparent;
+        border: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border-radius: 50%;
+      }
+
+      .back:after {
+        content: '\2190';
+        color: black;
+        font-size: 6vh;
+        margin-bottom: 2vh;
+      }
+
+      .center {
+        position: absolute;
+        top: 6vh;
+        border: 0.5vh solid gold;
+        border-radius: 1vh;
+        height: 8vh;
+        background-color: white;
+        margin: 0 5vw;
+        width: 90%;
+        display: flex;
+        align-items: center;
+      }
+
+      .tab-bar {
+        height: 5vh;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+      }
+
+      .text-buttons {
+        display: flex;
+        width: 100%;
+        padding: 0 4vw;
+        justify-content: space-between;
+      }
+
+      .text-buttons button .icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 2vw;
+      }
+
+      .text-buttons button .icon img {
+        height: 3vh;
+      }
+
+      .text-buttons button {
+        margin: 0 0vw;
+      }
+
+      .tab-bar .text {
+        color: black;
+        background-color: transparent;
+        border-radius: 10vw;
+        border: 0;
+        outline: 0;
+        padding: 1.4vh 4vw;
+        font-size: 2.0vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .header-text {
+        font-size: 2.0vh;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .body {
+        padding: 2vw;
+      }
+
+      .item {
+        width: 100%;
+        display: flex;
+        max-height: 8vh;
+        border: 0.1vh solid #999;
+        min-height: 41vh;
+        max-height: 41vh;
+        margin-bottom: 2vh;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .item .left {
+        
+      }
+
+      .item .left p {
+        background-color: green;
+        color: white;
+        text-align: center;
+        font-size: 2.1vh;
+        line-height: 3.1vh;
+        max-width: 35vw;
+        position: relative;
+        bottom: 40vh;
+        margin-top: 1vh;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .item .left img {
+        height: 41vh;
+        max-width: 35vw;
+      }
+
+      .item .right {
+        font-size: 2vh;
+        padding: 2vh 3vw;
+        width: 100%;
+      }
+
+      .row1 {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .row1 h1 {
+        font-size: 2vh;
+        font-weight: bold;
+        
+      }
+
+      .row1 .icon {
+
+      }
+
+      .row1 .icon img {
+        height: 2vh;
+        width: 2vh;
+      }
+
+      .row2 img {
+        height: 3vh;
+      }
+
+      .row3 {
+        display: flex;
+        align-items: center;
+      }
+
+      .row3 .rate {
+        padding: 1vh;
+        background-color: #003580;
+        border-radius: 1vh;
+        color: white;
+        margin-right: 2vw;
+      }
+
+      .row3 small {
+        font-size: 1.5vh;
+        color: gray;
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: black;
+      }
+
+      .row4, .row5 {
+        display: flex;
+        align-items: center;
+        margin: 0.7vh 0;
+      }
+
+      .row4 .icon, .row5 .icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 2vw;
+      }
+
+      .row4 .icon img, .row5 .icon img {
+        width: 3vh;
+        height: 3vh;
+      }
+
+      .highlight-accent {
+        background-color: green;
+        color: white;
+        padding: 1vh;
+        font-size: 1.7vh;
+        max-width: 32vw;
+      }
+
+      .row6, .row7, .row9 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+        margin: 0.6vh 0;
+      }
+
+      .row6 {
+        font-size: 1.6vh;
+      }
+
+      .row6 p {
+        margin-bottom: 0.7vh;
+      }
+
+      .row7 {
+        font-size: 1.8vh;
+      }
+
+      .row8 {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        margin: 1vh 0;
+      }
+
+      .row8 .before {
+        text-decoration: line-through;
+        color: red;
+        font-weight: bold;
+        font-size: 2vh;
+        margin-right: 2vw;
+      }
+
+      .row8 .current {
+        color: black;
+        font-weight: bold;
+        font-size: 3.1vh;
+      }
+
+      .row9 p {
+        color: gray;
+        font-size: 1.6vh;
+      }
+      </style>
+      <behavior>
+        function loadData() {
+          const id = "mobilang::param::site";
+          const body = document.querySelector(".body");
+          const header = document.querySelector(".header-text");
+          
+    
+          fetch('http://192.168.0.62:8080/site/' + id)
+          .then(res => {
+              if (res.status != 200) {
+                  return;
+              }
+      
+              res.json()
+              .then(data => {
+                header.innerHTML = data.name + " . Jun 4 - Jun 5";
+    
+                for (let stay of data.stays) {
+                  let rating = 0.0;
+    
+                  for (let review of stay.reviews) {
+                    rating += review.rating;
+                  }
+    
+                  rating /= stay.reviews.length;
+    
+                  body.innerHTML += `
+                    <div class="item">
+                      <div class="left">
+                        <img src="https://www.inf.ufrgs.br/~wniemiec/shared/close2booking/assets/images/${stay.image}" />
+                        <p>Breakfast included</p>
+                      </div>
+                      <div class="right">
+                        <div class="row1">
+                          <h1>${stay.name}</h1>
+                          <div class="icon">
+                            <img src="https://www.inf.ufrgs.br/~wniemiec/shared/img/favorite-black.png" height="15" />
+                          </div>
+                        </div>
+                        <div class="row2">
+                          <div class="rating">
+                            <img src="https://www.inf.ufrgs.br/~wniemiec/shared/img/genius-star.png" height="15" />
+                          </div>
+                        </div>
+                        <div class="row3">
+                          <p class="rate">${rating}</p>
+                          <small><span class="highlight">${rating > 9 ? "Very good" : rating > 8 ? "good" : "ok"}</span> . ${stay.reviews.length} reviews</small>
+                        </div>
+                        <div class="row4">
+                          <div class="icon">
+                            <img src="https://www.inf.ufrgs.br/~wniemiec/shared/img/place-black.png" height="15" />
+                          </div>
+                          <p>${stay.location}</p>
+                        </div>
+                        <div class="row5" ${stay.eco ? "" : "style='display:none;'"}>
+                          <div class="icon">
+                            <img src="https://www.inf.ufrgs.br/~wniemiec/shared/img/leaf-black.png" height="15" />
+                          </div>
+                          <p>Travel Sustainable</p>
+                        </div>
+                        <p class="highlight-accent" ${stay.mobile ? "" : "style='display:none;'"}>Mobile-only price</p>
+                        
+                        <div class="row6">
+                          <p>${stay.roomType}</p>
+                          <p>Hotel room: ${stay.totalBeds > 1 ? stay.totalBeds + " beds" : stay.totalBeds + " bed"}</p>
+                        </div>
+                        <div class="row7">
+                          <p>${stay.priceDescription}</p>
+                        </div>
+                        <div class="row8">
+                          <span class="before">R$ ${stay.oldPrice}</span>
+                          <span class="current">R$ ${stay.newPrice}</span>
+                        </div>
+                        <div class="row9">
+                          <p>${stay.fee > 0 ? "+ R$ 3 taxes and charges" : "Includes taxes and fees"}</p>
+                        </div>
+                      </div>
+                    </div>
+                  `;
+                }
+              });
+          }).catch(e => {
+          })
+        }
+    
+        loadData();
+    
+        function handleBack() {
+          window.location.href = "mobilang::screen::quick-trips";
+        }
+      </behavior>
+    </screen>
+  </screens>
+
+  <properties>
+  {
+    "application_name": "Close2Booking",
+    "platforms": [
+        "android",
+        "ios"
+    ]
+  }
+  </properties>
+</mobilang>

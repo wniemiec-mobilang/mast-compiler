@@ -47,4 +47,5 @@ debug:
 compilation:
 		$(OUT) < $(file) > $(file).ast
 		$(MAKE) -C $(EXPORT) file=$(file) output=$(output) name=$(name)
+		rm -f $(file).ast
 
