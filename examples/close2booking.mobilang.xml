@@ -53,19 +53,19 @@
                     <div class="icon">
                       <img src="https://www.inf.ufrgs.br/~wniemiec/shared/img/search-black.png" height="15" />
                     </div>
-                    <input type="text" value="Gramado" />
+                    <input type="text" value="Gramado" id="location" />
                   </div>
                   <div class="input-field">
                     <div class="icon">
                       <img src="https://www.inf.ufrgs.br/~wniemiec/shared/img/calendar-black.png" height="15" />
                     </div>
-                    <input type="text" value="Sat, Jun 04 - Sun, Jun 05" />
+                    <input type="text" value="Sat, Jun 04 - Sun, Jun 05" id="date" />
                   </div>
                   <div class="input-field">
                     <div class="icon">
                       <img src="https://www.inf.ufrgs.br/~wniemiec/shared/img/person-black.png" height="15" />
                     </div>
-                    <input type="text" value="1 room - 2 adults - 0 children" />
+                    <input type="text" value="1 room - 2 adults - 0 children" id="rooms" />
                   </div>
                   <button class="search-action">
                     Search
@@ -350,6 +350,7 @@
       }
 
       .text-buttons button .icon {
+        width: 5vw;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -383,7 +384,7 @@
       }
 
       p.big {
-        width: 22vw;
+        width: 25vw;
       }
 
       .bottom-tab {
@@ -510,7 +511,7 @@
       }
 
       .box-special-small .icon {
-        width: 8vw;
+        width: 100%;
         height: 8vh;
         display: flex;
         justify-content: center;
@@ -752,7 +753,7 @@
       </behavior>
     </screen>
 
-    <screen id="quick-tips">
+    <screen id="quick-trips">
       <structure>
         <html>
           <div class="container">
@@ -922,7 +923,7 @@
       }
 
       .widget h3 {
-        font-size: 0.9vh;
+        font-size: 2.0vh;
         font-weight: bold;
       }
 
@@ -1298,7 +1299,7 @@
         background-color: green;
         color: white;
         text-align: center;
-        font-size: 2.1vh;
+        font-size: 2.4vh;
         line-height: 3.1vh;
         max-width: 35vw;
         position: relative;
