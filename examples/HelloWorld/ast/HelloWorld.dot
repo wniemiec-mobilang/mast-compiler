@@ -1,0 +1,24 @@
+digraph G {
+n0 -> n1;
+n1 -> n2;
+n2 -> n3;
+n3 -> n4;
+n2 -> n5;
+n2 -> n6;
+n6 -> n7;
+n0 -> n8;
+n8 -> n9;
+n0 [label="<mobilang>"];
+n1 [label="<screens>"];
+n2 [label="<screen id=\"home\">"];
+n3 [label="<structure>"];
+n4 [label="{\"nodeType\":\"document\",\"content\":{\"children\":[{\"nodeType\":\"tag\",\"parentRef\":\"[Circular ~]\",\"content\":{\"openStart\":{\"type\":\"token:open-tag-start\",\"content\":\"<h1\",\"startPosition\":0,\"endPosition\":2},\"name\":\"h1\",\"openEnd\":{\"type\":\"token:open-tag-end\",\"content\":\">\",\"startPosition\":3,\"endPosition\":3},\"selfClosing\":false,\"children\":[{\"nodeType\":\"text\",\"parentRef\":\"[Circular ~.content.children.0]\",\"content\":{\"value\":{\"type\":\"token:text\",\"content\":\"Hello!\",\"startPosition\":4,\"endPosition\":9}}}],\"close\":{\"type\":\"token:close-tag\",\"content\":\"</h1>\",\"startPosition\":10,\"endPosition\":14}}}]}}"];
+n5 [label="<style>"];
+n6 [label="<behavior>"];
+n7 [label="{\"type\":\"Program\",\"start\":0,\"end\":15,\"body\":[{\"type\":\"ExpressionStatement\",\"start\":0,\"end\":15,\"expression\":{\"type\":\"CallExpression\",\"start\":0,\"end\":14,\"callee\":{\"type\":\"Identifier\",\"start\":0,\"end\":5,\"name\":\"alert\"},\"arguments\":[{\"type\":\"Literal\",\"start\":6,\"end\":13,\"value\":\"World\",\"raw\":\"'World'\"}],\"optional\":false}}],\"sourceType\":\"script\"}"];
+n8 [label="<properties>"];
+n9 [label="{\"application_name\": \"HelloWorld\",\"platforms\": [\"android\",\"ios\"]}"];
+
+}
+
+

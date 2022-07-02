@@ -48,7 +48,7 @@ function parseLines(lines) {
     let index = 0;
 
     while (index < lines.length) {
-        if (isNextLineStyle) {
+        if (isNextLineStyle && !lines[index].includes("label=\"<")) {
             let cssAst = parseCss(lines[index]);
             cssAst = cssAst.replaceAll("\"", "\\\"");
 
