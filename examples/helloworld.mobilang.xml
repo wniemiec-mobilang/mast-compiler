@@ -2,15 +2,13 @@
   <screens>
     <screen id="home">
       <structure>
-        <h1>Hello</h1>
-        <h2>World!</h2>
+        <html>
+          <h1>Hello world!</h1>
+        </html>
       </structure>
       <style>
-        h1 { color: red; }
       </style>
-
       <behavior>
-        alert('World');
       </behavior>
     </screen>
   </screens>

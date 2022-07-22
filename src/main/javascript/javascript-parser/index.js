@@ -49,13 +49,14 @@ function parseLines(lines) {
 
     while (index < lines.length) {
         if (isNextLineScript) {
+            console.error("123", lines[index]);
             let javascriptAst = parseJavascript(lines[index]);
             javascriptAst = javascriptAst.replaceAll("\"", "\\\"");
 
             lines[index] = lines[index].replaceAll(/\[.+\]/g, '[label="' + javascriptAst + '"]');
         }
 
-        isNextLineScript = lines[index].includes('<behavior>');
+        isNextLineScript = isHasBehaviorInNextLine(lines, index);
         index++;
     }
 }
@@ -71,4 +72,13 @@ function javascriptToAst(code) {
     const ast = acorn.parse(code);
 
     return JSON.stringify(ast);
+}
+
+function isHasBehaviorInNextLine(lines, index) {
+    if (lines.length < index + 1) {
+        return false;
+    }
+
+    return  lines[index].includes('<behavior>') 
+            && !lines[index+1].includes('[label="<');
 }
