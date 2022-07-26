@@ -38,6 +38,7 @@ namespace wniemiec { namespace mobilex { namespace mast {
     //-------------------------------------------------------------------------
     public:
         DotExport(std::string ast, std::string output);
+        DotExport(char* ast, char* output);
 
 
     //-------------------------------------------------------------------------

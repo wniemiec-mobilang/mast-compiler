@@ -10,13 +10,13 @@
 //-----------------------------------------------------------------------------
 //        Prototypes                                                           
 //-----------------------------------------------------------------------------
-int yylex(void);
-void yyerror (char const *s);
+extern "C" int yylex(void);
+
 void initialize();
 node* to_node(lexeme lexical, bool escape_quotes);
 node* to_node_with_properties(lexeme lex, char* properties);
-lexeme generate_key_from_lexeme(lexeme lexeme, bool escape_quotes);
 node* merge_nodes_label(node* n1, node* n2);
+lexeme generate_key_from_lexeme(lexeme lexeme, bool escape_quotes);
 
 
 //-----------------------------------------------------------------------------

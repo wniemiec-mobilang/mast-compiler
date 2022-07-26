@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "export/DotExport.hpp"
 
+namespace mast = wniemiec::mobilex::mast;
 
 //-----------------------------------------------------------------------------
 //		Prototypes
@@ -25,7 +26,8 @@ int main(int argc, char **argv)
     tree = NULL;
     yylex_destroy();
 
-    wniemiec::mobilex::ama::DotExport dotExport();
+    mast::DotExport dotExport(argv[1], argv[2]);
+    dotExport.run();
 
     return ret;
 }

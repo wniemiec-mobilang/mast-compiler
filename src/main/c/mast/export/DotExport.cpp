@@ -26,6 +26,11 @@ namespace fs = std::experimental::filesystem;
 //-----------------------------------------------------------------------------
 //		Constructor
 //-----------------------------------------------------------------------------
+DotExport::DotExport(char* ast, char* output) 
+    : DotExport(std::string(ast), std::string(output))
+{
+}
+
 DotExport::DotExport(std::string ast, std::string output)
 {
     this->ast = ast;
