@@ -49,7 +49,6 @@ function parseLines(lines) {
 
     while (index < lines.length) {
         if (isNextLineScript) {
-            console.error("123", lines[index]);
             let javascriptAst = parseJavascript(lines[index]);
             javascriptAst = javascriptAst.replaceAll("\"", "\\\"");
 

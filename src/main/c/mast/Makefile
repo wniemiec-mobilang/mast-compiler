@@ -23,7 +23,8 @@ all:
 		$(MAKE) -C $(DATA)/n_tree
 		$(CC) -c $(SYNTAX)/lex.yy.c -o $(SYNTAX)/lex.yy.o
 		$(CC) -c $(SEMANTIC)/parser.tab.c -o $(SEMANTIC)/parser.tab.o
-		$(CC) -c $(MAST_SRC)/main.c -o $(MAST_SRC)/main.o
+		$(CC) -c $(MAST_SRC)/main.cpp -o $(MAST_SRC)/main.o
+		$(CC) -c $(EXPORT)/DotExport.cpp -o $(EXPORT)/DotExport.o
 		$(CC) $(OBJS) -o $(OUT) $(LFLAGS)
 
 clean:

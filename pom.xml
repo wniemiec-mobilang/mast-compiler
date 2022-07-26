@@ -3,7 +3,7 @@
   <groupId>wniemiec.mobilang</groupId>
   <artifactId>mast-compiler</artifactId>
   <packaging>jar</packaging>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <name>mast-compiler</name>
   <url>https://github.com/williamniemiec/mast-compiler</url>
 

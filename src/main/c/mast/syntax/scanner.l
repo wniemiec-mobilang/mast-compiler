@@ -15,7 +15,7 @@ int parse_token(int token_type);
 /*---------------------------------------------------------------------------*/
 /*		Regular expressions                                                  */
 /*---------------------------------------------------------------------------*/
-space [ \t\n\r]+
+space [ \t\n\r\b]+
 tag_property [A-z\-\_]+\=\"[A-z0-9\-\_]+\"
 mobilang_open \<mobilang\>
 mobilang_close \<\/mobilang\>

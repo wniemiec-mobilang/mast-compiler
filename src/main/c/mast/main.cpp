@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "export/DotExport.hpp"
 
 
 //-----------------------------------------------------------------------------
@@ -23,6 +24,8 @@ int main(int argc, char **argv)
     free_tree(tree);
     tree = NULL;
     yylex_destroy();
+
+    wniemiec::mobilex::ama::DotExport dotExport();
 
     return ret;
 }
