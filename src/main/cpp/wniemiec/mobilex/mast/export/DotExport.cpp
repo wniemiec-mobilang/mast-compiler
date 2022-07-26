@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-#include "DotExport.hpp";
+#include "DotExport.hpp"
 
 #include <iostream>
 #include <fstream>
@@ -126,7 +126,7 @@ void DotExport::write_edge(std::string line)
         }
     }
 
-    std::string new_line = replace_all(line, ", ", " -> ");
+    new_line = replace_all(line, ", ", " -> ");
     for (std::string node : nodes) {
         new_line = replace_all(new_line, node, dict_nodes[node]);
     }

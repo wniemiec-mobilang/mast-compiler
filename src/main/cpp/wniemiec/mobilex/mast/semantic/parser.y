@@ -10,7 +10,7 @@
 //-----------------------------------------------------------------------------
 //        Prototypes                                                           
 //-----------------------------------------------------------------------------
-extern "C" int yylex(void);
+int yylex(void);
 
 void initialize();
 node* to_node(lexeme lexical, bool escape_quotes);

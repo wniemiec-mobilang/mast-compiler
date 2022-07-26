@@ -1,4 +1,4 @@
-package wniemiec.mobilang.mast;
+package wniemiec.mobilex.mast;
 
 import java.io.File;
 import java.io.IOException;

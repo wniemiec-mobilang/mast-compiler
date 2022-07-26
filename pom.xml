@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>wniemiec.mobilang</groupId>
+  <groupId>wniemiec.mobilex</groupId>
   <artifactId>mast-compiler</artifactId>
   <packaging>jar</packaging>
   <version>1.0.1</version>
   <name>mast-compiler</name>
-  <url>https://github.com/williamniemiec/mast-compiler</url>
+  <url>https://github.com/wniemiec-mobilex/mast-compiler</url>
 
   <properties>
     <version.major>1</version.major>
@@ -30,9 +30,9 @@
   </developers>
 
   <scm>
-    <connection>scm:git:git@github.com:wniemiec-mobilang/mast-compiler.git</connection>
-    <developerConnection>scm:git:ssh://github.com:wniemiec-mobilang/mast-compiler.git</developerConnection>
-    <url>https://github.com/wniemiec-mobilang/mast-compiler/tree/main</url>
+    <connection>scm:git:git@github.com:wniemiec-mobilex/mast-compiler.git</connection>
+    <developerConnection>scm:git:ssh://github.com:wniemiec-mobilex/mast-compiler.git</developerConnection>
+    <url>https://github.com/wniemiec-mobilex/mast-compiler/tree/main</url>
   </scm>
 
   <distributionManagement>

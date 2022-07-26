@@ -1,4 +1,4 @@
-package wniemiec.mobilang.mast;
+package wniemiec.mobilex.mast;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -82,7 +82,9 @@ public class Mast {
         Path baseDir = buildBaseDir();
 
         mastLocation = baseDir
-            .resolve("c")
+            .resolve("cpp")
+            .resolve("wniemiec")
+            .resolve("mobilex")
             .resolve("mast");
     }
 
