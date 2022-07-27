@@ -1,0 +1,17 @@
+0x563bd539d2f0, 0x563bd538e4c0
+0x563bd538e4c0, 0x563bd538e450
+0x563bd538e450, 0x563bd538e320
+0x563bd538e320, 0x563bd538bbd0
+0x563bd538e450, 0x563bd538e390
+0x563bd538e450, 0x563bd538e400
+0x563bd539d2f0, 0x563bd539d240
+0x563bd539d240, 0x563bd539aaf0
+0x563bd539d2f0 [label="<mobilang>"];
+0x563bd538e4c0 [label="<screens>"];
+0x563bd538e450 [label="<screen id=\"home\">"];
+0x563bd538e320 [label="<structure>"];
+0x563bd538bbd0 [label="<html><h1>Hello world!</h1></html>"];
+0x563bd538e390 [label="<style>"];
+0x563bd538e400 [label="<behavior>"];
+0x563bd539d240 [label="<properties>"];
+0x563bd539aaf0 [label="{\"application_name\": \"simple-application\",\"platforms\": [\"android\",\"ios\"]}"];

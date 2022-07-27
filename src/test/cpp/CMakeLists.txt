@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 2.6)
 
+link_libraries(stdc++fs)
 # Set up Google testing framework
 include(FetchContent)
 FetchContent_Declare(
@@ -13,11 +14,11 @@ include_directories(${GTEST_INCLUDE_DIRS})
 # Link runTests with what we want to test and the GTest and pthread library
 file(GLOB object_files
         "../../../src/main/cpp/wniemiec/mobilex/mast/*.o"
-        "../../../src/main/cpp/wniemiec/mobilex/mast/data*.o"
-        "../../../src/main/cpp/wniemiec/mobilex/mast/export*.o"
-        "../../../src/main/cpp/wniemiec/mobilex/mast/syntax*.o"
-        "../../../src/main/cpp/wniemiec/mobilex/mast/semantic*.o"
-        "../../../src/main/cpp/wniemiec/mobilex/mast/util*.o"
+        "../../../src/main/cpp/wniemiec/mobilex/mast/data/*.o"
+        "../../../src/main/cpp/wniemiec/mobilex/mast/export/*.o"
+        "../../../src/main/cpp/wniemiec/mobilex/mast/syntax/*.o"
+        "../../../src/main/cpp/wniemiec/mobilex/mast/semantic/*.o"
+        "../../../src/main/cpp/wniemiec/mobilex/mast/util/*.o"
 )
 list(FILTER object_files EXCLUDE REGEX ".*main.o.*$")
 list(FILTER object_files EXCLUDE REGEX ".*lex.yy.o.*$")

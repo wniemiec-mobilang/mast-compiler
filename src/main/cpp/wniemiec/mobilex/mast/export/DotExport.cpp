@@ -38,7 +38,7 @@ DotExport::DotExport(std::string ast, std::string output)
     dict_nodes = {};
     node_count = 0;
 
-    set_output(output);
+    set_output(output + "/" + fs::path(ast).stem().c_str() + ".dot");
 }
 
 
@@ -79,9 +79,9 @@ void DotExport::cleanup_output()
         std::remove(output.c_str());
     }
 
-    if (!fs::exists(output)) {
-        fs::create_directories(output);
-    }
+    // if (!fs::exists(output)) {
+    //     fs::create_directories(output);
+    // }
 }
 
 void DotExport::open_output_file()
@@ -162,7 +162,7 @@ std::string DotExport::replace_all(std::string str, std::string old_str, std::st
     std::string replaced_str = str;
     int index;
     
-    while ((index = replaced_str.find("Hello")) != std::string::npos) {
+    while ((index = replaced_str.find(old_str)) != std::string::npos) {
         replaced_str.replace(index, new_str.length(), new_str);
     }
 
