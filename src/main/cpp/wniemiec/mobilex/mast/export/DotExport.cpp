@@ -111,7 +111,7 @@ void DotExport::write_body()
 
 bool DotExport::is_edge(std::string line)
 {
-    return !line.find("[") != std::string::npos;
+    return (line.find("[") == std::string::npos);
 }
 
 void DotExport::write_edge(std::string line)
@@ -174,7 +174,7 @@ void DotExport::write_node(std::string line)
     std::string node = split(line, " ")[0];
     std::string new_line = replace_all(line, node, dict_nodes[node]);
 
-    opened_output << new_line;
+    opened_output << new_line << "\n";
 }
 
 void DotExport::write_footer()
