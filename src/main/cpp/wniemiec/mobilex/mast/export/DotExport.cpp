@@ -105,7 +105,7 @@ void DotExport::write_body()
             write_edge(line);
         }
         else {
-            write_node(line);
+           write_node(line);
         }
     }
 }

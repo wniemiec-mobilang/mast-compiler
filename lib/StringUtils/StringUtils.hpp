@@ -33,11 +33,12 @@ namespace wniemiec { namespace util { namespace cpp {
          * delimiter string.
          * 
          * @param       str String to be splitted.
-         * @param       sep Character dividing the string into split groups.
+         * @param       delimiter Character dividing the string into split 
+         * groups.
          * 
          * @return      Vector with split groups
          */
-        static std::vector<std::string> split(std::string str, std::string sep);
+        static std::vector<std::string> split(std::string str, std::string delimiter);
 
         /**
          * Returns a copy of the string in UPPER CASE.
