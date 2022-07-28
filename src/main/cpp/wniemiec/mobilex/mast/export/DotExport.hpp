@@ -60,9 +60,7 @@ namespace wniemiec { namespace mobilex { namespace mast {
         void write_footer();
         void close_output_file();
         void setup_output_permissions();
-        std::vector<std::string> split(std::string str, std::string sep);
-        std::string replace_all(std::string str, std::string old_str, std::string new_str);
-
+        
 
     //-------------------------------------------------------------------------
     //		Setters

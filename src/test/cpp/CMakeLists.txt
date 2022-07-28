@@ -19,6 +19,7 @@ file(GLOB object_files
         "../../../src/main/cpp/wniemiec/mobilex/mast/syntax/*.o"
         "../../../src/main/cpp/wniemiec/mobilex/mast/semantic/*.o"
         "../../../src/main/cpp/wniemiec/mobilex/mast/util/*.o"
+        "../../../lib/StringUtils/*.o"
 )
 list(FILTER object_files EXCLUDE REGEX ".*main.o.*$")
 list(FILTER object_files EXCLUDE REGEX ".*lex.yy.o.*$")

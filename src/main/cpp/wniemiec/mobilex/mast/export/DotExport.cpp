@@ -18,6 +18,7 @@
 #include <algorithm>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include "../../../../../../../lib/StringUtils/StringUtils.hpp"
 
 using namespace wniemiec::mobilex::mast;
 namespace fs = std::experimental::filesystem;
@@ -117,7 +118,10 @@ bool DotExport::is_edge(std::string line)
 void DotExport::write_edge(std::string line)
 {
     std::string new_line = line;
-    std::vector<std::string> nodes = split(replace_all(line, "\n", ""), ", ");
+    std::vector<std::string> nodes = wniemiec::util::cpp::StringUtils::split(
+        wniemiec::util::cpp::StringUtils::replace_all(line, "\n", ""), 
+        ", "
+    );
 
     for (std::string node : nodes) {
         if (!dict_nodes.count(node)) {
@@ -126,53 +130,19 @@ void DotExport::write_edge(std::string line)
         }
     }
 
-    new_line = replace_all(line, ", ", " -> ");
+    new_line = wniemiec::util::cpp::StringUtils::replace_all(line, ", ", " -> ");
     for (std::string node : nodes) {
-        new_line = replace_all(new_line, node, dict_nodes[node]);
+        new_line = wniemiec::util::cpp::StringUtils::replace_all(new_line, node, dict_nodes[node]);
     }
 
-    new_line = replace_all(new_line, "\n", "") + ";\n";
+    new_line = wniemiec::util::cpp::StringUtils::replace_all(new_line, "\n", "") + ";\n";
     opened_output << new_line;
-}
-
-std::vector<std::string> DotExport::split(std::string str, std::string sep)
-{
-    if (str.empty()) {
-        return std::vector<std::string>();
-    }
-
-    char* cstr = const_cast<char*>(str.c_str());
-    char* current;
-    std::vector<std::string> arr;
-
-    current = strtok(cstr,sep.c_str());
-
-    while(current != NULL) 
-    {
-        arr.push_back(current);
-        
-        current = strtok(NULL,sep.c_str());
-    }
-
-    return arr;
-}
-
-std::string DotExport::replace_all(std::string str, std::string old_str, std::string new_str)
-{
-    std::string replaced_str = str;
-    int index;
-    
-    while ((index = replaced_str.find(old_str)) != std::string::npos) {
-        replaced_str.replace(index, new_str.length(), new_str);
-    }
-
-    return replaced_str;
 }
 
 void DotExport::write_node(std::string line)
 {
-    std::string node = split(line, " ")[0];
-    std::string new_line = replace_all(line, node, dict_nodes[node]);
+    std::string node = wniemiec::util::cpp::StringUtils::split(line, " ")[0];
+    std::string new_line = wniemiec::util::cpp::StringUtils::replace_all(line, node, dict_nodes[node]);
 
     opened_output << new_line << "\n";
 }

@@ -18,3 +18,8 @@ install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
 _deps
+runTests
+src/test/cpp/lib
+
+bin
+!lib/*/*
