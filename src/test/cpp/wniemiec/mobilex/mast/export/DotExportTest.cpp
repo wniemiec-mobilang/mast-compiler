@@ -10,28 +10,79 @@ using namespace wniemiec::mobilex::mast;
 namespace fs = std::experimental::filesystem;
 
 //-----------------------------------------------------------------------------
+//		Attributes
+//-----------------------------------------------------------------------------
+std::string DotExportTest::RESOURCES = "../../../../../test/resources";
+
+
+//-----------------------------------------------------------------------------
+//		Test hooks
+//-----------------------------------------------------------------------------
+void DotExportTest::set_up() 
+{
+    ast = std::string();
+    output = std::string();
+}
+
+
+//-----------------------------------------------------------------------------
 //		Tests
 //-----------------------------------------------------------------------------
 TEST_F(DotExportTest, test_run_with_ast_and_output)
 {
-    std::string ast = "../../../../../test/resources/simple-dot.ast";
-    std::string output = fs::temp_directory_path();
-    DotExport dotExport = DotExport(ast, output);
-    dotExport.run();
+    with_ast(RESOURCES + "/simple-dot.ast");
+    with_output(fs::temp_directory_path());
+    do_export();
+    assert_exported_file_is_equal_to_file(RESOURCES + "/simple-dot.dot");
 
-    std::string expected_dot_path = "../../../../../test/resources/simple-dot.dot";
-    std::string obtained_dot_path = output + "/simple-dot.dot";
+    // std::string ast = "../../../../../test/resources/simple-dot.ast";
+    // std::string output = fs::temp_directory_path();
+    // DotExport dotExport = DotExport(ast, output);
+    // dotExport.run();
 
-    std::vector<std::string> tmp = read_file(ast);
-    std::vector<std::string> expected_dot = read_file(expected_dot_path);
-    std::vector<std::string> obtained_dot = read_file(obtained_dot_path);
+    // std::string expected_dot_path = "../../../../../test/resources/simple-dot.dot";
+    // std::string obtained_dot_path = output + "/simple-dot.dot";
 
-    assert_has_same_lines(expected_dot, obtained_dot);
+    
+    // std::vector<std::string> expected_dot = read_file(expected_dot_path);
+    // std::vector<std::string> obtained_dot = read_file(obtained_dot_path);
+
+    // assert_has_same_lines(expected_dot, obtained_dot);
     
     //with_ast();
     //with_output();
     //do_export();
     //assert_exported_file_is();
+}
+
+
+//-----------------------------------------------------------------------------
+//		Methods
+//-----------------------------------------------------------------------------
+void DotExportTest::with_ast(std::string path)
+{
+    ast = path;
+}
+
+void DotExportTest::with_output(std::string path)
+{
+    output = path;
+}
+
+void DotExportTest::do_export()
+{
+    DotExport dotExport = DotExport(ast, output);
+    
+    dotExport.run();
+}
+
+void DotExportTest::assert_exported_file_is_equal_to_file(std::string path)
+{
+    std::string filename = std::string(fs::path(ast).stem().c_str()) + ".dot";
+    std::vector<std::string> expected_dot = read_file(path);
+    std::vector<std::string> obtained_dot = read_file(output + "/" + filename);
+
+    assert_has_same_lines(expected_dot, obtained_dot);
 }
 
 std::vector<std::string> DotExportTest::read_file(std::string file)

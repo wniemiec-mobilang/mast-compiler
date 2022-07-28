@@ -10,21 +10,29 @@ namespace wniemiec { namespace mobilex { namespace mast {
     //-------------------------------------------------------------------------
     //		Attributes
     //-------------------------------------------------------------------------
-    //private:
-        //DotExport dotExport;
+    protected:
+        static std::string RESOURCES;
+        std::string ast;
+        std::string output;
 
 
     //-------------------------------------------------------------------------
-    //		Constructor
+    //		Test hooks
     //-------------------------------------------------------------------------
-    // public:
-    //     DotExportTest();
+    protected:
+        void SetUp() override { set_up(); }
+        void set_up();
 
 
     //-------------------------------------------------------------------------
     //		Methods
     //-------------------------------------------------------------------------
     protected:
+        void with_ast(std::string path);
+        void with_output(std::string path);
+        void do_export();
+        void assert_exported_file_is_equal_to_file(std::string path);
+
         std::vector<std::string> read_file(std::string file);
         void assert_has_same_size(
             std::vector<std::string> expected, 
