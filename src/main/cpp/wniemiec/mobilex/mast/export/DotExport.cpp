@@ -79,10 +79,6 @@ void DotExport::cleanup_output()
     if (!fs::is_directory(output)) {
         std::remove(output.c_str());
     }
-
-    // if (!fs::exists(output)) {
-    //     fs::create_directories(output);
-    // }
 }
 
 void DotExport::open_output_file()
