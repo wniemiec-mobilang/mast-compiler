@@ -2,7 +2,11 @@ package wniemiec.mobilex.mast;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.nio.file.Path;
+
+import org.apache.commons.io.FileUtils;
+
 import wniemiec.io.java.Consolex;
 import wniemiec.io.java.JarFileManager;
 import wniemiec.io.java.StandardTerminalBuilder;
@@ -20,6 +24,7 @@ public class Mast {
     //-------------------------------------------------------------------------
     private final Path mobilangFilePath;
     private final Path outputLocationPath;
+    private final String appName;
     private Path mastLocation;
     private Path javascriptLocation;
     private Path astFilePath;
@@ -32,26 +37,52 @@ public class Mast {
     /**
      * Manager for MAST compiler pipeline.
      * 
-     * @param       mobilangFilePath MobiLang XML file
-     * @param       outputLocationPath Path where compiler output will be put
+     * @param       mobilang Mobilang XML file
+     * @param       output Path where compiler output will be put
+     * 
+     * @throws      IOException If mobilang file cannot be read
      */
-    public Mast(Path mobilangFilePath, Path outputLocationPath) {
-        this.mobilangFilePath = mobilangFilePath;
-        this.outputLocationPath = outputLocationPath;
+    public Mast(Path mobilang, Path output) throws IOException {
+        this.mobilangFilePath = mobilang;
+        this.outputLocationPath = buildOutputLocation(mobilang, output);
+        appName = extractAppName(mobilang);
     }
 
 
     //-------------------------------------------------------------------------
     //		Methods
     //-------------------------------------------------------------------------
-    public Path run() throws IOException {
-        String appName = extractAppName();
+    private static Path buildOutputLocation(Path mobilang, Path output) 
+    throws IOException {
+        TextFileManager txtManager = new TextFileManager(
+            mobilang, 
+            StandardCharsets.UTF_8
+        );
+        String appName = txtManager.getFileLineThatContains("\"application_name\":");
 
+        if (appName == null) {
+            throw new IllegalStateException("application_name not found in properties");
+        }
+
+        Path appFolder = Path.of(appName.split(":")[1].strip().replace("\"", "").replace(",", ""));
+
+        return output.resolve(appFolder);
+    }
+
+    private static String extractAppName(Path mobilangFilePath) {
+        String filename = mobilangFilePath.getFileName().toString();
+        int indexOfFirstDot = filename.indexOf(".");
+        
+        return filename.substring(0, indexOfFirstDot);
+    }
+
+    public Path run() throws IOException {
+        setUpOutput();
         setUpTerminal();
         setUpMastLocation();
         setUpJavaScriptLocation();
         runMakeAll();
-        runMakeCompilation(appName);
+        runMakeCompilation();
         runHtmlParser();
         runCssParser();
         runJavaScriptParser();
@@ -60,15 +91,8 @@ public class Mast {
         return astFilePath;
     }
 
-    private String extractAppName() throws IOException {
-        TextFileManager txtManager = new TextFileManager(mobilangFilePath, StandardCharsets.UTF_8);
-        String appName = txtManager.getFileLineThatContains("\"application_name\":");
-
-        if (appName == null) {
-            throw new IllegalStateException("application_name not found in properties");
-        }
-
-        return appName.split(":")[1].strip().replace("\"", "").replace(",", "");
+    private void setUpOutput() throws IOException {
+        Files.createDirectories(outputLocationPath);
     }
 
     private void setUpTerminal() {
@@ -118,15 +142,14 @@ public class Mast {
         );
     }
 
-    private void runMakeCompilation(String appName) throws IOException {
+    private void runMakeCompilation() throws IOException {
         terminal.exec(
             "make", 
             "-C", 
             mastLocation.toString(), 
             "compilation", 
-            "file=" + mobilangFilePath, 
-            "output=" + outputLocationPath.resolve(appName), 
-            "name=" + appName
+            "file=" + mobilangFilePath.toString(), 
+            "output=" + outputLocationPath.toString()
         );
 
         astFilePath = buildAstFilePath(appName);
@@ -134,7 +157,7 @@ public class Mast {
 
     private Path buildAstFilePath(String appName) {
         return outputLocationPath
-            .resolve(appName)
+            .resolve("ast")
             .resolve(appName + ".dot");
     }
 

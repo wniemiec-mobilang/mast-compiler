@@ -5,7 +5,7 @@
 <p align="center">
 	<a href="https://github.com/williamniemiec/mast-compiler/actions/workflows/ubuntu.yml"><img src="https://github.com/williamniemiec/mast-compiler/actions/workflows/ubuntu.yml/badge.svg" alt=""></a>
 	<a href="http://node.dev"><img src="https://img.shields.io/badge/NodeJS-8+-D0008F.svg" alt="Node compatibility"></a>
-	<a href="http://python.org"><img src="https://img.shields.io/badge/python-3+-D0008F.svg" alt="Python compatibility"></a>
+	<a href="http://java.oracle.com"><img src="https://img.shields.io/badge/java-11+-D0008F.svg" alt="Java compatibility"></a>
 	<a href="https://github.com/williamniemiec/mast-compiler/releases"><img src="https://img.shields.io/github/v/release/williamniemiec/mast-compiler" alt="Release"></a>
 	<a href="https://github.com/williamniemiec/mast-compiler/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-MIT-919191.svg" alt="License"></a>
 	
@@ -19,22 +19,21 @@ MobiLang is an extended markup language created for representing any mobile appl
 ## ❓ How to use
 
 ```
-make
-sudo make compilation file=<mobilang_filepath_without_extension> output=<output_location> name=<output_filename>
+Coming soon
 ```
 
 ### Example
 
 ```
-sudo make compilation file=./src/resources/close2dinoapp output=./ name=close2dinoapp
+Coming soon
 ```
 
 ## ✔ Requirements
 - [NodeJS](https://nodejs.dev)
-- [Python 3+](https://python.org)
 - [Flex](https://www.geeksforgeeks.org/flex-fast-lexical-analyzer-generator/)
 - [Bison](https://www.gnu.org/software/bison/)
 - [C Compiler](https://gcc.gnu.org)
+- [Java](http://java.oracle.com/)
 
 ## ⚠ Warnings
 - Behavior tag

@@ -15,6 +15,7 @@ extern "C" int yylex_destroy(void);
 extern "C" void *tree = NULL;
 extern "C" void export_tree(void *tree, const char* output);
 extern "C" void free_tree(void *tree);
+std::string extract_name_from_file(std::string path);
 
 
 //-----------------------------------------------------------------------------
@@ -24,7 +25,7 @@ int main(int argc, char **argv)
 {
     std::string mobilang_file = std::string(argv[1]);
     std::string output = std::string(argv[2]) + "/ast/";
-    std::string ast = output + fs::canonical(mobilang_file).stem().c_str() + ".ast";
+    std::string ast = output + extract_name_from_file(mobilang_file) + ".ast";
 
     if (!fs::is_directory(output) || !fs::exists(output)) {
         fs::create_directory(output);
@@ -43,4 +44,16 @@ int main(int argc, char **argv)
     fs::remove(ast);
 
     return ret;
+}
+
+
+//-----------------------------------------------------------------------------
+//		Functions
+//-----------------------------------------------------------------------------
+std::string extract_name_from_file(std::string path)
+{
+    std::string filename = fs::canonical(path).stem();
+    int indexOfFirstDot = filename.find(".");
+    
+    return filename.substr(0, indexOfFirstDot);
 }
