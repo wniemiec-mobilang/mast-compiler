@@ -7,15 +7,22 @@ EXPORT				= $(MAST_SRC)/export
 DATA				= $(MAST_SRC)/data
 SEMANTIC			= $(MAST_SRC)/semantic
 SYNTAX				= $(MAST_SRC)/syntax
+TESTDIR				= $(APP_ROOT)/../test/cpp
+LIB					= $(APP_ROOT)/../../lib/cpp
 FLEX_FILE			= $(SYNTAX)/scanner.l
 BISON_FILE			= $(SEMANTIC)/parser.y
-OBJS				= $(SYNTAX)/lex.yy.o $(SEMANTIC)/parser.tab.o $(MAST_SRC)/main.o $(DATA)/text/string_utils.o $(DATA)/n_tree/n_tree.o
+OBJS				= $(SYNTAX)/lex.yy.o \
+					  $(SEMANTIC)/parser.tab.o \
+					  $(MAST_SRC)/main.o \
+					  $(DATA)/text/string_utils.o \
+					  $(DATA)/n_tree/n_tree.o \
+					  $(EXPORT)/DotExport.o \
+					  $(LIB)/StringUtils/StringUtils.o
 TMP_SRC				= $(SYNTAX)/lex.yy.c $(SEMANTIC)/parser.tab.c $(SEMANTIC)/parser.tab.h
 OUT					= $(MAST_SRC)/mast_runner
-TESTDIR				= $(APP_ROOT)/../test/cpp
 CC					= gcc 
 FLAGS				= -c
-LFLAGS				= -lfl
+LFLAGS				= -lfl -lstdc++ -lstdc++fs
 
 all:
 		bison -d $(BISON_FILE) -o $(SEMANTIC)/parser.tab.c
@@ -24,8 +31,8 @@ all:
 		$(MAKE) -C $(DATA)/n_tree
 		$(CC) -c $(SYNTAX)/lex.yy.c -o $(SYNTAX)/lex.yy.o
 		$(CC) -c $(SEMANTIC)/parser.tab.c -o $(SEMANTIC)/parser.tab.o
-		$(CC) -c $(MAST_SRC)/main.c -o $(MAST_SRC)/main.o
 		$(CC) -c $(EXPORT)/DotExport.cpp -o $(EXPORT)/DotExport.o
+		$(CC) -c $(MAST_SRC)/main.cpp -o $(MAST_SRC)/main.o
 		$(CC) $(OBJS) -o $(OUT) $(LFLAGS)
 
 clean:
@@ -33,9 +40,6 @@ clean:
 		$(MAKE) -C $(DATA)/n_tree clean
 		$(MAKE) -C $(DATA)/text clean
 		cmake --build $(TESTDIR) --target clean-all
-
-run: 
-		$(OUT)
 
 debug:
 		bison -v -d $(BISON_FILE) -o $(SEMANTIC)/parser.tab.c
@@ -48,10 +52,7 @@ debug:
 		$(CC) $(OBJS) -o $(OUT) $(LFLAGS)
 
 compilation:
-		# $(OUT) < $(file) $(file).ast
-		$(OUT) < $(file) > $(file).ast
-		$(MAKE) -C $(EXPORT) file=$(file) output=$(output) name=$(name)
-		#rm -f $(file).ast
+		$(OUT) $(file) $(output) < $(file)
 
 test:
 	cmake $(TESTDIR)/CMakeLists.txt

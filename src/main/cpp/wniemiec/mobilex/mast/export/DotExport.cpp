@@ -18,7 +18,7 @@
 #include <algorithm>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include "../../../../../../../lib/StringUtils/StringUtils.hpp"
+#include "../../../../../../../lib/cpp/StringUtils/StringUtils.hpp"
 
 using namespace wniemiec::mobilex::mast;
 namespace fs = std::experimental::filesystem;

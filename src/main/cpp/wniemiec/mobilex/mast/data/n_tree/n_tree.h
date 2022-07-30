@@ -26,12 +26,12 @@ typedef struct __list_node {
 //-----------------------------------------------------------------------------
 //		Prototypes                                                
 //-----------------------------------------------------------------------------
-void display_nodes(node* root);
-void display_edges(node* root);
-void display_edge(node* root, node* child);
+void display_nodes(node* root, FILE* output_file);
+void display_edges(node* root, FILE* output_file);
+void display_edge(node* root, node* child, FILE* output_file);
 void __free_tree(node* root);
 void free_tree(void* tree);
-void export_tree(void* tree);
+void export_tree(void* tree, const char* output);
 node* create_node(node* n, node* parent);
 node* create_2node(node* child1, node* child2, node* parent);
 node* create_3node(node* child1, node* child2, node* child3, node* parent);

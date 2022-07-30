@@ -9,7 +9,7 @@
 //-----------------------------------------------------------------------------
 //		Functions                                                
 //-----------------------------------------------------------------------------
-void display_nodes(node* root)
+void display_nodes(node* root, FILE* output_file)
 {
 	if(root == NULL) 
 	{
@@ -17,23 +17,23 @@ void display_nodes(node* root)
 	}
 
 	char* node_label = (root->key).label;
-    printf("%p [label=\"%s\"];\n", root, node_label);
+    fprintf(output_file, "%p [label=\"%s\"];\n", root, node_label);
 	
 	node* p=root->child;
 	
 	while (p)
 	{
-		display_nodes(p);
+		display_nodes(p, output_file);
 		p = p->brother;
 	}
 }
 
-void display_edge(node* root, node* child)
+void display_edge(node* root, node* child, FILE* output_file)
 {
-	printf("%p, %p\n", root, child);
+	fprintf(output_file, "%p, %p\n", root, child);
 }
 
-void display_edges(node* root)
+void display_edges(node* root, FILE* output_file)
 {
 	if(root == NULL) 
 	{
@@ -44,16 +44,20 @@ void display_edges(node* root)
 	
 	while (p)
 	{
-		display_edge(root, p);
-		display_edges(p);
+		display_edge(root, p, output_file);
+		display_edges(p, output_file);
 		p = p->brother;
 	}
 }
 
-void export_tree(void* tree)
+void export_tree(void* tree, const char* output)
 {
-    display_edges((node*) tree);
-    display_nodes((node*) tree);
+	FILE* output_file = fopen(output, "w+");
+	
+    display_edges((node*) tree, output_file);
+    display_nodes((node*) tree, output_file);
+
+	fclose(output_file);
 }
 
 void __free_tree(node* root)
