@@ -1,0 +1,22 @@
+digraph G {
+n0 -> n1;
+n1 -> n2;
+n2 -> n3;
+n3 -> n4;
+n2 -> n5;
+n2 -> n6;
+n0 -> n7;
+n7 -> n8;
+n0 [label="<mobilang>"];
+n1 [label="<screens>"];
+n2 [label="<screen id=\"home\">"];
+n3 [label="<structure>"];
+n4 [label="{\"nodeType\":\"document\",\"content\":{\"children\":[{\"nodeType\":\"tag\",\"parentRef\":\"[Circular ~]\",\"content\":{\"openStart\":{\"type\":\"token:open-tag-start\",\"content\":\"<html\",\"startPosition\":0,\"endPosition\":4},\"name\":\"html\",\"openEnd\":{\"type\":\"token:open-tag-end\",\"content\":\">\",\"startPosition\":5,\"endPosition\":5},\"selfClosing\":false,\"children\":[{\"nodeType\":\"tag\",\"parentRef\":\"[Circular ~.content.children.0]\",\"content\":{\"openStart\":{\"type\":\"token:open-tag-start\",\"content\":\"<h1\",\"startPosition\":6,\"endPosition\":8},\"name\":\"h1\",\"openEnd\":{\"type\":\"token:open-tag-end\",\"content\":\">\",\"startPosition\":9,\"endPosition\":9},\"selfClosing\":false,\"children\":[{\"nodeType\":\"text\",\"parentRef\":\"[Circular ~.content.children.0.content.children.0]\",\"content\":{\"value\":{\"type\":\"token:text\",\"content\":\"Hello world!\",\"startPosition\":10,\"endPosition\":21}}}],\"close\":{\"type\":\"token:close-tag\",\"content\":\"</h1>\",\"startPosition\":22,\"endPosition\":26}}}],\"close\":{\"type\":\"token:close-tag\",\"content\":\"</html>\",\"startPosition\":27,\"endPosition\":33}}}]}}"];
+n5 [label="<style>"];
+n6 [label="<behavior>"];
+n7 [label="<properties>"];
+n8 [label="{\"application_name\": \"simple-application\",\"platforms\": [\"android\",\"ios\"]}"];
+
+}
+
+

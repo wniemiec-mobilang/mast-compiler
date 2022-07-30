@@ -1,0 +1,25 @@
+<mobilang>
+  <screens>
+    <screen id="home">
+      <structure>
+        <html>
+          <h1>Hello world!</h1>
+        </html>
+      </structure>
+      <style>
+      </style>
+      <behavior>
+      </behavior>
+    </screen>
+  </screens>
+
+  <properties>
+  {
+    "application_name": "simple-application",
+    "platforms": [
+        "android",
+        "ios"
+    ]
+  }
+  </properties>
+</mobilang>

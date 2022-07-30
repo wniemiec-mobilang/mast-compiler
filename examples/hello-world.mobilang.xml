@@ -1,0 +1,27 @@
+<mobilang>
+  <screens>
+    <screen id="home">
+      <structure>
+        <h1>Hello</h1>
+        <h2>World!</h2>
+      </structure>
+      <style>
+        h1 { color: red; }
+      </style>
+
+      <behavior>
+        alert('World');
+      </behavior>
+    </screen>
+  </screens>
+
+  <properties>
+  {
+    "application_name": "HelloWorld",
+    "platforms": [
+        "android",
+        "ios"
+    ]
+  }
+  </properties>
+</mobilang>

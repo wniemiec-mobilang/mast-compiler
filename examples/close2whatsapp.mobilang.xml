@@ -1,0 +1,1484 @@
+<mobilang>
+  <screens>
+    <screen id="login">
+      <structure>
+        <html>
+          <div class="container">
+            <div class="side-bar-container">
+              <header>
+                <h1 class='header-text'>
+                  Close2WhatsApp - Sign In
+                </h1>
+                
+              </header>
+              <div class='chatlist'>
+              </div>
+            </div>
+          </div>
+        </html>
+      </structure>
+
+      <style>
+        html, body, div, span, applet, object, iframe,
+      h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+      a, abbr, acronym, address, big, cite, code,
+      del, dfn, em, img, ins, kbd, q, s, samp,
+      small, strike, strong, sub, sup, tt, var,
+      b, u, i, center,
+      dl, dt, dd, ol, ul, li,
+      fieldset, form, label, legend,
+      table, caption, tbody, tfoot, thead, tr, th, td,
+      article, aside, canvas, details, embed, 
+      figure, figcaption, footer, header, hgroup, 
+      menu, nav, output, ruby, section, summary,
+      time, mark, audio, video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+      }
+      /* HTML5 display-role reset for older browsers */
+      article, aside, details, figcaption, figure, 
+      footer, header, hgroup, menu, nav, section {
+        display: block;
+      }
+      body {
+        line-height: 1;
+      }
+      ol, ul {
+        list-style: none;
+      }
+      blockquote, q {
+        quotes: none;
+      }
+      blockquote:before, blockquote:after,
+      q:before, q:after {
+        content: '';
+        content: none;
+      }
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      .container {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+      }
+
+      .side-bar-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .side-bar-container header {
+        height: 10vh;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #075D57;
+      }
+
+      .side-bar-container header .header-text {
+        color: white;
+        font-size: 3vh;
+        margin-left: 2vh;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .side-bar-container header .header-actions button {
+        border: 0;
+        background-color: transparent;
+        outline: 0;
+        color: #919191;
+        height: 40px;
+        border-radius: 20px;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .side-bar-container .search {
+        background-color: #f6f6f6;
+        border-bottom: 1px solid #eee;
+        padding: 5px 15px;
+      }
+
+      .side-bar-container .search .search-input {
+        background-color: #fff;
+        height: 40px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+      }
+
+      .side-bar-container .search .search-input input {
+        flex: 1;
+        border: 0;
+        outline: 0;
+        background-color: transparent;
+        margin-left: 10px;
+      }
+
+      .side-bar-container .chatlist {
+        flex: 1;
+        background-color: white;
+        overflow-y: auto;
+      }
+
+      .side-bar-container .chatlist::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+
+      .side-bar-container .chatlist::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.2);
+      }
+
+      .chat-list-item-container {
+        height: 10vh;
+        display: flex;
+        background-color: transparent;
+        border: 0;
+        width: 100%;
+        align-items: center;
+        border-bottom: 0.1vh solid #eee;
+      }
+
+      .chat-list-item-container:hover {
+        background-color: #f5f5f5;
+      }
+
+      .chat-list-item-container:active {
+        background-color: #ebebeb;
+      }
+
+      .chat-list-item-container .chatlist-item--avatar {
+        width: 10vh;
+        height: 10vh;
+        border-radius: 50%;
+        margin-left: 5vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .chat-list-item-container .chatlist-item--avatar img {
+        width: 8vh;
+        height: 8vh;
+        border-radius: 50%;
+      }
+
+      .chat-list-item-container .chatlist-item--lines {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-right: 5vw;
+        margin-left: 5vw;
+        height: 10vh;
+        /* Corrige flex-wrap: ellipsis */
+        flex-wrap: wrap;
+        min-width: 0;
+      }
+
+      .chat-list-item-container .chatlist-item--lines .chatlist-item--line {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      } 
+
+      .chat-list-item-container .chatlist-item--lines .chatlist-item--line h1 {
+        font-size: 3vh;
+        color: black;
+        margin-bottom: 1vh;
+      }
+
+      .chat-list-item-container .chatlist-item--lines .chatlist-item--line time {
+        font-size: 2.3vh;
+        color: #999;
+      }
+
+      .chat-list-item-container .chatlist-item--lines .chatlist-item--line p {
+        font-size: 2.5vh;
+        color: #999;
+        width: 100%;
+        margin: 0;
+
+        /* Coloca ... se texto passar dos limites */
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      </style>
+
+      <behavior>
+        function loadUsers() {
+          fetch('http://192.168.0.62:8080/user/')
+          .then(res => {
+              if (res.status != 200) {
+                  return;
+              }
+              
+              res.json()
+              .then(data => {
+                  const chatlist = document.querySelector(".chatlist");
+  
+                  for (let user of data) {
+                      chatlist.innerHTML += `
+                          <button class="chat-list-item-container" onclick="signin('${user.email}')">
+                              <div class='chatlist-item--avatar'>
+                              <img src="${!user.avatar ? "https://www.w3schools.com/howto/img_avatar.png" : user.avatar}" alt='' />
+                              </div>
+                              <div class='chatlist-item--lines'>
+                              <div class='chatlist-item--line'>
+                                  <h1>${user.name}</h1>
+                              </div>
+                              </div>
+                          </button>
+                      `;
+                  }
+              })
+          }).catch(e => {
+              alert('Wrong credentials');
+          })
+      }
+  
+      loadUsers();
+  
+      function signin(email) {
+          fetch('http://192.168.0.62:8080/user/' + email)
+          .then(res => {
+              if (res.status != 200) {
+                  return;
+              }
+  
+              res.json()
+              .then(data => {
+                  localStorage.setItem('sessionId', data.id);
+                  window.location.href = "mobilang::screen::home";
+              })
+          }).catch(e => {
+              alert('Wrong credentials');
+          })
+      }
+      </behavior>
+    </screen>
+
+    <screen id="home">
+      <structure>
+        <html>
+          <div class="container">
+            <div class="side-bar-container">
+              <header>
+                <h1 class='header-text'>
+                  Close2WhatsApp
+                </h1>
+                <div class='header-actions'>
+                  <button>
+                    <img class="search-icon" src="https://www.inf.ufrgs.br/~wniemiec/shared/img/search.png" />
+                  </button>
+                  <button class="dots" onclick="handleDots()">
+                  </button>
+                </div>
+              </header>
+              <div class='tab-bar'>
+                <button class="camera">
+                  <img src="https://www.inf.ufrgs.br/~wniemiec/shared/img/camera.png" height="15" />
+                </button>
+                <div class="text-buttons">
+                  <button class="text active">
+                    CHATS
+                  </button>
+                  <button class="text">
+                    STATUS
+                  </button>
+                  <button class="text">
+                    CALLS
+                  </button>
+                </div>
+              </div>
+              <div class='chatlist'>
+                
+              </div>
+              <button class="new-message" onclick="handleNew()">
+                <img src="https://www.inf.ufrgs.br/~wniemiec/shared/img/chat.png" />
+              </button>
+            </div>
+          </div>
+        </html>
+      </structure>
+
+      <style>
+        html, body, div, span, applet, object, iframe,
+      h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+      a, abbr, acronym, address, big, cite, code,
+      del, dfn, em, img, ins, kbd, q, s, samp,
+      small, strike, strong, sub, sup, tt, var,
+      b, u, i, center,
+      dl, dt, dd, ol, ul, li,
+      fieldset, form, label, legend,
+      table, caption, tbody, tfoot, thead, tr, th, td,
+      article, aside, canvas, details, embed, 
+      figure, figcaption, footer, header, hgroup, 
+      menu, nav, output, ruby, section, summary,
+      time, mark, audio, video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+      }
+      /* HTML5 display-role reset for older browsers */
+      article, aside, details, figcaption, figure, 
+      footer, header, hgroup, menu, nav, section {
+        display: block;
+      }
+      body {
+        line-height: 1;
+      }
+      ol, ul {
+        list-style: none;
+      }
+      blockquote, q {
+        quotes: none;
+      }
+      blockquote:before, blockquote:after,
+      q:before, q:after {
+        content: '';
+        content: none;
+      }
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      .container {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+      }
+
+      .side-bar-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .side-bar-container header {
+        height: 10vh;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #075D57;
+      }
+
+      .side-bar-container header .header-text {
+        color: white;
+        font-size: 3vh;
+        margin-left: 2vh;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .side-bar-container header .header-actions button {
+        border: 0;
+        background-color: transparent;
+        outline: 0;
+        color: #919191;
+        height: 40px;
+        border-radius: 20px;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .side-bar-container .search {
+        background-color: #f6f6f6;
+        border-bottom: 1px solid #eee;
+        padding: 5px 15px;
+      }
+
+      .side-bar-container .search .search-input {
+        background-color: #fff;
+        height: 40px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+      }
+
+      .side-bar-container .search .search-input input {
+        flex: 1;
+        border: 0;
+        outline: 0;
+        background-color: transparent;
+        margin-left: 10px;
+      }
+
+      .side-bar-container .chatlist {
+        flex: 1;
+        background-color: white;
+        overflow-y: auto;
+      }
+
+      .side-bar-container .chatlist::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+
+      .side-bar-container .chatlist::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.2);
+      }
+
+      .chat-list-item-container {
+        height: 10vh;
+        display: flex;
+        background-color: transparent;
+        border: 0;
+        width: 100%;
+        align-items: center;
+        border-bottom: 0.1vh solid #eee;
+      }
+
+      .chat-list-item-container:hover {
+        background-color: #f5f5f5;
+      }
+
+      .chat-list-item-container:active {
+        background-color: #ebebeb;
+      }
+
+      .chat-list-item-container .chatlist-item--avatar {
+        width: 10vh;
+        height: 10vh;
+        border-radius: 50%;
+        margin-left: 5vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .chat-list-item-container .chatlist-item--avatar img {
+        width: 8vh;
+        height: 8vh;
+        border-radius: 50%;
+      }
+
+      .chat-list-item-container .chatlist-item--lines {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-right: 5vw;
+        margin-left: 5vw;
+        height: 10vh;
+        /* Corrige flex-wrap: ellipsis */
+        flex-wrap: wrap;
+        min-width: 0;
+      }
+
+      .chat-list-item-container .chatlist-item--lines .chatlist-item--line {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      } 
+
+      .chat-list-item-container .chatlist-item--lines .chatlist-item--line h1 {
+        font-size: 3vh;
+        color: black;
+        margin-bottom: 1vh;
+      }
+
+      .chat-list-item-container .chatlist-item--lines .chatlist-item--line time {
+        font-size: 2.3vh;
+        color: #999;
+      }
+
+      .chat-list-item-container .chatlist-item--lines .chatlist-item--line p {
+        font-size: 2.5vh;
+        color: #999;
+        width: 100%;
+        margin: 0;
+        text-align: left;
+        /* Coloca ... se texto passar dos limites */
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+
+      .tab-bar {
+        display: flex;
+        align-items: center;
+        background-color: #075D57;
+        height: 6vh;
+      }
+
+      .tab-bar .camera {
+        height: 6vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: transparent;
+        border: 0;
+        outline: 0;
+        margin: 0 1.4vh;
+      }
+
+      .tab-bar .camera img {
+        height: 2.5vh;
+      }
+
+      .tab-bar .text {
+        color: white;
+        background-color: transparent;
+        border: 0;
+        outline: 0;
+        padding: 1.5vh 0;
+        margin: 0 1.5vh;
+        font-size: 2vh;
+        font-weight: bold;
+      }
+
+      .tab-bar .active {
+        border-bottom: 0.7vh solid white;
+      }
+
+      .dots:after {
+        content: '\2807';
+        font-size: 3vh;
+        color: white;
+        margin-right: 1vw;
+      }
+
+      .search-icon {
+        height: 2.4vh;
+        margin-right: 3vw;
+      }
+
+      .new-message {
+        background-color: #02CC44;
+        position: fixed;
+        height: 10vh;
+        width: 10vh;
+        border-radius: 50%;
+        bottom: 0;
+        right: 0;
+        margin-right: 3vh;
+        margin-bottom: 3vh;
+        border: 0;
+      }
+
+      .new-message img {
+        width: 3vh;
+        height: 3vh;
+      }
+
+      .text-buttons {
+        display: flex;
+        width: 90%;
+        padding: 0 4vw;
+        justify-content: space-between;
+      }
+      </style>
+
+      <behavior>
+        const id = localStorage.getItem("sessionId");
+
+    if (id == null) {
+      window.location.href = "mobilang::screen::login";
+    }
+
+    function loadChat() {
+      const chatlist = document.querySelector(".chatlist");
+      chatlist.innerHTML = "";
+      fetch('http://192.168.0.62:8080/user/' + id + '/chat')
+      .then(res => {
+          if (res.status != 200) {
+              return;
+          }
+  
+          res.json()
+          .then(data => {
+              for (let i = data.length-1; i >= 0; i--) {
+                let chat = data[i];
+                let date = new Date(chat.lastMessageDate);
+                chatlist.innerHTML += `
+                  <button class="chat-list-item-container" onclick="openChat(${chat.id})">
+                    <div class='chatlist-item--avatar'>
+                      <img src="${!chat.person.avatar ? "https://www.w3schools.com/howto/img_avatar.png" : chat.person.avatar}" alt='' />
+                    </div>
+                    <div class='chatlist-item--lines'>
+                      <div class='chatlist-item--line'>
+                        <h1>${chat.person.name}</h1>
+                        <time>${date.getHours()}:${date.getMinutes()}</time>
+                      </div>
+                      <div class='chatlist-item--line'>
+                        <p>${!chat.lastMessage ? "" : chat.lastMessage}</p>
+                      </div>
+                    </div>
+                  </button>
+                `;
+              }
+          })
+      }).catch(e => {
+      })
+    }
+
+    loadChat();
+
+    function openChat(id) {
+      window.location.href = "mobilang::screen::chat?id=" + id;
+    }
+
+    function handleNew() {
+      window.location.href = "mobilang::screen::new";
+    }
+
+    function handleDots() {
+      localStorage.removeItem("id");
+      window.location.href = "mobilang::screen::login"
+    }
+      </behavior>
+    </screen>
+
+    <screen id="new">
+      <structure>
+        <html>
+          <div class="container">
+            <div class="side-bar-container">
+              <header>
+                <div class="left">
+                  <button onclick="handleBack()"></button>
+                  <h1 class='header-text'>
+                    Contacts
+                  </h1>
+                </div>
+                <div class='header-actions'>
+                  <button>
+                    <img class="search-icon" src="https://www.inf.ufrgs.br/~wniemiec/shared/img/search.png" />
+                  </button>
+                  <button class="dots">
+                  </button>
+                </div>
+              </header>
+      
+              <div class='chatlist'>
+                
+              </div>
+            </div>
+          </div>
+        </html>
+      </structure>
+
+      <style>
+        html, body, div, span, applet, object, iframe,
+      h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+      a, abbr, acronym, address, big, cite, code,
+      del, dfn, em, img, ins, kbd, q, s, samp,
+      small, strike, strong, sub, sup, tt, var,
+      b, u, i, center,
+      dl, dt, dd, ol, ul, li,
+      fieldset, form, label, legend,
+      table, caption, tbody, tfoot, thead, tr, th, td,
+      article, aside, canvas, details, embed, 
+      figure, figcaption, footer, header, hgroup, 
+      menu, nav, output, ruby, section, summary,
+      time, mark, audio, video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+      }
+      /* HTML5 display-role reset for older browsers */
+      article, aside, details, figcaption, figure, 
+      footer, header, hgroup, menu, nav, section {
+        display: block;
+      }
+      body {
+        line-height: 1;
+      }
+      ol, ul {
+        list-style: none;
+      }
+      blockquote, q {
+        quotes: none;
+      }
+      blockquote:before, blockquote:after,
+      q:before, q:after {
+        content: '';
+        content: none;
+      }
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      .container {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+      }
+
+      .side-bar-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .side-bar-container header {
+        height: 10vh;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #075D57;
+      }
+
+      .side-bar-container header .left {
+        display: flex;
+        align-items: center;
+      }
+
+      .side-bar-container header .left button {
+        height: 8vh;
+        width: 8vh;
+        background-color: transparent;
+        border: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border-radius: 50%;
+      }
+
+      .side-bar-container header .left button:after {
+        content: '\2190';
+        color: white;
+        font-size: 6vh;
+        margin-bottom: 2vh;
+      }
+
+
+      .side-bar-container header .header-text {
+        color: white;
+        font-size: 3vh;
+        margin-left: 2vh;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .side-bar-container header .header-actions button {
+        border: 0;
+        background-color: transparent;
+        outline: 0;
+        color: #919191;
+        height: 40px;
+        border-radius: 20px;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .side-bar-container .search {
+        background-color: #f6f6f6;
+        border-bottom: 1px solid #eee;
+        padding: 5px 15px;
+      }
+
+      .side-bar-container .search .search-input {
+        background-color: #fff;
+        height: 40px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+      }
+
+      .side-bar-container .search .search-input input {
+        flex: 1;
+        border: 0;
+        outline: 0;
+        background-color: transparent;
+        margin-left: 10px;
+      }
+
+      .side-bar-container .chatlist {
+        flex: 1;
+        background-color: white;
+        overflow-y: auto;
+      }
+
+      .side-bar-container .chatlist::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+
+      .side-bar-container .chatlist::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.2);
+      }
+
+      .chat-list-item-container {
+        height: 10vh;
+        display: flex;
+        background-color: transparent;
+        border: 0;
+        width: 100%;
+        align-items: center;
+        border-bottom: 0.1vh solid #eee;
+      }
+
+      .chat-list-item-container:hover {
+        background-color: #f5f5f5;
+      }
+
+      .chat-list-item-container:active {
+        background-color: #ebebeb;
+      }
+
+      .chat-list-item-container .chatlist-item--avatar {
+        width: 10vh;
+        height: 10vh;
+        border-radius: 50%;
+        margin-left: 5vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .chat-list-item-container .chatlist-item--avatar img {
+        width: 8vh;
+        height: 8vh;
+        border-radius: 50%;
+      }
+
+      .chat-list-item-container .chatlist-item--lines {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-right: 5vw;
+        margin-left: 5vw;
+        height: 10vh;
+        /* Corrige flex-wrap: ellipsis */
+        flex-wrap: wrap;
+        min-width: 0;
+      }
+
+      .chat-list-item-container .chatlist-item--lines .chatlist-item--line {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      } 
+
+      .chat-list-item-container .chatlist-item--lines .chatlist-item--line h1 {
+        font-size: 3vh;
+        color: black;
+        margin-bottom: 1vh;
+      }
+
+      .chat-list-item-container .chatlist-item--lines .chatlist-item--line time {
+        font-size: 2.3vh;
+        color: #999;
+      }
+
+      .chat-list-item-container .chatlist-item--lines .chatlist-item--line p {
+        font-size: 2.5vh;
+        color: #999;
+        width: 100%;
+        margin: 0;
+        text-align: left;
+        /* Coloca ... se texto passar dos limites */
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+
+      .tab-bar {
+        display: flex;
+        align-items: center;
+        background-color: #075D57;
+        height: 6vh;
+      }
+
+      .tab-bar .camera {
+        height: 6vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: transparent;
+        border: 0;
+        outline: 0;
+        margin: 0 1.4vh;
+      }
+
+      .tab-bar .camera img {
+        height: 2.5vh;
+      }
+
+      .tab-bar .text {
+        color: white;
+        background-color: transparent;
+        border: 0;
+        outline: 0;
+        padding: 1.5vh 0;
+        margin: 0 1.5vh;
+        font-size: 2vh;
+        font-weight: bold;
+      }
+
+      .tab-bar .active {
+        border-bottom: 0.7vh solid white;
+      }
+
+      .dots:after {
+        content: '\2807';
+        font-size: 3vh;
+        color: white;
+        margin-right: 1vw;
+      }
+
+      .search-icon {
+        height: 2.4vh;
+        margin-right: 3vw;
+      }
+
+      .new-message {
+        background-color: #02CC44;
+        position: fixed;
+        height: 10vh;
+        width: 10vh;
+        border-radius: 50%;
+        bottom: 0;
+        right: 0;
+        margin-right: 3vh;
+        margin-bottom: 3vh;
+        border: 0;
+      }
+
+      .new-message img {
+        width: 3vh;
+        height: 3vh;
+      }
+      </style>
+
+      <behavior>
+        function loadChat() {
+          const chatlist = document.querySelector(".chatlist");
+          chatlist.innerHTML = "";
+          fetch('http://192.168.0.62:8080/user/')
+          .then(res => {
+              if (res.status != 200) {
+                  return;
+              }
+      
+              res.json()
+              .then(data => {
+                  const myId = localStorage.getItem("sessionId");
+                  for (user of data) {
+                    if (user.id == myId) {
+                      continue;
+                    }
+    
+                    chatlist.innerHTML += `
+                      <button class="chat-list-item-container" onclick="startNewChatWith(${user.id})">
+                        <div class='chatlist-item--avatar'>
+                          <img src="${!user.avatar ? "https://www.w3schools.com/howto/img_avatar.png" : user.avatar}" alt='' />
+                        </div>
+                        <div class='chatlist-item--lines'>
+                          <div class='chatlist-item--line'>
+                            <h1>${user.name}</h1>
+                          </div>
+                        </div>
+                      </button>
+                    `;
+                  }
+              })
+          }).catch(e => {
+          })
+        }
+    
+        loadChat();
+    
+        function startNewChatWith(id) {
+          window.location.href = "mobilang::screen::chat?uid=" + id;
+        }
+    
+        function handleBack() {
+          window.location.href = "mobilang::screen::home";
+        }
+      </behavior>
+    </screen>
+
+    <screen id="chat">
+      <structure>
+        <html>
+          <div class="container">
+            <div class="content-area-container">
+              <div class="chat-window-container">
+                <div class='chat-window--header'>
+                  <div class='header-info'>
+                    <button onclick="handleBack()"></button>
+                    <div class='avatar'>
+                      <img id="user-avatar" src="https://www.w3schools.com/howto/img_avatar.png"  alt='' />
+                    </div>
+                    <h1 id="person-name"></h1>
+                  </div>
+                  <div class='header-actions'>
+                    <button class="action">
+                      <img src="https://www.inf.ufrgs.br/~wniemiec/shared/img/video.png"  alt='' />
+                    </button>
+                    <button class="action">
+                      <img src="https://www.inf.ufrgs.br/~wniemiec/shared/img/phone.png"  alt='' />
+                    </button>
+                    <button class="dots">
+                    </button>
+                  </div>
+                </div>
+                <div class='chat-window--body'>
+                  
+                </div>
+          
+                <div class='chat-window--footer'>
+                  <div class='content'>
+                    <input type='text' placeholder='Say something' id="input-msg" />
+                  </div>
+                  <div class='pos'>
+                    <button onclick="handleSend()">
+                      <img src="https://www.inf.ufrgs.br/~wniemiec/shared/img/send.png" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </html>
+      </structure>
+
+      <style>
+        html, body, div, span, applet, object, iframe,
+      h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+      a, abbr, acronym, address, big, cite, code,
+      del, dfn, em, img, ins, kbd, q, s, samp,
+      small, strike, strong, sub, sup, tt, var,
+      b, u, i, center,
+      dl, dt, dd, ol, ul, li,
+      fieldset, form, label, legend,
+      table, caption, tbody, tfoot, thead, tr, th, td,
+      article, aside, canvas, details, embed, 
+      figure, figcaption, footer, header, hgroup, 
+      menu, nav, output, ruby, section, summary,
+      time, mark, audio, video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+      }
+      /* HTML5 display-role reset for older browsers */
+      article, aside, details, figcaption, figure, 
+      footer, header, hgroup, menu, nav, section {
+        display: block;
+      }
+      body {
+        line-height: 1;
+      }
+      ol, ul {
+        list-style: none;
+      }
+      blockquote, q {
+        quotes: none;
+      }
+      blockquote:before, blockquote:after,
+      q:before, q:after {
+        content: '';
+        content: none;
+      }
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      .container {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+      }
+
+      .content-area-container {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        background-color: #d2d8dc;
+        font-family: 'Sergoe UI', 'Helvetica Neue', 'Lucida Grande', 'Arial';
+      }
+
+      .chat-window-container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        background-color: #f9f9f9;
+      }
+
+      .chat-window-container .button.active svg {
+        color: #126ece;
+      }
+
+      .chat-window--header {
+        background-color: #075D57;
+        height: 8vh;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+      }
+
+      .chat-window--header .header-info {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .chat-window--header .header-info .avatar {
+        height: 6vh;
+        width: auto;
+        border-radius: 50%;
+        margin: 0 2vw 0 0;
+      }
+
+      .chat-window--header .header-info .avatar img {
+        height: 6vh;
+        width: auto;
+        border-radius: 50%;
+      }
+
+      .chat-window--header .header-info h1 {
+        font-size: 3vh;
+        color: #fff;
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        margin-right: 1vw;
+      }
+
+      .header-actions button {
+        width: 6vh;
+        height: 6vh;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        outline: 0;
+        border: 0;
+        cursor: pointer;
+        background-color: transparent;
+        color: #919191;
+      }
+
+      .chat-window--body {
+        flex: 1;
+        overflow-y: auto;
+        background-color: #e5ddd5;
+        background-size: cover;
+        background-position: top;
+        background-image: url('https://blog.1a23.com/wp-content/uploads/sites/2/2020/02/Desktop.png');
+        padding: 2vh 3vw;
+      }
+
+      .chat-window--body::-webkit-scrollbar {
+        width: 1vw;
+        height: 1vh;
+      }
+
+      .chat-window--body::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.2);
+      }
+
+      .chat-window--footer {
+        display: flex;
+        height: 6vh;
+        align-items: center;
+        justify-content: space-between;
+        position: fixed;
+        bottom: 1vh;
+        width: 100vw;
+      }
+
+      .pos button {
+        width: 5vh;
+        height: 5vh;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        outline: 0;
+        border: 0;
+        cursor: pointer;
+        background-color: #028A7A;
+        color: white;
+      }
+
+      .pos button img {
+        height: 2.06vh;
+      }
+
+      .chat-window--footer {
+        padding: 0 2vw;
+      }
+
+      .chat-window--footer .content {
+        flex: 1;
+        margin-right: 10px;
+      }
+
+      .chat-window--footer .content input {
+        width: 100%;
+        height: 5vh;
+        border: 0;
+        outline: 0;
+        background-color: white;
+        border-radius: 3vh;
+        font-size: 1.5vh;
+        color: #4a4a4a;
+        padding-left: 4vw;
+        border: 0.1vh solid #ccc;
+      }
+
+      .chat-message-container {
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: flex-start;
+      }
+
+      .chat-message-container .message-item {
+        background-color: #fff;
+        border-radius: 0.5vh;
+        box-shadow: 0 1px 1px #ccc;
+        display: flex;
+        flex-direction: column;
+        padding: 3px;
+        max-width: 90%;
+      }
+
+      .chat-message-container .message-item p {
+        font-size: 2.0vh;
+        margin: 1vh 10vw 1vh 1vh;
+      }
+
+      .chat-message-container .message-item time {
+        font-size: 1.2vh;
+        color: #999;
+        margin-right: 1vw;
+        text-align: right;
+        height: 2vh;
+        margin-top: -1.0vh;
+      }
+
+      .chat-message-container.my-message {
+        justify-content: flex-end;
+      }
+
+      .chat-message-container.my-message .message-item {
+        background-color: #dcf8c6;
+      }
+
+      .dots:after {
+        content: '\2807';
+        font-size: 3vh;
+        color: white;
+        margin-right: 1vw;
+        margin-top: 0.6vh;
+      }
+
+      .action img {
+        height: 2.2vh;
+      }
+
+      .header-info button {
+        height: 8vh;
+        background-color: transparent;
+        border: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border-radius: 50%;
+      }
+
+      .header-info button:after {
+        content: '\2190';
+        color: white;
+        font-size: 6vh;
+        margin-bottom: 2vh;
+      }
+      </style>
+
+      <behavior>
+        let query = "mobilang::param::uid";
+
+    if (query.includes("uid")) {
+      createNewChat();
+    }
+    else {
+      query = "mobilang::param::id";
+      loadChat();
+      setInterval(() => loadChat(), 1000);
+    }
+
+    function createNewChat() {
+      const userId = "mobilang::param::uid";
+      const myId = localStorage.getItem("sessionId");
+      const chatBody = document.querySelector(".chat-window--body");
+      chatBody.innerHTML = "";
+
+      fetch('http://192.168.0.62:8080/chat/', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ user1: myId, user2: userId })
+      })
+      .then(res => {
+        if (res.status != 201) {
+            window.location.href = "mobilang::screen::home";
+            return;
+        }
+
+        let location = res.headers.get("location");
+        let id = location.substring(location.lastIndexOf("/")+1);
+
+        window.location.href = "mobilang::screen::chat?id=" + id;
+      }).catch(e => {
+        console.log(e);
+      })
+    }
+
+    function loadChat() {
+      const chatId = "mobilang::param::id";
+      const myId = localStorage.getItem("sessionId");
+      const chatBody = document.querySelector(".chat-window--body");
+
+      fetch('http://192.168.0.62:8080/chat/' + chatId)
+      .then(res => {
+          if (res.status != 200) {
+              return;
+          }
+  
+          res.json()
+          .then(data => {
+            chatBody.innerHTML = "";
+              for (chat of data) {
+                let date = new Date(chat.date);
+                chatBody.innerHTML += `
+                  <div class="chat-message-container ${chat.author.id == myId ? "my-message" : ""}">
+                    <div class='message-item'>
+                      <p>${chat.body}</p>
+                      <time>${date.getHours()}:${date.getMinutes()}</time>
+                    </div>
+                  </div>
+                `;
+              }
+          });
+
+          loadUserInfo(chatId);
+      }).catch(e => {
+      })
+    }
+
+    function loadUserInfo(chatId) {
+      fetch('http://192.168.0.62:8080/chat/' + chatId + '/users')
+      .then(res => {
+        if (res.status != 200) {
+          return;
+        }
+
+        res.json()
+        .then(data => {
+          const myId = localStorage.getItem("sessionId");
+
+          let user;
+
+          if (data.user1.id == myId) {
+            user = data.user2;
+          }
+          else {
+            user = data.user1;
+          }
+
+          const personName = document.getElementById("person-name");
+          personName.innerHTML = user.name;
+
+          const avatar = document.getElementById("user-avatar");
+          avatar.src = !user.avatar ? "https://www.w3schools.com/howto/img_avatar.png" : user.avatar;
+        })
+      })
+    }
+
+    function handleSend() {
+      const msg = "mobilang::input::input-msg";
+      const myId = localStorage.getItem("sessionId");
+      const chatId = query.split("id=")[1];
+
+      fetch('http://192.168.0.62:8080/chat/' + chatId, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ author: myId, body: msg, type: 'text' })
+      })
+      .catch(e => {
+        console.log(e)
+      })
+    }
+
+    function handleBack() {
+      window.location.href = "mobilang::screen::home";
+    }
+      </behavior>
+    </screen>
+  </screens>
+
+  <properties>
+    {
+      "application_name": "Close2WhatsApp",
+      "platforms": [
+          "android",
+          "ios"
+      ]
+    }
+    </properties>
+</mobilang>

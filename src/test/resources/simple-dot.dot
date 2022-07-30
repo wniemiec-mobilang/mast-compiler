@@ -1,0 +1,20 @@
+digraph G {
+n0 -> n1;
+n1 -> n2;
+n2 -> n3;
+n3 -> n4;
+n2 -> n5;
+n2 -> n6;
+n0 -> n7;
+n7 -> n8;
+n0 [label="<mobilang>"];
+n1 [label="<screens>"];
+n2 [label="<screen id=\"home\">"];
+n3 [label="<structure>"];
+n4 [label="<html><h1>Hello world!</h1></html>"];
+n5 [label="<style>"];
+n6 [label="<behavior>"];
+n7 [label="<properties>"];
+n8 [label="{\"application_name\": \"simple-application\",\"platforms\": [\"android\",\"ios\"]}"];
+
+}
