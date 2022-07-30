@@ -21,6 +21,8 @@ public class Mast {
     private final Path mobilangFilePath;
     private final Path outputLocationPath;
     private Path mastLocation;
+    private Path javascriptLocation;
+    private Path astFilePath;
     private Terminal terminal;
 
 
@@ -47,16 +49,15 @@ public class Mast {
 
         setUpTerminal();
         setUpMastLocation();
-        runTerminal(appName);
+        setUpJavaScriptLocation();
+        runMakeAll();
+        runMakeCompilation(appName);
+        runHtmlParser();
+        runCssParser();
+        runJavaScriptParser();
+        runMakeClean();
 
-        return buildAstFilePath(appName);
-    }
-
-    private Path buildAstFilePath(String appName) {
-        return outputLocationPath
-            .resolve(appName)
-            .resolve("ast")
-            .resolve(appName + ".dot");
+        return astFilePath;
     }
 
     private String extractAppName() throws IOException {
@@ -88,6 +89,12 @@ public class Mast {
             .resolve("mast");
     }
 
+    private void setUpJavaScriptLocation() throws IOException {
+        Path baseDir = buildBaseDir();
+
+        javascriptLocation = baseDir.resolve("javascript");
+    }
+
     private static Path buildBaseDir() throws IOException {
         if (!isJarFile()) {
             return App.getAppRootPath();
@@ -103,12 +110,7 @@ public class Mast {
         return JarFileManager.isJarFile(App.getAppRootPath());
     }
 
-    private void runTerminal(String appName) throws IOException {
-        makeAll();
-        makeCompilation(appName);
-    }
-
-    private void makeAll() throws IOException {
+    private void runMakeAll() throws IOException {
         terminal.exec(
             "make", 
             "-C", 
@@ -116,15 +118,56 @@ public class Mast {
         );
     }
 
-    private void makeCompilation(String appName) throws IOException {
+    private void runMakeCompilation(String appName) throws IOException {
         terminal.exec(
             "make", 
             "-C", 
             mastLocation.toString(), 
             "compilation", 
             "file=" + mobilangFilePath, 
-            "output=" + outputLocationPath.resolve(appName).resolve("ast"), 
+            "output=" + outputLocationPath.resolve(appName), 
             "name=" + appName
+        );
+
+        astFilePath = buildAstFilePath(appName);
+    }
+
+    private Path buildAstFilePath(String appName) {
+        return outputLocationPath
+            .resolve(appName)
+            .resolve(appName + ".dot");
+    }
+
+    private void runHtmlParser() throws IOException {
+        terminal.exec(
+            "node", 
+            javascriptLocation.resolve("html-parser").toString(),
+            astFilePath.toString()
+        );
+    }
+
+    private void runCssParser() throws IOException {
+        terminal.exec(
+            "node", 
+            javascriptLocation.resolve("css-parser").toString(),
+            astFilePath.toString()
+        );
+    }
+
+    private void runJavaScriptParser() throws IOException {
+        terminal.exec(
+            "node", 
+            javascriptLocation.resolve("javascript-parser").toString(),
+            astFilePath.toString()
+        );
+    }
+
+    private void runMakeClean() throws IOException {
+        terminal.exec(
+            "make", 
+            "-C", 
+            mastLocation.toString(),
+            "clean"
         );
     }
 }
