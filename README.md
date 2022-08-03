@@ -1,4 +1,4 @@
-![logo](https://raw.githubusercontent.com/wniemiec-mobilex/mast-compiler/main/docs/images/logo/logo.png?raw=true)
+![logo](https://raw.githubusercontent.com/wniemiec-mobilex/mast-compiler/master/docs/images/logo/logo.png?raw=true)
 
 <h1 align='center'>MAST compiler</h1>
 <p align='center'>Mobilang to AST Compiler</p>
