@@ -1,4 +1,6 @@
-![logo](https://raw.githubusercontent.com/wniemiec-mobilex/mast-compiler/master/docs/images/logo/logo.png?raw=true)
+<p align="center">
+    <img src="https://raw.githubusercontent.com/wniemiec-mobilex/mast-compiler/master/docs/images/logo/logo.png?raw=true" alt="Logo">
+</p>
 
 <h1 align='center'>MAST compiler</h1>
 <p align='center'>Mobilang to AST Compiler</p>
@@ -8,7 +10,8 @@
 	<a href="http://java.oracle.com"><img src="https://img.shields.io/badge/java-11+-D0008F.svg" alt="Java compatibility"></a>
 	<a href="https://github.com/wniemiec-mobilex/mast-compiler/releases"><img src="https://img.shields.io/github/v/release/wniemiec-mobilex/mast-compiler" alt="Release"></a>
 	<a href="https://github.com/wniemiec-mobilex/mast-compiler/blob/master/LICENSE"><img src="https://img.shields.io/github/license/wniemiec-mobilex/mast-compiler" alt="License"></a>
-	
+</p>
+
 <hr>
 
 ## ❇ Introduction
